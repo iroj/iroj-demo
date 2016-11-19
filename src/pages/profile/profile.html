@@ -1,7 +1,8 @@
 <ion-content padding>
-
-    <ion-icon *ngIf='!user.profileImageId' class='profileImg' name='md-person'></ion-icon>
-    <img *ngIf='user.profileImageId' class='profileImg' src='http://res.cloudinary.com/iroj/image/upload/w_80,h_80,c_scale,r_max/{{user.profileImageId}}.jpg' />
+<div class='icons'>
+    <ion-icon *ngIf='!user.profileImageId' class='profileIcon' name='md-person'></ion-icon>
+    <img *ngIf='user.profileImageId' class='profileImg' src='{{user.profileImageId}}' />
+</div>
     <div class='addNewImg'>
         <button ion-button (click)='openCamera()' small> <ion-icon name='md-camera' > </ion-icon></button>
         <button ion-button (click)='getFile()' small> <ion-icon name='md-folder'> </ion-icon></button>

@@ -14,7 +14,6 @@ export class ProfilePage {
   public schools: any;
   public personal = false;
   public showGames = false;
-  public base64Image: any;
 
   constructor(public navCtrl: NavController, public global: GlobalService, public loading: LoadingController, public toast: ToastController, public data: DataService, public profile: ProfileService) {
     this.user = this.global.getUser();
@@ -60,18 +59,26 @@ export class ProfilePage {
 
   openCamera() {
     console.log('open camera');
-    let options = {destinationType: 0, }
+    let options = {destinationType: 0,quality:80, targetWidth: 200}
     Camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64:
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.user.profileImageId = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
       console.log(err);
     });
   }
 
   getFile() {
-    console.log('open file explorer')
+     console.log('open gallery');
+    let options = {destinationType: 0,quality:80, targetWidth: 200, sourceType:2}
+    Camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64:
+      this.user.profileImageId = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      console.log(err);
+    });
   }
 
 
