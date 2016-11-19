@@ -1,0 +1,9 @@
+<ion-tabs color='light' tabsPlacement='top'>
+    <ion-tab [root]="tab1Root" tabTitle="Profile"></ion-tab>
+    <ion-tab [root]="tab2Root" tabTitle="Testing"></ion-tab>
+    <ion-tab [root]="tab3Root" tabTitle="Results"></ion-tab>
+</ion-tabs>
+
+<ion-fab right bottom>
+    <button (click)='signout()' ion-fab color='light'><ion-icon name="md-log-out"></ion-icon></button>
+</ion-fab>

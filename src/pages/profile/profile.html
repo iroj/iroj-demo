@@ -1,0 +1,82 @@
+<ion-content padding>
+
+    <ion-icon *ngIf='!user.profileImageId' class='profileImg' name='md-person'></ion-icon>
+    <img *ngIf='user.profileImageId' class='profileImg' src='http://res.cloudinary.com/iroj/image/upload/w_80,h_80,c_scale,r_max/{{user.profileImageId}}.jpg' />
+    <div class='addNewImg'>
+        <button ion-button (click)='openCamera()' small> <ion-icon name='md-camera' > </ion-icon></button>
+        <button ion-button (click)='getFile()' small> <ion-icon name='md-folder'> </ion-icon></button>
+    </div>
+    <ion-list no-lines class='profile-form'>
+        <ion-item no-lines>
+            <ion-label>Fullname</ion-label>
+            <ion-input [(ngModel)]='user.fullName'></ion-input>
+        </ion-item>
+        <ion-item no-lines>
+            <ion-label>Username</ion-label>
+            <ion-input [(ngModel)]='user.username'></ion-input>
+        </ion-item>
+
+        <ion-item no-lines>
+            <ion-label>Date of Birth</ion-label>
+            <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="user.dob"></ion-datetime>
+        </ion-item>
+        <ion-item *ngIf='user.roles[0]==="student"'>
+            <ion-label>Grade</ion-label>
+            <ion-select [(ngModel)]="user.grade">
+                <ion-option value="1">1</ion-option>
+                <ion-option value="2">2</ion-option>
+                <ion-option value="3">3</ion-option>
+                <ion-option value="4">4</ion-option>
+                <ion-option value="5">5</ion-option>
+                <ion-option value="6">6</ion-option>
+                <ion-option value="7">7</ion-option>
+                <ion-option value="8">8</ion-option>
+                <ion-option value="9">9</ion-option>
+                <ion-option value="10">10</ion-option>
+                <ion-option value="11">11</ion-option>
+                <ion-option value="12">12</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>School</ion-label>
+            <ion-select [(ngModel)]="user.school">
+                <ion-option *ngFor='let school of schools' value="{{school._id}}">{{school.name}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item (click)='showGames=!showGames'>
+            <ion-label>Games</ion-label>
+        </ion-item>
+        <div *ngIf='showGames' class='games'>
+            <ion-item>
+                <ion-label>Football</ion-label>
+                <ion-checkbox [(ngModel)]="user.game.football"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Baseball</ion-label>
+                <ion-checkbox [(ngModel)]="user.game.baseball"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Basketball</ion-label>
+                <ion-checkbox [(ngModel)]="user.game.basketball"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Soccer</ion-label>
+                <ion-checkbox [(ngModel)]="user.game.soccer"></ion-checkbox>
+            </ion-item>
+        </div>
+        <ion-item>
+            <ion-label>Access personal records</ion-label>
+            <ion-checkbox [(ngModel)]="personal"></ion-checkbox>
+        </ion-item>
+
+        <ion-item *ngIf='personal'>
+            <ion-label>Email</ion-label>
+            <ion-input [(ngModel)]='user.email'></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <button ion-button color='primary' (click)='submit()' block>Submit</button>
+        </ion-item>
+
+    </ion-list>
+</ion-content>

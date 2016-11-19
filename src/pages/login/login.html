@@ -1,0 +1,75 @@
+<ion-content padding>
+    <ion-title text-center> Welcome to Pomono App</ion-title>
+
+    <ion-grid class='login'>
+        <div *ngIf='showLogin'>
+            <ion-row>
+                <ion-col width-10></ion-col>
+                <ion-col width-80>
+                    <ion-input type="text" [(ngModel)]='loginData.username' placeholder='Enter your username'>
+                    </ion-input>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col width-10></ion-col>
+                <ion-col width-80>
+                    <ion-input type="password" [(ngModel)]='loginData.password' placeholder='Enter password'>
+                    </ion-input>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf='err' text-center>
+                <ion-col width-60>
+                    <p color='danger'>{{err}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row text-center>
+                <ion-col width-30></ion-col>
+                <ion-col width-40>
+                    <button (click)='signin()' ion-button color="secondary">Login</button>
+                </ion-col>
+                <ion-col width-30></ion-col>
+            </ion-row>
+            <ion-row text-center>
+                <ion-col width-60>
+                    <p class='toggle-form' (click)='showLogin=false'>Or <br>Signup with Pomona</p>
+                </ion-col>
+            </ion-row>
+        </div>
+        <div *ngIf='!showLogin'>
+            <ion-row>
+                <ion-col width-10></ion-col>
+                <ion-col width-80>
+                    <ion-input type="text" [(ngModel)]='signupData.username' placeholder='Enter unique username'>
+                    </ion-input>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col width-10></ion-col>
+                <ion-col width-80>
+                    <ion-input type="password" [(ngModel)]='signupData.password' placeholder='Enter password'>
+                    </ion-input>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf='err' text-center>
+                <ion-col width-60>
+                    <p color='danger'>{{err}}</p>
+                </ion-col>
+            </ion-row>
+            <ion-row text-center>
+                <ion-col width-30></ion-col>
+                <ion-col width-40>
+                    <button (click)='signup()' ion-button color="secondary">Sign Up</button>
+                </ion-col>
+                <ion-col width-30></ion-col>
+            </ion-row>
+            <ion-row text-center>
+                <ion-col width-60>
+                    <p class='toggle-form' (click)='showLogin=true'>Or <br> Login using your credentials</p>
+                </ion-col>
+            </ion-row>
+        </div>
+
+
+    </ion-grid>
+
+</ion-content>

@@ -1,0 +1,21 @@
+page-login {
+    ion-content {
+        background-color: #387ef5!important;
+        ion-title {
+            margin-top: 20%;
+            color: #fff
+        }
+        .login {
+            margin-top: 40%;
+            ion-input {
+                background: #fff;
+                color: #000;
+            }
+            .toggle-form {
+                color: #fff;
+                font-size: 12px;
+                text-decoration: underline;
+            }
+        }
+    }
+}

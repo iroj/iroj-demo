@@ -1,0 +1,28 @@
+page-profile {
+    .profileImg {
+        font-size: 80px;
+        text-align: center;
+        width: 100%;
+        margin-bottom: -10%;
+    }
+    .addNewImg {
+        text-align: center;
+    }
+    .profile-form {
+        margin-top: 5%;
+        ion-label {
+            color: #778f98!important;
+        }
+        .item-input .item-clear {
+            box-shadow: none!important;
+            color: #fff!important;
+        }
+        .games {
+            margin-left: 10%;
+        }
+    }
+    .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner {
+        border: none;
+        box-shadow: none;
+    }
+}
