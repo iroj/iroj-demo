@@ -1,0 +1,69 @@
+<ion-fab top right edg>
+    <button ion-fab mini (click)='back()'>X</button>
+</ion-fab>
+<ion-content>
+    <div class='header-page'>
+        <h1 text-center>{{selectedCard.name}}</h1>
+    </div>
+    <ion-grid class='test-card'>
+        <ion-row center>
+            <ion-col width-30 class='timer-buttons' text-center>
+                <button ion-fab class='timer-button'> {{timer.min}}:{{timer.sec}}</button>
+                <button *ngIf='status==="stop"' ion-fab class='timer-button' (click)='start()'> Start</button>
+                <button *ngIf='status==="running"' ion-fab class='timer-button' (click)='pause()'> Pause</button>
+                <button *ngIf='status==="paused"' ion-fab class='timer-button' (click)='resume()'> Resume</button>
+                <button ion-fab class='timer-button' (click)='stop()'> Stop</button>
+                <button ion-fab class='timer-button' (click)='reset()'> Reset</button>
+            </ion-col>
+            <ion-col width-20 class='errors'>
+                <h3>Errors</h3>
+                <button ion-fab class='timer-button'>{{errors}}
+                </button>
+            </ion-col>
+            <ion-col width-50 class='numbers'>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col *ngFor='let x of selectedCard.row1' width-20>
+                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col *ngFor='let x of selectedCard.row2' width-20>
+                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col *ngFor='let x of selectedCard.row3' width-20>
+                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col *ngFor='let x of selectedCard.row4' width-20>
+                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col *ngFor='let x of selectedCard.row5' width-20>
+                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col *ngFor='let x of selectedCard.row6' width-20>
+                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col *ngFor='let x of selectedCard.row7' width-20>
+                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col *ngFor='let x of selectedCard.row8' width-20>
+                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

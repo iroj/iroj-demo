@@ -22,4 +22,5 @@ setServer(server) {
     getUser() {
         return this.user;
     }
+
 }

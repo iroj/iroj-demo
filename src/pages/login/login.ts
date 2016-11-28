@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController, AlertController } from 'ionic-angular';
 import {TabsPage} from '../tabs/tabs';
 import {StudentTabsPage} from '../student-tabs/student-tabs';
+import {AdminTabsPage} from '../admin-tabs/admin-tabs';
 import { GlobalService } from '../../providers/global-service';
 import { DataService } from '../../providers/data-service';
 import { AuthService } from '../../providers/auth-service';
@@ -28,8 +29,7 @@ public err = '';
     console.log('login', this.loginData)
           this.loginData.username = this.loginData.username.trim();
     let loading = this.loadingController.create({
-      content: 'Logging In...',
-      duration: 5000
+      content: 'Logging In...'
     });
     loading.present()
     this.auth.login(this.loginData).subscribe(
@@ -43,11 +43,12 @@ public err = '';
             this.navCtrl.pop().then(success=>{
               if(data.roles[0]==='student')
                   this.navCtrl.setRoot(StudentTabsPage)
-                  else 
+              else if (data.roles[0]==='admin')
+                  this.navCtrl.setRoot(AdminTabsPage);
+              else 
                   this.navCtrl.setRoot(TabsPage)
             })
           }
-          
         else if(data.roles.length==0 || !data.approved)
               this.err='Your account has not been approved yet. Please contact your examiner'
          else {
@@ -85,8 +86,7 @@ public err = '';
       this.signupData.username = this.signupData.username.trim();
 
     let loading = this.loadingController.create({
-      content: 'Signing Up',
-      duration: 5000
+      content: 'Signing Up'
     });
     loading.present();
     this.auth.signup(this.signupData).subscribe(

@@ -1,75 +1,48 @@
-<ion-content padding>
-    <ion-title text-center> Welcome to Pomono App</ion-title>
-
-    <ion-grid class='login'>
-        <div *ngIf='showLogin'>
-            <ion-row>
-                <ion-col width-10></ion-col>
-                <ion-col width-80>
-                    <ion-input type="text" [(ngModel)]='loginData.username' placeholder='Enter your username'>
-                    </ion-input>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col width-10></ion-col>
-                <ion-col width-80>
-                    <ion-input type="password" [(ngModel)]='loginData.password' placeholder='Enter password'>
-                    </ion-input>
-                </ion-col>
-            </ion-row>
-            <ion-row *ngIf='err' text-center>
-                <ion-col width-60>
-                    <p color='danger'>{{err}}</p>
-                </ion-col>
-            </ion-row>
-            <ion-row text-center>
-                <ion-col width-30></ion-col>
-                <ion-col width-40>
-                    <button (click)='signin()' ion-button color="secondary">Login</button>
-                </ion-col>
-                <ion-col width-30></ion-col>
-            </ion-row>
-            <ion-row text-center>
-                <ion-col width-60>
-                    <p class='toggle-form' (click)='showLogin=false'>Or <br>Signup with Pomona</p>
-                </ion-col>
-            </ion-row>
-        </div>
-        <div *ngIf='!showLogin'>
-            <ion-row>
-                <ion-col width-10></ion-col>
-                <ion-col width-80>
-                    <ion-input type="text" [(ngModel)]='signupData.username' placeholder='Enter unique username'>
-                    </ion-input>
-                </ion-col>
-            </ion-row>
-            <ion-row>
-                <ion-col width-10></ion-col>
-                <ion-col width-80>
-                    <ion-input type="password" [(ngModel)]='signupData.password' placeholder='Enter password'>
-                    </ion-input>
-                </ion-col>
-            </ion-row>
-            <ion-row *ngIf='err' text-center>
-                <ion-col width-60>
-                    <p color='danger'>{{err}}</p>
-                </ion-col>
-            </ion-row>
-            <ion-row text-center>
-                <ion-col width-30></ion-col>
-                <ion-col width-40>
-                    <button (click)='signup()' ion-button color="secondary">Sign Up</button>
-                </ion-col>
-                <ion-col width-30></ion-col>
-            </ion-row>
-            <ion-row text-center>
-                <ion-col width-60>
-                    <p class='toggle-form' (click)='showLogin=true'>Or <br> Login using your credentials</p>
-                </ion-col>
-            </ion-row>
-        </div>
-
-
-    </ion-grid>
+<ion-content>
+    <div class='header-login'>
+        <h1 text-center> Welcome to Pomono App</h1>
+    </div>
+    <ion-list no-lines *ngIf='showLogin' class='loginform'>
+        <ion-item>
+            <ion-label floating>Username</ion-label>
+            <ion-input (focus)='err=""' type="text" [(ngModel)]='loginData.username'>
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input (focus)='err=""' type="password" [(ngModel)]='loginData.password'>
+            </ion-input>
+        </ion-item>
+        <ion-item *ngIf='err' text-center>
+            <p color='danger'>{{err}}</p>
+        </ion-item>
+        <ion-item text-center>
+            <button (click)='signin()' ion-button color="secondary">Login</button>
+        </ion-item>
+        <ion-item text-center (click)='showLogin=false'>
+            <p class='toggle-form'>Or <br>Signup with Pomona</p>
+        </ion-item>
+    </ion-list>
+    <ion-list no-lines *ngIf='!showLogin' class='loginform'>
+        <ion-item>
+            <ion-label floating>New Username</ion-label>
+            <ion-input (focus)='err=""' type="text" [(ngModel)]='signupData.username'>
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input (focus)='err=""' type="password" [(ngModel)]='signupData.password'>
+            </ion-input>
+        </ion-item>
+        <ion-item *ngIf='err' text-center>
+            <p color='danger'>{{err}}</p>
+        </ion-item>
+        <ion-item text-center>
+            <button (click)='signup()' ion-button color="secondary">Sign Up</button>
+        </ion-item>
+        <ion-item text-center>
+            <p class='toggle-form' (click)='showLogin=true'>Or <br> Login using your credentials</p>
+        </ion-item>
+    </ion-list>
 
 </ion-content>

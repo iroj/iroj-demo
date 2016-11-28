@@ -1,0 +1,49 @@
+<ion-content>
+    <div class='header-page'>
+        <button (click)='back()' ion-button clear icon-only><ion-icon name='md-arrow-back'></ion-icon></button>
+        <h1 text-center>Add new player </h1>
+    </div>
+    <ion-grid class='addPlayer'>
+        <ion-row>
+            <ion-col width-30></ion-col>
+            <ion-col *ngIf='!newPlayer.profileImageId' width-40 class='icons'>
+                <ion-icon class='profileIcon' name='md-person'></ion-icon>
+            </ion-col>
+            <ion-col *ngIf='newPlayer.profileImageId' width-40 class='icons'>
+                <img class='profileImg' src='{{newPlayer.profileImageId}}' />
+            </ion-col>
+            <ion-col width-30></ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col class='addNewImg' width-100>
+                <button ion-button (click)='openCamera()' small> <ion-icon name='md-camera' > </ion-icon></button>
+                <button ion-button (click)='getFile()' small> <ion-icon name='md-folder'> </ion-icon></button>
+            </ion-col>
+        </ion-row>
+        <ion-list no-lines>
+            <ion-item>
+                <ion-label color='dark'>Player's Name</ion-label>
+                <ion-input type="text" [(ngModel)]='newPlayer.fullName' placeholder='Players Name'>
+                </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label color='dark'>Access personal records</ion-label>
+                <ion-checkbox item-right [(ngModel)]="access"></ion-checkbox>
+            </ion-item>
+            <ion-item *ngIf='access'>
+                <ion-label color='dark'>Email</ion-label>
+                <ion-input placeholder='player email address' [(ngModel)]='newPlayer.email'></ion-input>
+            </ion-item>
+            <ion-item *ngIf='err' text-center>
+                <p color='danger'>{{err}}</p>
+            </ion-item>
+        </ion-list>
+        <ion-row text-center>
+            <ion-col width-30></ion-col>
+            <ion-col width-40>
+                <button (click)='add()' ion-button color="secondary">Add</button>
+            </ion-col>
+            <ion-col width-30></ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

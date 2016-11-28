@@ -5,8 +5,6 @@ import { ProfilePage } from '../profile/profile';
 import { TestingPage } from '../testing/testing';
 import { ResultsPage } from '../results/results';
 import {GlobalService} from '../../providers/global-service';
-
-import {LoginPage} from '../login/login'
 import {DataService} from '../../providers/data-service';
 @Component({
   templateUrl: 'tabs.html'
@@ -24,8 +22,5 @@ export class TabsPage {
   console.log(this.user);
   }
 
-   signout(){
-this.data.remove('user')
-this.navCtrl.setRoot(LoginPage);
-  }
+ 
 }

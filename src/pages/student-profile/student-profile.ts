@@ -5,23 +5,30 @@ import {DataService} from '../../providers/data-service';
 import {ProfileService} from '../../providers/profile-service';
 import {Camera} from 'ionic-native';
 import {LoginPage} from '../login/login';
+
 @Component({
-  selector: 'page-profile',
-  templateUrl: 'profile.html'
+  selector: 'page-student-profile',
+  templateUrl: 'student-profile.html'
 })
-export class ProfilePage {
+export class StudentProfilePage {
   public user: any;
   public schools: any;
+  public personal = false;
   public showGames = false;
 
   constructor(public navCtrl: NavController, public global: GlobalService, public loading: LoadingController, public toast: ToastController, public data: DataService, public profile: ProfileService) {
     this.user = this.global.getUser();
+    if (this.user.email)
+      this.personal = true;
+    console.log(this.user)
     this.profile.getSchools().subscribe(data=> {
       this.schools = data;
+      console.log(this.schools)
     })
   }
 
   ionViewDidLoad() {
+    console.log(this.user);
   }
 
   submit() {
@@ -72,9 +79,11 @@ export class ProfilePage {
       console.log(err);
     });
   }
-  signout(){
+ signout(){
 this.data.remove('user')
 this.navCtrl.push(LoginPage);
   }
 
+
 }
+

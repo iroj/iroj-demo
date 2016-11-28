@@ -31,6 +31,23 @@
                 <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="user.dob"></ion-datetime>
             </ion-item>
             <ion-item>
+                <ion-label color='dark'>Grade</ion-label>
+                <ion-select [(ngModel)]="user.grade">
+                    <ion-option color='secondary' value="1">1</ion-option>
+                    <ion-option value="2">2</ion-option>
+                    <ion-option value="3">3</ion-option>
+                    <ion-option value="4">4</ion-option>
+                    <ion-option value="5">5</ion-option>
+                    <ion-option value="6">6</ion-option>
+                    <ion-option value="7">7</ion-option>
+                    <ion-option value="8">8</ion-option>
+                    <ion-option value="9">9</ion-option>
+                    <ion-option value="10">10</ion-option>
+                    <ion-option value="11">11</ion-option>
+                    <ion-option value="12">12</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
                 <ion-label color='dark'>School</ion-label>
                 <ion-select color='secondary' [(ngModel)]="user.school">
                     <ion-option *ngFor='let school of schools' value="{{school._id}}">{{school.name}}</ion-option>
@@ -58,6 +75,16 @@
                     <ion-checkbox [(ngModel)]="user.game.soccer"></ion-checkbox>
                 </ion-item>
             </div>
+            <ion-item>
+                <ion-label color='dark'>Access personal records</ion-label>
+                <ion-checkbox item-right color='secondary' [(ngModel)]="personal"></ion-checkbox>
+
+            </ion-item>
+
+            <ion-item *ngIf='personal'>
+                <ion-label color='dark'>Email</ion-label>
+                <ion-input [(ngModel)]='user.email'></ion-input>
+            </ion-item>
         </ion-list>
 
         <ion-row text-center>
@@ -69,6 +96,7 @@
         </ion-row>
     </ion-grid>
 </ion-content>
+
 
 <ion-fab right bottom>
     <button (click)='signout()' ion-fab color='light'><ion-icon name="md-log-out"></ion-icon></button>

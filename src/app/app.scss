@@ -1,6 +1,7 @@
-ion-content {}
-
 ion-tabs {
+    .tab-button {
+        max-width: 50%!important;
+    }
     .tab-button[aria-selected=true] {
         background: #009ed9;
         color: #fff!important;

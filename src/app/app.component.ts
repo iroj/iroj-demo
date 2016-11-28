@@ -5,6 +5,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { StudentTabsPage } from '../pages/student-tabs/student-tabs';
+import { AdminTabsPage } from '../pages/admin-tabs/admin-tabs';
 import {GlobalService} from '../providers/global-service'
 import {DataService} from '../providers/data-service'
 
@@ -26,6 +27,8 @@ export class MyApp {
             this.global.setUser(user);
             if (user._id && user.roles[0]==='student')
               this.rootPage = StudentTabsPage;
+            else if (user._id && user.roles[0]==='admin')
+              this.rootPage = AdminTabsPage;
             else if (!user._id)
               this.rootPage = LoginPage;
             else this.rootPage = TabsPage  

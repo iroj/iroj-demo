@@ -1,21 +1,21 @@
 page-login {
-    ion-content {
-        background-color: #387ef5!important;
-        ion-title {
-            margin-top: 20%;
-            color: #fff
+    .header-login {
+        height: 15%!important;
+        h1 {
+            color: #fff;
         }
-        .login {
-            margin-top: 40%;
-            ion-input {
-                background: #fff;
-                color: #000;
-            }
-            .toggle-form {
-                color: #fff;
-                font-size: 12px;
-                text-decoration: underline;
-            }
+    }
+    .loginform {
+        position: fixed;
+        width: 100%;
+        ion-input {
+            color: #fff;
+            padding-left: 5%;
+        }
+        .toggle-form {
+            color: #fff;
+            font-size: 12px;
+            text-decoration: underline;
         }
     }
 }

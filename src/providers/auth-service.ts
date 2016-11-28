@@ -29,14 +29,14 @@ export class AuthService {
   }
 
     signup(signupCred) {
-    this.headers = new Headers({
-      'Content-Type': 'application/json'
-    });
-    this.options = new RequestOptions({
-      headers: this.headers
-    });
-    let link = this.serverAdd + "api/signup";
-    return this.http.post(link, JSON.stringify(signupCred), this.options)
-      .map(res => res.json());
+        this.headers = new Headers({
+        'Content-Type': 'application/json'
+      });
+      this.options = new RequestOptions({
+        headers: this.headers
+      });
+      let link = this.serverAdd + "api/signup";
+      return this.http.post(link, JSON.stringify(signupCred), this.options)
+        .map(res => res.json());
   }
 }

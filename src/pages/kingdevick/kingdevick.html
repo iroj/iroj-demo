@@ -1,0 +1,27 @@
+<ion-content>
+    <div class='header-page'>
+        <button (click)='back()' ion-button clear icon-only><ion-icon name='md-arrow-back'></ion-icon></button>
+        <h1 text-center>King Devick</h1>
+    </div>
+    <ion-grid class='kingdevick'>
+        <ion-row></ion-row>
+        <div class='results'>
+            <ion-row>
+                <ion-col width-50></ion-col>
+                <ion-col width-10></ion-col>
+                <ion-col width-20>Errors</ion-col>
+                <ion-col width-20>Time</ion-col>
+            </ion-row>
+            <ion-row *ngFor='let card of cards; let i =index' center>
+                <ion-col width-50>
+                    <button ion-button (click)='start(i, card)' full round>Card {{i+1}}</button>
+                </ion-col>
+                <ion-col width-10></ion-col>
+
+                <ion-col width-20>{{card.errors}}</ion-col>
+                <ion-col width-20>{{card.time}}</ion-col>
+            </ion-row>
+        </div>
+
+    </ion-grid>
+</ion-content>
