@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, ViewController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { ScreenOrientation } from 'ionic-native';
-import { TimerObservable } from "rxjs/observable/TimerObservable";
-
+import {KingDevickCardPage} from '../kingdevickcard/kingdevickcard'
 @Component({
   selector: 'page-kingdevick',
   templateUrl: 'kingdevick.html'
@@ -50,84 +49,23 @@ export class KingdevickPage {
     errors: 0,
     time: 0
   }]
-  constructor(public navCtrl: NavController, public modal: ModalController) { }
+  constructor(public navCtrl: NavController,public navParams: NavParams, ) { }
   back() {
     this.navCtrl.pop();
   }
   ionViewWillEnter() {
+    if(this.navParams.get('resultCard')){
+      this.cards[this.navParams.get('index')]= this.navParams.get('resultCard');
+    }
     ScreenOrientation.lockOrientation('landscape');
+    
   }
   ionViewWillLeave() {
     ScreenOrientation.unlockOrientation();
   }
   start(i, card) {
-    let modal = this.modal.create(TestCardPage, { selectedcard: card });
-    modal.present();
-    modal.onDidDismiss(data => {
-      if (data)
-        this.cards[i] = data
-    })
+    this.navCtrl.push(KingDevickCardPage, { selectedcard: card, index:i });
   }
 }
 
-
-@Component({
-  selector: 'page-testcard',
-  templateUrl: 'testcard.html'
-})
-export class TestCardPage {
-  public selectedCard: any;
-  public timer = { min: 0, sec: 0 };
-  public clock: any;
-  public status = 'stop';
-  public elapsedTime = 0;
-  public errors = 0;
-  constructor(public viewCtrl: ViewController, public navParams: NavParams) {
-    this.selectedCard = this.navParams.get('selectedcard');
-    console.log(this.selectedCard)
-  }
-  back() {
-    this.viewCtrl.dismiss();
-  }
-  ionViewWillEnter() {
-    ScreenOrientation.lockOrientation('landscape');
-  }
-  ionViewWillLeave() {
-    ScreenOrientation.unlockOrientation();
-  }
-  start() {
-    this.status = 'running';
-    this.clock = TimerObservable.create(1000, 1000).subscribe(t => {
-      this.timer.min = Math.floor(t / 60);
-      this.timer.sec = t % 60;
-    });
-  }
-
-  stop() {
-    this.selectedCard.time = this.timer.sec + this.timer.min * 60;
-    this.selectedCard.errors = this.errors
-    this.viewCtrl.dismiss(this.selectedCard);
-  }
-  pause() {
-    this.status = 'paused';
-    this.clock.unsubscribe();
-    this.elapsedTime = this.timer.sec + this.timer.min * 60;
-  }
-  resume() {
-    this.status = 'running'
-    this.clock = TimerObservable.create(1000, 1000).subscribe(t => {
-      t = this.elapsedTime + t;
-      this.timer.min = Math.floor(t / 60);
-      this.timer.sec = t % 60;
-    });
-  }
-  reset() {
-    this.status = 'stop';
-    this.timer = { min: 0, sec: 0 };
-    this.elapsedTime = 0;
-    this.errors = 0;
-    this.clock.unsubscribe();
-  }
-
-}
 

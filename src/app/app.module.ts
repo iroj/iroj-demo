@@ -14,9 +14,9 @@ import {AddPlayerPage} from '../pages/testing/testing';
 import {BaselinePage} from '../pages/baseline/baseline';
 import {ConcussionPage} from '../pages/concussion/concussion';
 import {KingdevickPage} from '../pages/kingdevick/kingdevick';
-import {TestCardPage} from '../pages/kingdevick/kingdevick';
+import {KingDevickCardPage} from '../pages/kingdevickcard/kingdevickcard';
 import {DemPage} from '../pages/dem/dem';
-import {DemTestCardPage} from '../pages/dem/dem';
+import {DemTestCardPage} from '../pages/demtestcard/demtestcard';
 
 //pages for student
 import {StudentTabsPage} from '../pages/student-tabs/student-tabs';
@@ -42,7 +42,7 @@ import {GlobalService} from '../providers/global-service'
     BaselinePage,
     ConcussionPage,
     KingdevickPage,
-    TestCardPage,
+    KingDevickCardPage,
     DemPage,
     DemTestCardPage,
     ResultsPage,
@@ -65,7 +65,7 @@ import {GlobalService} from '../providers/global-service'
     BaselinePage,
     ConcussionPage,
     KingdevickPage,
-    TestCardPage,
+    KingDevickCardPage,
     DemPage,  
     DemTestCardPage,
     ProfilePage,
