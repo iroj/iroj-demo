@@ -16,6 +16,7 @@ import {ConcussionPage} from '../pages/concussion/concussion';
 import {KingdevickPage} from '../pages/kingdevick/kingdevick';
 import {TestCardPage} from '../pages/kingdevick/kingdevick';
 import {DemPage} from '../pages/dem/dem';
+import {DemTestCardPage} from '../pages/dem/dem';
 
 //pages for student
 import {StudentTabsPage} from '../pages/student-tabs/student-tabs';
@@ -43,6 +44,7 @@ import {GlobalService} from '../providers/global-service'
     KingdevickPage,
     TestCardPage,
     DemPage,
+    DemTestCardPage,
     ResultsPage,
     StudentTabsPage,
     StudentProfilePage,
@@ -65,6 +67,7 @@ import {GlobalService} from '../providers/global-service'
     KingdevickPage,
     TestCardPage,
     DemPage,  
+    DemTestCardPage,
     ProfilePage,
     TestingPage,
     ResultsPage,

@@ -8,6 +8,7 @@ import { StudentTabsPage } from '../pages/student-tabs/student-tabs';
 import { AdminTabsPage } from '../pages/admin-tabs/admin-tabs';
 import {GlobalService} from '../providers/global-service'
 import {DataService} from '../providers/data-service'
+import { DemPage } from '../pages/dem/dem';
 
 @Component({
   template: `<ion-nav [root]="rootPage"></ion-nav>`
@@ -20,6 +21,7 @@ export class MyApp {
     this.global.setServer('https://pomona-server.herokuapp.com/')
 
     platform.ready().then(() => {
+      // this.rootPage=DemPage;
       this.data.getData('user').then(
         data => {
           if (data) {

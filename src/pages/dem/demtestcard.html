@@ -1,0 +1,149 @@
+<ion-content>
+    <button ion-fab mini (click)='back()'>X</button>
+    <ion-grid class='test-card'>
+        <ion-row center>
+            <ion-col width-10 class='timer-buttons' text-center>
+                <button ion-fab class='timer-button'> {{timer.min}}:{{timer.sec}}</button>
+                <button *ngIf='status==="stop"' ion-fab class='timer-button' (click)='start()'> Start</button>
+                <button *ngIf='status==="running"' ion-fab class='timer-button' (click)='pause()'> Pause</button>
+                <button *ngIf='status==="paused"' ion-fab class='timer-button' (click)='resume()'> Resume</button>
+                <button ion-fab class='timer-button' (click)='stop()'> Stop</button>
+                <button ion-fab class='timer-button' (click)='reset()'> Reset</button>
+            </ion-col>
+            <ion-col width-90 class='numbers'>
+                <ion-grid>
+                    <ion-row center>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>O</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>O</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>O</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>O</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>O</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>O</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>O</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>O</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>O</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>O</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                    </ion-row>
+                    <ion-row center>
+                        <ion-col *ngFor='let x of selectedCard.row1' width-3.3>
+                            <button [disabled]='status==="stop" || status==="paused"' ion-button>A</button>
+                        </ion-col>
+                        <ion-col *ngFor='let x of selectedCard.row1' width-3.3>
+                            <button [disabled]='status==="stop" || status==="paused"' color='light' ion-button>{{x}}</button>
+                        </ion-col>
+                        <ion-col *ngFor='let x of selectedCard.row1' width-3.3>
+                            <button [disabled]='status==="stop" || status==="paused"' ion-button>T</button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row center>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>S</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>S</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>S</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>S</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>S</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>S</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>S</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>S</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>S</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3></ion-col>
+                        <ion-col width-3.3><button [disabled]='status==="stop" || status==="paused"' ion-button>S</button>
+                        </ion-col>
+                        <ion-col width-3.3></ion-col>
+                    </ion-row>
+                    <!--<ion-row center>
+                        <ion-col *ngFor='let x of selectedCard.row2' width-3.3>
+                            <button [disabled]='status==="stop" || status==="paused"' ion-button>{{x}}</button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row center>
+                        <ion-col *ngFor='let x of selectedCard.row3' width-3.3>
+                            <button [disabled]='status==="stop" || status==="paused"' ion-button>{{x}}</button>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row center>
+                        <ion-col *ngFor='let x of selectedCard.row4' width-3.3>
+                            <button [disabled]='status==="stop" || status==="paused"' ion-button>{{x}}</button>
+                        </ion-col>
+                    </ion-row>-->
+                </ion-grid>
+            </ion-col>
+        </ion-row>
+        <!--<ion-row center>
+            <ion-col width-10>
+            </ion-col>
+            <ion-col width-20>
+                <span> {{errors.O}}</span>
+                <button [disabled]='status==="stop" || status==="paused"' (click)='errors.O=errors.O+1' ion-button>Omission</button>
+            </ion-col>
+            <ion-col width-20>
+                <span> {{errors.S}}</span>
+                <button [disabled]='status==="stop" || status==="paused"' (click)='errors.S=errors.S+1' ion-button>Substitution</button>
+            </ion-col>
+            <ion-col width-20>
+                <span> {{errors.A}}</span>
+                <button [disabled]='status==="stop" || status==="paused"' (click)='errors.A=errors.A+1' ion-button>Addition</button>
+            </ion-col>
+            <ion-col width-20>
+                <span> {{errors.T}}</span>
+                <button [disabled]='status==="stop" || status==="paused"' (click)='errors.T=errors.T+1' ion-button>Transposition</button>
+            </ion-col>
+        </ion-row>-->
+    </ion-grid>
+</ion-content>
