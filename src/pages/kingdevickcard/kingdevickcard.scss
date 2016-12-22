@@ -9,22 +9,22 @@ page-kingdevickcard {
             color: #fff;
         }
     }
-    .timer-buttons {
-        float: left;
+    .info {}
+    .card {
         button {
-            margin: 5%;
-            font-size: 1.1rem;
+            padding: 2% 20px;
+            font-size: 24px;
         }
     }
-    .numbers {
-        float: right;
-        ion-row {
-            max-height: 35px;
-            ion-col {
-                button {
-                    max-height: 30px
-                }
-            }
+    .timer-buttons {
+        .timer {
+            margin-top: 30%;
+        }
+        button {
+            font-size: 24px!important;
+            margin: 5%;
+            width: 80%;
+            padding: 2%;
         }
     }
 }

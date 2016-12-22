@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, ModalController, ToastController, ViewController, LoadingController } from 'ionic-angular';
 import { TestService } from '../../providers/test-service';
+import { ToastService } from '../../providers/toast-service';
 import { GlobalService } from '../../providers/global-service';
 import { Camera } from 'ionic-native';
 
-import { BaselinePage } from '../baseline/baseline';
-import { ConcussionPage } from '../concussion/concussion';
+import { MainTestPage } from '../main-test/main-test';
 
 import moment from 'moment';
 @Component({
@@ -14,11 +14,14 @@ import moment from 'moment';
 })
 export class TestingPage {
   public myInput = '';
-  // public selectedPlayer: any;
+  public selectedPlayer = { _id: '' };
   public playersList = [];
   public filterList = [];
-  public newtest = { player: {_id:''}, dob: undefined, date: undefined, habitual: undefined, npcBreak: undefined, npcRecovery: undefined, suppression: undefined };
-  constructor(public navCtrl: NavController, public test: TestService, public modal: ModalController) {
+  public newtest = {
+    player: '', date: moment().format('DD MMMM YYYY'), habitual: undefined, npcBreak: undefined, npcRecovery: undefined,
+    suppression: false, type: ''
+  };
+  constructor(public navCtrl: NavController, public toast: ToastService, public testService: TestService, public modal: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -27,7 +30,7 @@ export class TestingPage {
   }
 
   getPlayers() {
-    this.test.getPlayersList().subscribe(data => {
+    this.testService.getPlayersList().subscribe(data => {
       this.playersList = data
       console.log(data);
     })
@@ -49,27 +52,21 @@ export class TestingPage {
     this.myInput = '';
     this.filterList = [];
   }
-
   selectPlayer(player) {
-    this.newtest.player = player;
-    this.newtest.date = moment().format('DD MMMM YYYY');
-    this.newtest.dob = moment(player.dob).format('DD MMMM YYYY');
+    this.selectedPlayer = player;
     console.log(this.newtest)
-    this.cancel();
   }
 
-  BT() {
-    console.log('Baseline');
-    console.log(this.newtest)
-this.test.beginTEST(this.newtest);
-    this.navCtrl.push(BaselinePage);
-  }
-  CT() {
-    console.log('Concussion');
-    console.log(this.newtest)
-this.test.beginTEST(this.newtest);
-
-    this.navCtrl.push(ConcussionPage);
+  beginTest(type) {
+    if (!this.newtest.habitual || !this.newtest.npcBreak || !this.newtest.npcRecovery)
+      this.toast.showToast('Please complete form.')
+    else {
+      this.newtest.type = type;
+      this.newtest.player = this.selectedPlayer._id;
+      console.log(this.newtest);
+      this.testService.beginTEST(this.newtest);
+      this.navCtrl.push(MainTestPage, { type: type });
+    }
   }
   addPlayer() {
     console.log('add player')
@@ -77,16 +74,13 @@ this.test.beginTEST(this.newtest);
     modal.present();
     modal.onDidDismiss(data => {
       if (data) {
-        this.newtest.player = data;
-        this.newtest.date = moment().format('DD MMMM YYYY');
-        this.newtest.dob = moment(data.dob).format('DD MMMM YYYY');
+        this.selectedPlayer = data;
         console.log(this.newtest)
-
       }
     })
   }
 
-  npcgenerator(n){
+  npcgenerator(n) {
     return new Array(n)
   }
 }

@@ -1,18 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
-
-/*
-  Generated class for the ResultService provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
+import { GlobalService } from './global-service';
+import { Config } from './config';
 @Injectable()
 export class ResultService {
-
-  constructor(public http: Http) {
-    console.log('Hello ResultService Provider');
+  public headers: Headers;
+  public options: RequestOptions;
+  public serverAdd: any;
+  public user: any;
+  constructor(public http: Http, public config: Config, public global: GlobalService) {
+    this.serverAdd = this.config.getServer();
+    this.user = this.global.getUser();
+    this.headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    this.options = new RequestOptions({
+      headers: this.headers
+    });
   }
-
+  getResultsExaminer() {
+    let link = this.serverAdd + "api/getResultsExaminer";
+    return this.http.post(link, JSON.stringify({ examiner: this.user._id }), this.options)
+      .map(res => res.json());
+  }
 }

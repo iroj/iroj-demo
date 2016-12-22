@@ -5,17 +5,15 @@
     <ion-list no-lines *ngIf='showLogin' class='loginform'>
         <ion-item>
             <ion-label floating>Username</ion-label>
-            <ion-input (focus)='err=""' type="text" [(ngModel)]='loginData.username'>
+            <ion-input type="text" [(ngModel)]='loginData.username'>
             </ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Password</ion-label>
-            <ion-input (focus)='err=""' type="password" [(ngModel)]='loginData.password'>
+            <ion-input type="password" [(ngModel)]='loginData.password'>
             </ion-input>
         </ion-item>
-        <ion-item *ngIf='err' text-center>
-            <p color='danger'>{{err}}</p>
-        </ion-item>
+
         <ion-item text-center>
             <button (click)='signin()' ion-button color="secondary">Login</button>
         </ion-item>
@@ -25,18 +23,16 @@
     </ion-list>
     <ion-list no-lines *ngIf='!showLogin' class='loginform'>
         <ion-item>
-            <ion-label floating>New Username</ion-label>
-            <ion-input (focus)='err=""' type="text" [(ngModel)]='signupData.username'>
+            <ion-label floating>Username</ion-label>
+            <ion-input type="text" [(ngModel)]='signupData.username'>
             </ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Password</ion-label>
-            <ion-input (focus)='err=""' type="password" [(ngModel)]='signupData.password'>
+            <ion-input type="password" [(ngModel)]='signupData.password'>
             </ion-input>
         </ion-item>
-        <ion-item *ngIf='err' text-center>
-            <p color='danger'>{{err}}</p>
-        </ion-item>
+
         <ion-item text-center>
             <button (click)='signup()' ion-button color="secondary">Sign Up</button>
         </ion-item>
@@ -44,5 +40,4 @@
             <p class='toggle-form' (click)='showLogin=true'>Or <br> Login using your credentials</p>
         </ion-item>
     </ion-list>
-
 </ion-content>

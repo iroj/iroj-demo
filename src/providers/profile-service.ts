@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
-import {GlobalService } from './global-service';
+import {Config } from './config';
 
 @Injectable()
 export class ProfileService {
  public headers: Headers;
   public options: RequestOptions;
   public serverAdd: any;
-  constructor(public http: Http, public global:GlobalService) {
-    this.serverAdd = this.global.getServer();
+  constructor(public http: Http, public config:Config) {
+    this.serverAdd = this.config.getServer();
   }
 
 updateProfile(user){

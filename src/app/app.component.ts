@@ -8,7 +8,7 @@ import { StudentTabsPage } from '../pages/student-tabs/student-tabs';
 import { AdminTabsPage } from '../pages/admin-tabs/admin-tabs';
 import {GlobalService} from '../providers/global-service'
 import {DataService} from '../providers/data-service'
-import { DemPage } from '../pages/dem/dem';
+// import { DemPage } from '../pages/dem/dem';
 
 @Component({
   template: `<ion-nav [root]="rootPage"></ion-nav>`
@@ -17,8 +17,7 @@ export class MyApp {
   public rootPage: any;
 
   constructor(platform: Platform, public global: GlobalService, public data:DataService) {
-    // this.global.setServer('http://localhost:3000/')
-    this.global.setServer('https://pomona-server.herokuapp.com/')
+
 
     platform.ready().then(() => {
       // this.rootPage=DemPage;
@@ -33,11 +32,11 @@ export class MyApp {
               this.rootPage = AdminTabsPage;
             else if (!user._id)
               this.rootPage = LoginPage;
-            else this.rootPage = TabsPage  
-        } 
-        else this.rootPage = LoginPage  
+            else this.rootPage = TabsPage
+        }
+        else this.rootPage = LoginPage
         });
-        
+
       StatusBar.styleDefault();
       Splashscreen.hide();
     });

@@ -56,7 +56,7 @@ export class DemPage {
       this.cards[this.navParams.get('index')] = this.navParams.get('resultCard');
     }
     ScreenOrientation.lockOrientation('landscape');
-    
+
   }
   ionViewWillLeave() {
     ScreenOrientation.unlockOrientation();

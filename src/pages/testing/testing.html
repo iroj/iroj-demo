@@ -1,10 +1,10 @@
 <ion-content padding>
-    <ion-fab top right *ngIf='newtest.player._id'>
-        <button ion-fab clear color='light' (click)='newtest.player={}'><ion-icon name='md-search'></ion-icon>
+    <ion-fab top right *ngIf='selectedPlayer._id'>
+        <button ion-fab clear color='light' (click)='selectedPlayer={}'><ion-icon name='md-search'></ion-icon>
                 </button>
     </ion-fab>
     <ion-grid class='test'>
-        <div *ngIf='!newtest.player._id'>
+        <div *ngIf='!selectedPlayer._id'>
             <ion-row>
                 <ion-col>
                     <ion-searchbar [(ngModel)]="myInput" [showCancelButton]='true' (ionCancel)='cancel()' (ionFocus)='getPlayers()' (ionInput)='filter($event)' placeholder='Search for players'>
@@ -34,25 +34,21 @@
                 <ion-col width-20></ion-col>
             </ion-row>
         </div>
-        <div *ngIf='newtest.player._id'>
+        <div *ngIf='selectedPlayer._id'>
             <ion-list no-lines class='selectedPlayer'>
-                <ion-item text-center *ngIf='!newtest.player.profileImageId'>
+                <ion-item text-center *ngIf='!selectedPlayer.profileImageId'>
                     <ion-icon class='profileIcon' name='md-person'></ion-icon>
                 </ion-item>
-                <ion-item class='profileImg' *ngIf='newtest.player.profileImageId'>
-                    <img src='{{newtest.player.profileImageId}}' />
+                <ion-item class='profileImg' *ngIf='selectedPlayer.profileImageId'>
+                    <img src='{selectedPlayer.profileImageId}}' />
                 </ion-item>
-                <ion-item>
+                <ion-item *ngIf='selectedPlayer.fullName'>
                     <ion-label item-left>Full Name</ion-label>
-                    <ion-input disabled='true' item-right [(ngModel)]='newtest.player.fullName'></ion-input>
+                    <ion-input disabled='true' item-right [(ngModel)]='selectedPlayer.fullName'></ion-input>
                 </ion-item>
-                <ion-item>
+                <ion-item *ngIf='!selectedPlayer.fullName'>
                     <ion-label>Username</ion-label>
-                    <ion-input disabled='true' item-right [(ngModel)]='newtest.player.username'></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label>DOB</ion-label>
-                    <ion-input disabled='true' item-right [(ngModel)]="newtest.dob"> </ion-input>
+                    <ion-input disabled='true' item-right [(ngModel)]='selectedPlayer.username'></ion-input>
                 </ion-item>
                 <ion-item>
                     <ion-label>Test Date </ion-label>
@@ -67,11 +63,13 @@
                     </ion-select>
                 </ion-item>
                 <ion-item>
-                    <ion-label>NPC (Break/Recovery)</ion-label>
+                    <ion-label>NPC Break</ion-label>
                     <ion-select [(ngModel)]="newtest.npcBreak">
-                        <ion-option *ngFor='let x of npcgenerator(100), let i = index' value="{{i}}">{{i}} /</ion-option>
+                        <ion-option *ngFor='let x of npcgenerator(100), let i = index' value="{{i}}">{{i}}</ion-option>
                     </ion-select>
-                    <span> / </span>
+                </ion-item>
+                <ion-item>
+                    <ion-label>NPC Recovery</ion-label>
                     <ion-select [(ngModel)]="newtest.npcRecovery">
                         <ion-option *ngFor='let x of npcgenerator(100), let i = index' value="{{i}}">{{i}}</ion-option>
                     </ion-select>
@@ -81,18 +79,18 @@
                     <ion-toggle [(ngModel)]="newtest.suppression"></ion-toggle>
                 </ion-item>
             </ion-list>
-            <div class='test-buttons'>
+            <div>
                 <ion-row text-center>
                     <ion-col width-10></ion-col>
                     <ion-col width-80>
-                        <button (click)='BT()' full round ion-button color="primary">Baseline Testing</button>
+                        <button (click)='beginTest("Baseline")' full round ion-button color="primary">Baseline Testing</button>
                     </ion-col>
                     <ion-col width-10> </ion-col>
                 </ion-row>
                 <ion-row text-center>
                     <ion-col width-10></ion-col>
                     <ion-col width-80>
-                        <button (click)='CT()' full round ion-button color="primary">Concussion Testing</button>
+                        <button (click)='beginTest( "Concussion")' full round ion-button color="primary">Concussion Testing</button>
                     </ion-col>
                     <ion-col width-10></ion-col>
                 </ion-row>
