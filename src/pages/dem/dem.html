@@ -9,7 +9,7 @@
             <ion-col width-40>Errors</ion-col>
             <ion-col width-20>Time</ion-col>
         </ion-row>
-        <div class='results'>
+        <div>
             <ion-row text-center>
                 <ion-col width-40></ion-col>
                 <ion-col width-10>O</ion-col>
@@ -20,15 +20,27 @@
             </ion-row>
             <ion-row *ngFor='let card of cards; let i =index' text-center center>
                 <ion-col width-40>
-                    <button ion-button (click)='start(i, card)' full round>Card {{i+1}}</button>
+                    <button ion-button (click)='start(i)' full round>{{card.name}}</button>
                 </ion-col>
-                <ion-col width-10>{{card.O}}</ion-col>
-                <ion-col width-10>{{card.S}}</ion-col>
-                <ion-col width-10>{{card.A}}</ion-col>
-                <ion-col width-10>{{card.T}}</ion-col>
+                <ion-col width-10>{{card.errors.O}}</ion-col>
+                <ion-col width-10>{{card.errors.S}}</ion-col>
+                <ion-col width-10>{{card.errors.A}}</ion-col>
+                <ion-col width-10>{{card.errors.T}}</ion-col>
                 <ion-col width-20>{{card.time}}</ion-col>
             </ion-row>
         </div>
+        <div *ngIf='results' class='result'>
+            <ion-row>
+                <ion-col col-50><span class='value'>{{results.vt}}</span> <br> Vertical Time</ion-col>
+                <ion-col col-50><span class='value'>{{results.vtE}}</span> <br> Vertical Time/Total Errors</ion-col>
+            </ion-row>
 
+            <ion-row>
+                <ion-col col-33><span class='value'>{{results.gH}}</span> <br> Gross Horizontal</ion-col>
+                <ion-col col-33><span class='value'>{{results.aht}}</span> <br> Adjusted Horizontal Time</ion-col>
+                <ion-col col-33><span class='value'>{{results.hV}}</span> <br> H/V Ratio</ion-col>
+            </ion-row>
+            <ion-row><button ion-button (click)='save()'>Save results</button></ion-row>
+        </div>
     </ion-grid>
 </ion-content>

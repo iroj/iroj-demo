@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ScreenOrientation } from 'ionic-native';
 import { TimerObservable } from "rxjs/observable/TimerObservable";
-import { TestService } from '../../providers/test-service';
+import { KdService } from '../../providers/kd-service';
 @Component({
   selector: 'page-kingdevickcard',
   templateUrl: 'kingdevickcard.html'
@@ -14,8 +14,8 @@ export class KingDevickCardPage {
   public status = 'stop';
   public elapsedTime = 0;
   public errors = 0;
-  constructor(public navParams: NavParams, public navCtrl: NavController, public testService: TestService) {
-    this.selectedCard = this.testService.getKDcard(this.navParams.get('index'));
+  constructor(public navParams: NavParams, public navCtrl: NavController, public kdService: KdService) {
+    this.selectedCard = this.kdService.getKDcard(this.navParams.get('index'));
     console.log(this.selectedCard)
     this.timer = this.selectedCard.time;
     this.errors = this.selectedCard.errors;
@@ -40,7 +40,7 @@ export class KingDevickCardPage {
   stop() {
     this.selectedCard.time = this.timer;
     this.selectedCard.errors = this.errors;
-    this.testService.setKDcard(this.selectedCard, this.navParams.get('index'))
+    this.kdService.setKDcard(this.selectedCard, this.navParams.get('index'))
     this.navCtrl.pop();
   }
   pause() {

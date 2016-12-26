@@ -58,15 +58,15 @@ export class TestingPage {
   }
 
   beginTest(type) {
-    if (!this.newtest.habitual || !this.newtest.npcBreak || !this.newtest.npcRecovery)
-      this.toast.showToast('Please complete form.')
-    else {
+    // if (!this.newtest.habitual || !this.newtest.npcBreak || !this.newtest.npcRecovery)
+    //   this.toast.showToast('Please complete form.')
+    // else {
       this.newtest.type = type;
       this.newtest.player = this.selectedPlayer._id;
       console.log(this.newtest);
       this.testService.beginTEST(this.newtest);
       this.navCtrl.push(MainTestPage, { type: type });
-    }
+    // }
   }
   addPlayer() {
     console.log('add player')

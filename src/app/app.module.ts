@@ -17,6 +17,7 @@ import { KingdevickPage } from '../pages/kingdevick/kingdevick';
 import { KingDevickCardPage } from '../pages/kingdevickcard/kingdevickcard';
 import { DemPage } from '../pages/dem/dem';
 import { DemTestCardPage } from '../pages/demtestcard/demtestcard';
+import { DemReviewPage } from '../pages/dem-review/dem-review';
 
 //pages for student
 import { StudentTabsPage } from '../pages/student-tabs/student-tabs';
@@ -32,6 +33,8 @@ import { ResultService } from '../providers/result-service'
 import { DataService } from '../providers/data-service'
 import { GlobalService } from '../providers/global-service'
 import { ToastService } from '../providers/toast-service'
+import { KdService } from '../providers/kd-service'
+import { DemService } from '../providers/dem-service'
 import { Config } from '../providers/config';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
@@ -55,6 +58,7 @@ const cloudSettings: CloudSettings = {
     KingDevickCardPage,
     DemPage,
     DemTestCardPage,
+    DemReviewPage,
     ResultsPage,
     StudentTabsPage,
     StudentProfilePage,
@@ -78,6 +82,7 @@ const cloudSettings: CloudSettings = {
     KingDevickCardPage,
     DemPage,
     DemTestCardPage,
+    DemReviewPage,
     ProfilePage,
     TestingPage,
     ResultsPage,
@@ -86,7 +91,7 @@ const cloudSettings: CloudSettings = {
     StudentResultsPage,
     AdminTabsPage
   ],
-  providers: [AuthService, ProfileService, TestService, ResultService, DataService, GlobalService, Config, Storage, AuthService, ToastService]
+  providers: [AuthService, ProfileService, TestService, ResultService, DataService, GlobalService, KdService, DemService, Config, Storage, AuthService, ToastService]
 })
 export class AppModule {
 }

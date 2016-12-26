@@ -7,3 +7,23 @@ ion-tabs {
         color: #fff!important;
     }
 }
+
+.timer-buttons {
+    button {
+        font-size: 24px!important;
+        margin: 5%;
+        width: 80%;
+        padding: 2%;
+    }
+}
+
+.dialpad {
+    ion-row {
+        button {
+            padding: 2%;
+            font-size: 40px!important;
+            background-color: #16675f;
+            color: #fff;
+        }
+    }
+}

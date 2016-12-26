@@ -1,46 +1,116 @@
 <ion-content>
-    <button ion-fab mini (click)='back()'>X</button>
     <ion-grid class='test-card'>
-        <ion-row center>
-            <ion-col width-10 class='timer-buttons' text-center>
-                <button ion-fab class='timer-button'> {{timer.min}}:{{timer.sec}}</button>
-                <button *ngIf='status==="stop"' ion-fab class='timer-button' (click)='start()'> Start</button>
-                <button *ngIf='status==="running"' ion-fab class='timer-button' (click)='pause()'> Pause</button>
-                <button *ngIf='status==="paused"' ion-fab class='timer-button' (click)='resume()'> Resume</button>
-                <button ion-fab class='timer-button' (click)='stop()'> Stop</button>
-                <button ion-fab class='timer-button' (click)='reset()'> Reset</button>
+
+        <ion-row class='info'>
+            <ion-col col-20>
+                <button ion-fab mini (click)='back()'>X</button>
             </ion-col>
-            <ion-col width-90 class='numbers'>
+            <ion-col col-80>
+                <h1 text-center>{{selectedCard.name}}</h1>
+            </ion-col>
+        </ion-row>
+
+        <ion-row class='dialpad'>
+            <ion-col col-40>
+                <ion-grid>
+                    <ion-row *ngFor=' let row of inputs'>
+                        <span class='inputs' *ngFor='let x of row'>{{x}}</span>
+                    </ion-row>
+                </ion-grid>
+            </ion-col>
+            <ion-col col-60>
+                <ion-grid>
+                    <ion-row text-center>
+                        <ion-col col-33> <button ion-button clear full class='number ' [disabled]='status!="running"' (click)='add(1) '>
+                            1</button>
+                        </ion-col>
+                        <ion-col col-33> <button ion-button clear full class='number ' [disabled]='status!="running"' (click)='add(2) '>2</button></ion-col>
+                        <ion-col col-33> <button ion-button clear full class='number ' [disabled]='status!="running"' (click)='add(3) '>3</button></ion-col>
+                    </ion-row>
+                    <ion-row text-center>
+                        <ion-col col-33> <button ion-button clear full class='number ' [disabled]='status!="running"' (click)='add(4) '>4</button></ion-col>
+                        <ion-col col-33> <button ion-button clear full class='number ' [disabled]='status!="running"' (click)='add(5) '>5</button></ion-col>
+                        <ion-col col-33> <button ion-button clear full class='number ' [disabled]='status!="running"' (click)='add(6) '>6</button></ion-col>
+                    </ion-row>
+                    <ion-row text-center>
+                        <ion-col col-33> <button ion-button clear full class='number ' [disabled]='status!="running"' (click)='add(7) '>7</button></ion-col>
+                        <ion-col col-33> <button ion-button clear full class='number ' [disabled]='status!="running"' (click)='add(8) '>8</button></ion-col>
+                        <ion-col col-33> <button ion-button clear full class='number ' [disabled]='status!="running"' (click)='add(9) '>9</button></ion-col>
+                    </ion-row>
+                    <ion-row text-center>
+                        <ion-col col-33> <button ion-button clear full class='number ' [disabled]='status!="running"'></button></ion-col>
+                        <ion-col col-33> <button ion-button clear full class='number ' [disabled]='status!="running"' (click)='add(0) '>0</button></ion-col>
+                        <ion-col col-33> <button ion-button clear full class='number ' [disabled]='status!="running"'></button></ion-col>
+                    </ion-row>
+                </ion-grid>
+
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-25 class='timer-buttons ' text-center>
+                <button ion-button full round>Time: {{timer}} sec </button>
+                <!--<button ion-button full round>Errors: {{errors}}</button>-->
+            </ion-col>
+            <ion-col col-25 *ngIf='status==="stop" ' class='timer-buttons ' text-center>
+                <button full round ion-button full round (click)='start() '> Start</button>
+            </ion-col>
+            <ion-col *ngIf='status==="running" ' col-25 class='timer-buttons ' text-center>
+                <button ion-button full round (click)='pause() '> Pause</button>
+            </ion-col>
+            <ion-col *ngIf='status==="paused" ' col-25 class='timer-buttons ' text-center>
+                <button full round ion-button (click)='resume() '> Resume</button>
+            </ion-col>
+            <ion-col col-25 class='timer-buttons ' text-center>
+                <button ion-button full round (click)='stop() '> Stop</button>
+            </ion-col>
+            <ion-col col-25 class='timer-buttons ' text-center>
+                <button ion-button full round (click)='reset() '> Reset</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!--160 buttons model-->
+    <!--<ion-grid class='test-card '>
+        <ion-row center>
+            <ion-col width-10 class='timer-buttons ' text-center>
+                <button ion-fab class='timer-button '> {{timer.min}}:{{timer.sec}}</button>
+                <button *ngIf='status==="stop" ' ion-fab class='timer-button ' (click)='start() '> Start</button>
+                <button *ngIf='status==="running" ' ion-fab class='timer-button ' (click)='pause() '> Pause</button>
+                <button *ngIf='status==="paused" ' ion-fab class='timer-button ' (click)='resume() '> Resume</button>
+                <button ion-fab class='timer-button ' (click)='stop() '> Stop</button>
+                <button ion-fab class='timer-button ' (click)='reset() '> Reset</button>
+            </ion-col>
+            <ion-col width-90 class='numbers '>
                 <div class="card-row">
-                    <div class="card-item" *ngFor='let x of selectedCard.row1'>
+                    <div class="card-item" *ngFor='let x of selectedCard.row1 '>
                         <div class="card-container">
                             <div class="card-center">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.O=errors.O+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.O=errors.O+1 '>
                                   O
                                 </button>
                             </div>
                         </div>
                         <div class="card-container">
                             <div class="card-left">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.A=errors.A+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.A=errors.A+1 '>
                                     A
                                   </button>
                             </div>
 
                             <div class="card-right">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.S=errors.S+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.S=errors.S+1 '>
                                     S
                                   </button>
                             </div>
                             <div class="card-center">
-                                <button ion-button color='light' [disabled]='status==="stop" || status==="paused"'>
+                                <button ion-button color='light ' [disabled]='status==="stop" || status==="paused" '>
                                   {{x}}
                                 </button>
                             </div>
                         </div>
                         <div class="card-container">
                             <div class="card-center">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.T=errors.T+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.T=errors.T+1 '>
                                   T
                                 </button>
                             </div>
@@ -48,28 +118,28 @@
                     </div>
                 </div>
                 <div class="card-row">
-                    <div class="card-item" *ngFor='let x of selectedCard.row2'>
+                    <div class="card-item" *ngFor='let x of selectedCard.row2 '>
                         <div class="card-container">
                             <div class="card-center">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.O=errors.O+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.O=errors.O+1 '>
                                       O
                                     </button>
                             </div>
                         </div>
                         <div class="card-container">
                             <div class="card-left">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.A=errors.A+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.A=errors.A+1 '>
                                       A
                                     </button>
                             </div>
 
                             <div class="card-right">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.S=errors.S+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.S=errors.S+1 '>
                                       S
                                     </button>
                             </div>
                             <div class="card-center">
-                                <button ion-button color='light' [disabled]='status==="stop" || status==="paused"'> 
+                                <button ion-button color='light ' [disabled]='status==="stop" || status==="paused" '>
                                     {{x}}
                                   </button>
                             </div>
@@ -77,7 +147,7 @@
                         <div class="card-container">
 
                             <div class="card-center">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.T=errors.T+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.T=errors.T+1 '>
                                         T
                                       </button>
                             </div>
@@ -85,28 +155,28 @@
                     </div>
                 </div>
                 <div class="card-row">
-                    <div class="card-item" *ngFor='let x of selectedCard.row3'>
+                    <div class="card-item" *ngFor='let x of selectedCard.row3 '>
                         <div class="card-container">
                             <div class="card-center">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.O=errors.O+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.O=errors.O+1 '>
                                         O
                                       </button>
                             </div>
                         </div>
                         <div class="card-container">
                             <div class="card-left">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.A=errors.A+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.A=errors.A+1 '>
                                             A
                                           </button>
                             </div>
 
                             <div class="card-right">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.S=errors.S+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.S=errors.S+1 '>
                                         S
                                       </button>
                             </div>
                             <div class="card-center">
-                                <button ion-button color='light' [disabled]='status==="stop" || status==="paused"'>
+                                <button ion-button color='light ' [disabled]='status==="stop" || status==="paused" '>
                                       {{x}}
                                     </button>
                             </div>
@@ -114,7 +184,7 @@
                         <div class="card-container">
 
                             <div class="card-center">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.T=errors.T+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.T=errors.T+1 '>
                                 T
                               </button>
                             </div>
@@ -122,28 +192,28 @@
                     </div>
                 </div>
                 <div class="card-row">
-                    <div class="card-item" *ngFor='let x of selectedCard.row4'>
+                    <div class="card-item" *ngFor='let x of selectedCard.row4 '>
                         <div class="card-container">
                             <div class="card-center">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.O=errors.O+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.O=errors.O+1 '>
                                       O
                                     </button>
                             </div>
                         </div>
                         <div class="card-container">
                             <div class="card-left">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.A=errors.A+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.A=errors.A+1 '>
                                       A
                                     </button>
                             </div>
 
                             <div class="card-right">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.S=errors.S+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.S=errors.S+1 '>
                                         S
                                       </button>
                             </div>
                             <div class="card-center">
-                                <button ion-button color='light' [disabled]='status==="stop" || status==="paused"'>
+                                <button ion-button color='light ' [disabled]='status==="stop" || status==="paused" '>
                             {{x}}
                           </button>
                             </div>
@@ -151,7 +221,7 @@
                         <div class="card-container">
 
                             <div class="card-center">
-                                <button ion-button [disabled]='status==="stop" || status==="paused"' (click)='errors.T=errors.T+1'>
+                                <button ion-button [disabled]='status==="stop" || status==="paused" ' (click)='errors.T=errors.T+1 '>
                   T
                 </button>
                             </div>
@@ -180,5 +250,5 @@
                 <button ion-fab> {{errors.T}} </button>
             </ion-col>
         </ion-row>
-    </ion-grid>
+    </ion-grid>-->
 </ion-content>

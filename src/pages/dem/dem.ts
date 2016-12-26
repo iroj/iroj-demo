@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ScreenOrientation } from 'ionic-native';
+import { TestService } from '../../providers/test-service';
+import { DemService } from '../../providers/dem-service';
+import { ToastService } from '../../providers/toast-service';
+import { DemReviewPage } from '../dem-review/dem-review';
+import _ from 'lodash';
 import { DemTestCardPage } from '../demtestcard/demtestcard';
 @Component({
   selector: 'page-dem',
@@ -8,62 +13,47 @@ import { DemTestCardPage } from '../demtestcard/demtestcard';
 })
 
 export class DemPage {
-  public cards = [{
-    name: 'DEM A',
-    row1: [3, 7, 5, 9, 8, 2, 5, 7, 4, 6],
-    row2: [1, 4, 7, 6, 3, 7, 9, 3, 9, 2],
-    row3: [4, 5, 2, 1, 7, 5, 3, 7, 4, 8],
-    row4: [7, 4, 6, 5, 2, 9, 2, 3, 6, 4],
-    O: 0,
-    S: 0,
-    A: 0,
-    T: 0,
-    time: 0
-  },
-  {
-    name: 'DEM B',
-
-    row1: [6, 3, 2, 9, 1, 7, 4, 6, 5, 2],
-    row2: [5, 3, 7, 4, 8, 4, 5, 2, 1, 7],
-    row3: [7, 9, 3, 9, 2, 1, 4, 7, 6, 3],
-    row4: [2, 5, 7, 4, 6, 3, 7, 5, 9, 8],
-    O: 0,
-    S: 0,
-    A: 0,
-    T: 0,
-    time: 0
-  },
-  {
-    name: 'DEM C',
-    row1: [3, 7, 5, 9, 8, 2, 5, 7, 4, 6],
-    row2: [1, 4, 7, 6, 3, 7, 9, 3, 9, 2],
-    row3: [4, 5, 2, 1, 7, 5, 3, 7, 4, 8],
-    row4: [7, 4, 6, 5, 2, 9, 2, 3, 6, 4],
-    O: 0,
-    S: 0,
-    A: 0,
-    T: 0,
-    time: 0
-  }]
-  constructor(public navCtrl: NavController, public navParams: NavParams) { }
-  back() {
-    this.navCtrl.pop();
+  public cards = [];
+  public results: any;
+  constructor(public navCtrl: NavController, public loadingController: LoadingController, public navParams: NavParams, public toast: ToastService,
+    public testService: TestService, public demService: DemService) {
+    this.cards = this.demService.getDEMcards();
+    console.log(this.cards);
   }
   ionViewWillEnter() {
-      console.log(this.navParams)
+    // ScreenOrientation.lockOrientation('landscape');
+    this.cards = this.demService.getDEMcards();
+    console.log(this.cards);
 
-    if (this.navParams.get('resultCard')) {
-      this.cards[this.navParams.get('index')] = this.navParams.get('resultCard');
+    if (this.cards[0].time > 0 && this.cards[1].time > 0 && this.cards[2].time > 0) {
+      this.results = this.demService.getDEMResults();
+      this.results.vtE = _.floor(this.results.vtE,2);
+      this.results.aht = _.floor(this.results.aht,2);
+      this.results.hV = _.floor(this.results.hV,2);
+      console.log(this.results);
     }
-    ScreenOrientation.lockOrientation('landscape');
-
   }
   ionViewWillLeave() {
-    ScreenOrientation.unlockOrientation();
+    // ScreenOrientation.unlockOrientation();
   }
-  start(i, card) {
-    console.log(card)
-    this.navCtrl.push(DemTestCardPage, { selectedcard: card, index: i })
+  start(i) {
+    this.navCtrl.push(DemTestCardPage, { index: i })
   }
+  back() {
+    if (this.cards[0].time == 0 || this.cards[1].time == 0 || this.cards[2].time == 0) {
+      this.toast.showToast('All test cards not completed. Result not saved.')
+      this.navCtrl.pop();
+      this.demService.resetDEMcards();
+    }
+    else {
+      this.navCtrl.push(DemReviewPage);
+
+      // this.testService.saveTest('DEM').subscribe(data => {
+      //   this.demService.resetDEMcards();
+      //   this.navCtrl.pop();
+      // }, err => this.toast.showToast(err))
+    }
+  }
+
 }
 

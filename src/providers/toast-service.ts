@@ -7,7 +7,6 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ToastService {
-
   constructor(public http: Http, public toastCtrl: ToastController) {
   }
 
@@ -18,4 +17,5 @@ export class ToastService {
     });
     toast.present();
   }
+
 }
