@@ -28,7 +28,8 @@ export class DemService {
         inputArray: [],
         dataArray: [
           3, 7, 5, 9, 8, 2, 5, 7, 4, 6, 1, 4, 7, 6, 3, 7, 9, 3, 9, 2, 4, 5, 2, 1, 7, 5, 3, 7, 4, 8, 7, 4, 6, 5, 2, 9, 2, 3, 6, 4],
-        time: 0
+        time: 0,
+        logs:[]
       },
       {
         name: 'DEM B',
@@ -46,7 +47,8 @@ export class DemService {
         },
         inputArray: [],
         dataArray: [6, 3, 2, 9, 1, 7, 4, 6, 5, 2, 5, 3, 7, 4, 8, 4, 5, 2, 1, 7, 7, 9, 3, 9, 2, 1, 4, 7, 6, 3, 2, 5, 7, 4, 6, 3, 7, 5, 9, 8],
-        time: 0
+        time: 0,
+        logs:[]
       },
       {
         name: 'DEM C',
@@ -65,7 +67,8 @@ export class DemService {
         inputArray: [],
         dataArray: [
           3, 7, 5, 9, 8, 2, 5, 7, 4, 6, 1, 4, 7, 6, 3, 7, 9, 3, 9, 2, 4, 5, 2, 1, 7, 5, 3, 7, 4, 8, 7, 4, 6, 5, 2, 9, 2, 3, 6, 4],
-        time: 0
+        time: 0,
+        logs:[]
       }]
   };
   constructor(public http: Http, public toast: ToastService) {
@@ -105,15 +108,9 @@ export class DemService {
       x.time = 0
     })
   }
-  setDEMcard(card, i) {
-
+  getDEMresultCards() {
+    return this.DEMcards
   }
-  // getDEMResults() {
-  //   let results = _.map(this.DEMcards.cards, function (x) {
-  //     return { errors: x.errors, time: x.time, name: x.name }
-  //   })
-  //   return results
-  // }
 
   analyze(selectedcard, cardIndex) {
     this.toast.showToast('Analysing data')
@@ -131,6 +128,10 @@ export class DemService {
         if (dataArray[dataIndex] == inputArray[inputIndex + 1]) {
           if (dataArray[dataIndex + 1] == inputArray[inputIndex]) {
             // Transposition
+            selectedcard.logs.push({
+              type: 'transposition',
+              index : dataIndex
+            })
             console.log(dataArray[dataIndex] + " And " + dataArray[dataIndex + 1] + " are transpositioned");
             dataIndex++;
             inputIndex++;
@@ -139,13 +140,20 @@ export class DemService {
           } else {
             // Addition
             console.log(inputArray[inputIndex] + " is addition");
-            console.log(dataArray[dataIndex] + " is Equals to " + inputArray[inputIndex + 1]);
+             selectedcard.logs.push({
+              type: 'addition',
+              index : dataIndex
+            })
             inputIndex++;
             errors.A++;
           }
         } else {
           if (dataArray[dataIndex + 1] == inputArray[inputIndex + 1]) {
             // Substitution
+             selectedcard.logs.push({
+              type: 'substitution',
+              index : dataIndex
+            })
             console.log(dataArray[dataIndex] + " is substituted with " + inputArray[inputIndex]);
             errors.S++;
           }
@@ -154,6 +162,10 @@ export class DemService {
         // Omission
         if (dataArray[dataIndex + 1] == inputArray[inputIndex]) {
           console.log(dataArray[dataIndex] + " is Omitted");
+          selectedcard.logs.push({
+              type: 'ommission',
+              index : dataIndex
+            })
           // After Omission compare next item to the previous item of next Array B
           inputIndex -= 1;
           errors.O++;

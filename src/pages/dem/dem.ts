@@ -27,9 +27,9 @@ export class DemPage {
 
     if (this.cards[0].time > 0 && this.cards[1].time > 0 && this.cards[2].time > 0) {
       this.results = this.demService.getDEMResults();
-      this.results.vtE = _.floor(this.results.vtE,2);
-      this.results.aht = _.floor(this.results.aht,2);
-      this.results.hV = _.floor(this.results.hV,2);
+      this.results.vtE = _.floor(this.results.vtE, 2);
+      this.results.aht = _.floor(this.results.aht, 2);
+      this.results.hV = _.floor(this.results.hV, 2);
       console.log(this.results);
     }
   }
@@ -40,19 +40,18 @@ export class DemPage {
     this.navCtrl.push(DemTestCardPage, { index: i })
   }
   back() {
-    if (this.cards[0].time == 0 || this.cards[1].time == 0 || this.cards[2].time == 0) {
-      this.toast.showToast('All test cards not completed. Result not saved.')
       this.navCtrl.pop();
       this.demService.resetDEMcards();
-    }
-    else {
-      this.navCtrl.push(DemReviewPage);
+  }
 
-      // this.testService.saveTest('DEM').subscribe(data => {
-      //   this.demService.resetDEMcards();
-      //   this.navCtrl.pop();
-      // }, err => this.toast.showToast(err))
-    }
+  save() {
+    this.testService.saveTest('DEM').subscribe(data => {
+      console.log(data);
+    })
+  }
+
+  review(i){
+  this.navCtrl.push(DemReviewPage, {index:i});
   }
 
 }

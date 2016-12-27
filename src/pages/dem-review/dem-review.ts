@@ -1,19 +1,22 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component, ViewChild  } from '@angular/core';
+import { NavController, NavParams , Slides} from 'ionic-angular';
+import { DemService } from '../../providers/dem-service';
 
-/*
-  Generated class for the DemReview page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-dem-review',
   templateUrl: 'dem-review.html'
 })
 export class DemReviewPage {
+  @ViewChild('dataSlider') dataSlider: Slides;
+  @ViewChild('inputSlider') inputSlider: Slides;
+public card: any;
+public  mySlideOptions = {
+    initialSlide: 1
+  };
+  constructor(public navCtrl: NavController, public navParams: NavParams, public demService: DemService) {
 
-  constructor(public navCtrl: NavController) {}
+   this.card = this.demService.getDEMcard(this.navParams.get('index'));
+  }
 
   ionViewDidLoad() {
     console.log('Hello DemReviewPage Page');

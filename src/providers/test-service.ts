@@ -5,6 +5,7 @@ import { GlobalService } from './global-service';
 import { Config } from './config';
 import { DataService } from './data-service';
 import { KdService } from './kd-service';
+import { DemService } from './dem-service';
 
 import _ from 'lodash';
 @Injectable()
@@ -16,7 +17,7 @@ export class TestService {
   public user: any;
   public test: any;
 
-  constructor(public http: Http, public global: GlobalService, public config: Config, public dataService: DataService, public kdService: KdService) {
+  constructor(public http: Http, public global: GlobalService, public config: Config, public dataService: DataService, public kdService: KdService,public demService: DemService) {
     this.serverAdd = this.config.getServer();
     this.user = this.global.getUser();
     this.headers = new Headers({
@@ -53,6 +54,14 @@ export class TestService {
       let link = this.serverAdd + "api/saveTest";
       return this.http.post(link, JSON.stringify(this.test), this.options)
         .map(res => res.json());
+    }
+       if (type == 'DEM') {
+      this.test.DEMresults = this.demService.getDEMresultCards();
+      this.test.examiner = this.user._id;
+      console.log('saving test', this.test);
+      // let link = this.serverAdd + "api/saveTest";
+      // return this.http.post(link, JSON.stringify(this.test), this.options)
+      //   .map(res => res.json());
     }
   }
 }
