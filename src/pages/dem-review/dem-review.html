@@ -4,10 +4,12 @@
     </div>
 
     <ion-slides #dataSlider [options]="mySlideOptions">
-        <ion-slide *ngFor='let x of card.dataArray'>{{x}}</ion-slide>
+        <ion-slide class='numbers' *ngFor='let x of card.dataArray'>{{x}}</ion-slide>
 
     </ion-slides>
     <ion-slides #inputSlider [options]="mySlideOptions">
-        <ion-slide *ngFor='let x of card.inputArray'>{{x}}</ion-slide>
+        <ion-slide class='numbers' *ngFor='let x of card.inputArray'>
+            {{x}}
+        </ion-slide>
     </ion-slides>
 </ion-content>

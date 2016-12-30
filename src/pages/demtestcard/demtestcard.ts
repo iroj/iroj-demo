@@ -15,7 +15,7 @@ export class DemTestCardPage {
   public clock: any;
   public status = 'stop';
   public elapsedTime = 0;
-  public errors = { O: 0, S: 0, A: 0, T: 0 };
+  // public errors = { O: 0, S: 0, A: 0, T: 0 };
   public inputs = [[], [], [], [], []];
   public inputArray = [];
   constructor(public navParams: NavParams, public loadingController: LoadingController, public navCtrl: NavController,
@@ -23,8 +23,6 @@ export class DemTestCardPage {
     this.selectedCard = this.demService.getDEMcard(this.navParams.get('index'));
     console.log(this.selectedCard)
     this.timer = this.selectedCard.time;
-    this.errors = this.selectedCard.errors;
-
   }
 
   back() {
