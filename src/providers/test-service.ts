@@ -60,6 +60,7 @@ export class TestService {
       this.test.DEMresults = this.demService.getDEMresultCards();
       this.test.examiner = this.user._id;
       console.log('saving test', this.test);
+      return this.test;
       // let link = this.serverAdd + "api/saveTest";
       // return this.http.post(link, JSON.stringify(this.test), this.options)
       //   .map(res => res.json());

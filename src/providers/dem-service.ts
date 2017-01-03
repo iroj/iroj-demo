@@ -102,7 +102,13 @@ export class DemService {
   }
   resetDEMcards() {
     _.forEach(this.DEMcards.cards, function (x) {
-      x.errors = 0;
+      x.errors.O = 0;
+      x.errors.S = 0;  
+      x.errors.A = 0;  
+      x.errors.T = 0;       
+      x.totalErrors = 0;
+      x.inputArray = [];
+      x.logs = [];
       x.time = 0
     })
   }
@@ -112,13 +118,13 @@ export class DemService {
 
   analyze(selectedcard, cardIndex) {
     this.toast.showToast('Analysing data');
-    let dataArray = selectedcard.dataArray;
-    let inputArray = selectedcard.inputArray;
+    let  inputArray= selectedcard.dataArray;
+    let dataArray = selectedcard.inputArray;
 
     // damlev service
     let source = inputArray.join('');
     let target = dataArray.join('');
-    selectedcard.totalErrors = this.damlev.damlev(target, source);
+    selectedcard.totalErrors = this.damlev.damlev(source, target);
     console.log('total errors', selectedcard.totalErrors);
 
     // OSAT model
@@ -144,6 +150,7 @@ export class DemService {
             inputIndex++;
             i++;
             errors.T++;
+            console.log(errors);
           } else {
             // Addition
             console.log(inputArray[inputIndex] + " is addition");
@@ -154,6 +161,7 @@ export class DemService {
 
             inputIndex++;
             errors.A++;
+            console.log(errors);
           }
         } else {
           if (dataArray[dataIndex + 1] == inputArray[inputIndex + 1]) {
@@ -164,6 +172,7 @@ export class DemService {
             })
             console.log(dataArray[dataIndex] + " is substituted with " + inputArray[inputIndex]);
             errors.S++;
+            console.log(errors);
           }
         }
 
@@ -177,6 +186,7 @@ export class DemService {
           // After Omission compare next item to the previous item of next Array B
           inputIndex -= 1;
           errors.O++;
+          console.log(errors);
         }
       }
       inputIndex++;

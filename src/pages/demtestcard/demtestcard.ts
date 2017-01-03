@@ -47,15 +47,15 @@ export class DemTestCardPage {
   }
 
   stop() {
-    // if (this.inputArray.length < 30) {
-    //   this.toast.showToast('Not enough data..please reset test')
-    // }
-    // else {
+    if (this.selectedCard.inputArray.length < 30) {
+      this.toast.showToast('Not enough data..please reset test')
+    }
+    else {
     this.selectedCard.time = this.timer;
     this.selectedCard = this.demService.analyze(this.selectedCard, this.navParams.get('index'));
     console.log(this.selectedCard)
     this.navCtrl.pop();
-    // }
+    }
   }
 
   pause() {

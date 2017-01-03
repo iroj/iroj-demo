@@ -27,7 +27,7 @@
                     <button ion-button (click)='review(i)' full round>Review</button>
                 </ion-col>
                 <ion-col width-15 *ngIf='card.time>0'>
-                    <button ion-button (click)='start(i)' full round>{{card.name}}<br> Restart</button>
+                    <button ion-button (click)='restart(i)' full round>{{card.name}}<br> Restart</button>
                 </ion-col>
                 <ion-col width-10>{{card.errors.O}}</ion-col>
                 <ion-col width-10>{{card.errors.S}}</ion-col>

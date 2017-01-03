@@ -23,7 +23,6 @@ export class MyApp {
 
 
     platform.ready().then(() => {
-      this.rootPage=DemPage;
       this.data.getData('user').then(
         data => {
           if (data) {
