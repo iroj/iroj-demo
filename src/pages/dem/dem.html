@@ -5,22 +5,35 @@
     </div>
     <ion-grid class='dem'>
         <ion-row text-center>
-            <ion-col width-60></ion-col>
-            <ion-col width-20>Errors</ion-col>
+            <ion-col width-30></ion-col>
+            <ion-col width-50>Errors</ion-col>
             <ion-col width-20>Time</ion-col>
+        </ion-row>
+        <ion-row text-center>
+            <ion-col width-30></ion-col>
+            <ion-col width-10>O</ion-col>
+            <ion-col width-10>S</ion-col>
+            <ion-col width-10>A</ion-col>
+            <ion-col width-10>T</ion-col>
+            <ion-col width-10>Total</ion-col>
+            <ion-col width-20></ion-col>
         </ion-row>
         <div>
             <ion-row *ngFor='let card of cards; let i =index' text-center center>
-                <ion-col width-60 *ngIf='card.time===0'>
-                    <button ion-button (click)='start(i)' full round>Start {{card.name}} Test</button>
+                <ion-col width-30 *ngIf='card.time===0'>
+                    <button ion-button (click)='start(i)' full round>{{card.name}}<br> Start</button>
                 </ion-col>
-                <ion-col width-30 *ngIf='card.time>0'>
+                <ion-col width-15 *ngIf='card.time>0'>
                     <button ion-button (click)='review(i)' full round>Review</button>
                 </ion-col>
-                <ion-col width-30 *ngIf='card.time>0'>
-                    <button ion-button (click)='start(i)' full round>Restart {{card.name}} Test</button>
+                <ion-col width-15 *ngIf='card.time>0'>
+                    <button ion-button (click)='start(i)' full round>{{card.name}}<br> Restart</button>
                 </ion-col>
-                <ion-col width-20>{{card.errors}}</ion-col>
+                <ion-col width-10>{{card.errors.O}}</ion-col>
+                <ion-col width-10>{{card.errors.S}}</ion-col>
+                <ion-col width-10>{{card.errors.A}}</ion-col>
+                <ion-col width-10>{{card.errors.T}}</ion-col>
+                <ion-col width-10>{{card.totalErrors}}</ion-col>
                 <ion-col width-20>{{card.time}}</ion-col>
             </ion-row>
         </div>
@@ -35,7 +48,7 @@
                 <ion-col col-33><span class='value'>{{results.aht}}</span> <br> Adjusted Horizontal Time</ion-col>
                 <ion-col col-33><span class='value'>{{results.hV}}</span> <br> H/V Ratio</ion-col>
             </ion-row>
-            <ion-row text-center><button round full ion-button (click)='save()'>Save results</button></ion-row>
+            <ion-row text-center><button color='secondary' round full ion-button (click)='save()'>Save results</button></ion-row>
         </div>
     </ion-grid>
 </ion-content>

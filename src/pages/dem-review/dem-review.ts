@@ -1,5 +1,5 @@
-import { Component, ViewChild  } from '@angular/core';
-import { NavController, NavParams , Slides} from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Slides } from 'ionic-angular';
 import { DemService } from '../../providers/dem-service';
 import _ from 'lodash';
 @Component({
@@ -7,31 +7,27 @@ import _ from 'lodash';
   templateUrl: 'dem-review.html'
 })
 export class DemReviewPage {
-  @ViewChild('dataSlider') dataSlider: Slides;
-  @ViewChild('inputSlider') inputSlider: Slides;
-public card: any;
-public  mySlideOptions = {
-    initialSlide: 1
+  @ViewChild('myslider') mySlider: Slides;
+  public card: any;
+  public mySlideOptions = {
+    initialSlide: 0
   };
   constructor(public navCtrl: NavController, public navParams: NavParams, public demService: DemService) {
 
-   this.card = this.demService.getDEMcard(this.navParams.get('index'));
-   console.log(this.card);
-let newArray =this.card.inputArray;
-let dataArray =this.card.dataArray;
-   _.map(this.card.logs, function(log){
-switch (log.type){
-  case 'omission':
-  newArray.push('O')
-  case 'addition':
-  case 'substitution':
-  case 'transposition':
+    this.card = this.demService.getDEMcard(this.navParams.get('index'));
+    console.log(this.card);
+    // let newArray = this.card.inputArray;
+    // let dataArray = this.card.dataArray;
+    // _.map(this.card.logs, function (log) {
+    //   switch (log.type) {
+    //     case 'omission':
+    //       newArray.push('O')
+    //     case 'addition':
+    //     case 'substitution':
+    //     case 'transposition'
+    //   }
 
-
-
-}
-
-   })
+    // })
 
 
   }
@@ -39,5 +35,7 @@ switch (log.type){
   ionViewDidLoad() {
     console.log('Hello DemReviewPage Page');
   }
-
+  back() {
+    this.navCtrl.pop();
+  }
 }

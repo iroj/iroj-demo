@@ -1,15 +1,38 @@
 <ion-content padding>
-    <div class='header-page'>
-        <h1 text-center>DEM Test Review</h1>
-    </div>
+    <button ion-fab mini (click)='back()'>X</button>
 
-    <ion-slides #dataSlider [options]="mySlideOptions">
-        <ion-slide class='numbers' *ngFor='let x of card.dataArray'>{{x}}</ion-slide>
+    <ion-grid class='review-card'>
+        <ion-row class='info'>
+            <ion-col col-100>
+                <h1 text-center>{{card.name}} Review</h1>
+            </ion-col>
+        </ion-row>
+        <ion-row text-center>
+            <ion-col col-100>
+                <p> Data Array</p>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-slides #mySlider [options]="mySlideOptions">
+                <ion-slide *ngFor='let x of card.dataArray; let i=index'>
+                    <button class='numbers'>{{x}}
+                      </button><br>
+                    <button class='numbers'>
+                      {{card.inputArray[i]}}
+                    </button>
+                </ion-slide>
+            </ion-slides>
+        </ion-row>
+        <ion-row text-center>
+            <ion-col col-100>
+                <p>Input Array</p>
+            </ion-col>
+        </ion-row>
 
-    </ion-slides>
-    <ion-slides #inputSlider [options]="mySlideOptions">
-        <ion-slide class='numbers' *ngFor='let x of card.inputArray'>
-            {{x}}
-        </ion-slide>
-    </ion-slides>
+        <ion-row>
+            <ion-card>
+                <p>Total Errors: {{card.errors}}</p>
+            </ion-card>
+        </ion-row>
+    </ion-grid>
 </ion-content>

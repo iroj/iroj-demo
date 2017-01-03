@@ -2,11 +2,15 @@
       ion-slides {
           height: auto;
           .swiper-slide {
-              background-color: #16675f;
               width: 200px !important;
-              height: 100px !important;
-              margin: 2%;
-              font-size: 40px
+              .numbers {
+                  background-color: #16675f;
+                  color: #fff;
+                  height: 100px !important;
+                  width: 180px !important;
+                  margin: 2%;
+                  font-size: 40px
+              }
           }
       }
   }

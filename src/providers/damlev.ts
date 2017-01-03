@@ -11,9 +11,9 @@ export class Damlev {
     console.log('Hello Damlev Provider');
   }
   uncache() {
-    this.sourceCodes = new Array(32);
-    this.targetCodes = new Array(32);
-    this.score = new Array(33 * 33);
+    this.sourceCodes = new Array(40);
+    this.targetCodes = new Array(40);
+    this.score = new Array(40 * 40);
   }
 
   growArray(arr: number[], size: number) {
@@ -47,14 +47,13 @@ export class Damlev {
     console.log('SL: ', sourceLength)
     console.log('TL: ', targetLength)
     // Initialize a char code cache array
-    console.log('SC: ', this.sourceCodes)
-    console.log('TC: ', this.targetCodes)
     this.sourceCodes = this.growArray(this.sourceCodes, sourceLength);
     this.targetCodes = this.growArray(this.targetCodes, targetLength);
-    console.log('SC: ', this.sourceCodes)
-    console.log('TC: ', this.targetCodes)
     for (i = 0; i < sourceLength; i++) { this.sourceCodes[i] = source.charCodeAt(i); }
     for (i = 0; i < targetLength; i++) { this.targetCodes[i] = target.charCodeAt(i); }
+    console.log('SC: ', this.sourceCodes)
+    console.log('TC: ', this.targetCodes)
+
 
     // Initialize the scoring matrix
     const INF = sourceLength + targetLength;
@@ -93,6 +92,7 @@ export class Damlev {
       chars[this.sourceCodes[i - 1]] = i;
     }
     console.log('score: ', this.score)
+    console.log((sourceLength + 1) * rowSize + targetLength + 1)
     return this.score[(sourceLength + 1) * rowSize + targetLength + 1];
   }
 }

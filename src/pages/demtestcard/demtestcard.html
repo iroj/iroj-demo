@@ -12,11 +12,7 @@
 
         <ion-row class='dialpad'>
             <ion-col col-40>
-                <ion-grid>
-                    <ion-row *ngFor=' let row of inputs'>
-                        <span class='inputs' *ngFor='let x of row'>{{x}}</span>
-                    </ion-row>
-                </ion-grid>
+                <ion-textarea rows="5" col='10' [(ngModel)]="inputString"></ion-textarea>
             </ion-col>
             <ion-col col-60>
                 <ion-grid>

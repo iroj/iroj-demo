@@ -15,9 +15,7 @@ export class DemTestCardPage {
   public clock: any;
   public status = 'stop';
   public elapsedTime = 0;
-  // public errors = { O: 0, S: 0, A: 0, T: 0 };
-  public inputs = [[], [], [], [], []];
-  public inputArray = [];
+  public inputString = '';
   constructor(public navParams: NavParams, public loadingController: LoadingController, public navCtrl: NavController,
     public demService: DemService, public toast: ToastService) {
     this.selectedCard = this.demService.getDEMcard(this.navParams.get('index'));
@@ -37,8 +35,9 @@ export class DemTestCardPage {
     ScreenOrientation.unlockOrientation();
   }
   add(x) {
-    this.inputs[Math.floor(this.selectedCard.inputArray.length / 10)].push(x);
+    // this.inputs[Math.floor(this.selectedCard.inputArray.length / 10)].push(x);
     this.selectedCard.inputArray.push(x);
+    this.inputString = this.selectedCard.inputArray.join('')
   }
   start() {
     this.status = 'running';
@@ -52,12 +51,10 @@ export class DemTestCardPage {
     //   this.toast.showToast('Not enough data..please reset test')
     // }
     // else {
-      console.log('data array: ', this.selectedCard.dataArray)
-      console.log('input array: ', this.selectedCard.inputArray)
-      this.selectedCard.time = this.timer;
-      this.selectedCard = this.demService.analyze(this.selectedCard, this.navParams.get('index'));
-      console.log(this.selectedCard)
-      this.navCtrl.pop();
+    this.selectedCard.time = this.timer;
+    this.selectedCard = this.demService.analyze(this.selectedCard, this.navParams.get('index'));
+    console.log(this.selectedCard)
+    this.navCtrl.pop();
     // }
   }
 
@@ -70,14 +67,13 @@ export class DemTestCardPage {
   resume() {
     this.status = 'running'
     this.clock = TimerObservable.create(0, 1000).subscribe(t => {
-      this.timer = this.elapsedTime + t
+      this.timer = this.elapsedTime + t;
     });
   }
 
   reset() {
-    // this.errors = { O: 0, S: 0, A: 0, T: 0 };
-    this.inputs = [[], [], [], []];
-    this.inputArray = [];
+    this.inputString = '';
+    this.selectedCard.inputArray = [];
     if (this.clock)
       this.clock.unsubscribe();
     this.status = 'stop';
