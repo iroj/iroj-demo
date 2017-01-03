@@ -37,4 +37,5 @@
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" " />
     </plugin>
     <plugin name="cordova-plugin-screen-orientation" spec="~1.4.2" />
+    <plugin name="cordova-plugin-statusbar" spec="~2.2.0" />
 </widget>

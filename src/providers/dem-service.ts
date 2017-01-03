@@ -77,8 +77,8 @@ export class DemService {
       vt: this.DEMcards.cards[0].time + this.DEMcards.cards[1].time,
       vtE: this.DEMcards.cards[0].time + this.DEMcards.cards[1].time / totalErrors,
       gH: this.DEMcards.cards[2].time,
-      aht: (this.DEMcards.cards[2].time * 80) / (80 - this.DEMcards.cards[2].errors.O + this.DEMcards.cards[2].errors.A),
-      hV: (this.DEMcards.cards[2].time * 80) / (80 - this.DEMcards.cards[2].errors.O + this.DEMcards.cards[2].errors.A) / this.DEMcards.cards[0].time + this.DEMcards.cards[1].time
+      aht: (this.DEMcards.cards[2].time * 80) / (80 - this.DEMcards.cards[2].errors + this.DEMcards.cards[2].errors),
+      hV: (this.DEMcards.cards[2].time * 80) / (80 - this.DEMcards.cards[2].errors+ this.DEMcards.cards[2].errors) / this.DEMcards.cards[0].time + this.DEMcards.cards[1].time
     }
     this.DEMcards.results = results;
 

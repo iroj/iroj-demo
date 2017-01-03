@@ -9,6 +9,7 @@ import moment from 'moment';
 })
 export class ResultsPage {
   public results = [];
+  public type = 'KD';
 
   constructor(public navCtrl: NavController, public resultService: ResultService) {
     this.resultService.getResultsExaminer().subscribe(data => {

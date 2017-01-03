@@ -75,7 +75,7 @@ export class DemTestCardPage {
   }
 
   reset() {
-    this.errors = { O: 0, S: 0, A: 0, T: 0 };
+    // this.errors = { O: 0, S: 0, A: 0, T: 0 };
     this.inputs = [[], [], [], []];
     this.inputArray = [];
     if (this.clock)

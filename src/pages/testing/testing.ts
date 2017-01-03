@@ -3,7 +3,7 @@ import { NavController, ModalController, ToastController, ViewController, Loadin
 import { TestService } from '../../providers/test-service';
 import { ToastService } from '../../providers/toast-service';
 import { GlobalService } from '../../providers/global-service';
-import { Camera } from 'ionic-native';
+import { Keyboard, Camera } from 'ionic-native';
 
 import { MainTestPage } from '../main-test/main-test';
 
@@ -54,7 +54,9 @@ export class TestingPage {
   }
   selectPlayer(player) {
     this.selectedPlayer = player;
-    console.log(this.newtest)
+    console.log(this.newtest);
+    Keyboard.close();
+
   }
 
   beginTest(type) {

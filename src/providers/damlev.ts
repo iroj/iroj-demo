@@ -92,6 +92,7 @@ export class Damlev {
       }
       chars[this.sourceCodes[i - 1]] = i;
     }
+    console.log('score: ', this.score)
     return this.score[(sourceLength + 1) * rowSize + targetLength + 1];
   }
 }

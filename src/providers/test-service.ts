@@ -19,7 +19,6 @@ export class TestService {
 
   constructor(public http: Http, public global: GlobalService, public config: Config, public dataService: DataService, public kdService: KdService,public demService: DemService) {
     this.serverAdd = this.config.getServer();
-    this.user = this.global.getUser();
     this.headers = new Headers({
       'Content-Type': 'application/json'
     });
@@ -29,7 +28,8 @@ export class TestService {
   }
   getPlayersList() {
     let link = this.serverAdd + "api/getPlayers";
-    return this.http.post(link, JSON.stringify({ school: this.user.school }), this.options)
+    this.user = this.global.getUser();
+        return this.http.post(link, JSON.stringify({ school: this.user.school }), this.options)
       .map(res => res.json());
   }
   addPlayer(player) {
@@ -47,6 +47,7 @@ export class TestService {
   }
 
   saveTest(type) {
+    this.user = this.global.getUser();
     if (type == 'KD') {
       this.test.KDresults = this.kdService.getKDResults();
       this.test.examiner = this.user._id;
