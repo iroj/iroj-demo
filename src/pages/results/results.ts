@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ResultService } from '../../providers/result-service';
+import { ScreenOrientation } from 'ionic-native';
+import { DemresultcardPage } from '../demresultcard/demresultcard';
+
 import _ from 'lodash';
 import moment from 'moment';
 @Component({
@@ -8,28 +11,33 @@ import moment from 'moment';
   templateUrl: 'results.html'
 })
 export class ResultsPage {
-  public results = [];
+  public results = { kd: [], dem: [] };
   public type = 'KD';
 
   constructor(public navCtrl: NavController, public resultService: ResultService) {
+    this.getResults();
+
+  }
+  ionViewWillEnter() {
+    this.getResults();
+    ScreenOrientation.lockOrientation('landscape');
+  }
+
+  ionViewWillLeave() {
+    ScreenOrientation.unlockOrientation();
+  }
+  getResults() {
     this.resultService.getResultsExaminer().subscribe(data => {
-      console.log(data);
-      this.results = _.forEach(data, function (x) {
-        x.created = moment(x.created).format('DD MMM YYYY')
-        x.type=x.type.charAt(0)
+      _.forEach(data, function (x) {
+        x.created = moment(x.created).format('DD/MM/YYYY')
+        x.type = x.type.charAt(0)
       });
+      this.results.kd = _.filter(data, function (x) { return x.KDresults.length > 0 })
+      this.results.dem = _.filter(data, function (x) { return x.DEMresults })
+      console.log(this.results);
     })
-
   }
-  ionViewDidLoad() {
-   this.resultService.getResultsExaminer().subscribe(data => {
-      console.log(data);
-      this.results = _.forEach(data, function (x) {
-        x.created = moment(x.created).format('DD MMM YYYY')
-        x.type=x.type.charAt(0)
-      });
-    })
-
+  review(result){
+    this.navCtrl.push(DemresultcardPage, {result: result})
   }
-
 }

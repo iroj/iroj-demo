@@ -9,11 +9,11 @@
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
-    <ion-grid *ngIf='type==="KD"'>
+    <ion-grid *ngIf='type==="KD"' class='results'>
         <ion-row class='result-head' text-center color='primary'>
             <ion-col col-10>Date
             </ion-col>
-            <ion-col col-15>Student <br> (username)
+            <ion-col col-15>Student
             </ion-col>
             <ion-col col-5>Type <br> (BT/CT)
             </ion-col>
@@ -30,7 +30,7 @@
             <ion-col col-15>KD3<br> (E/T)
             </ion-col>
         </ion-row>
-        <ion-row *ngFor='let result of results' class='result-body' text-center>
+        <ion-row *ngFor='let result of results.kd' class='result-body' text-center>
             <ion-col col-10>{{result.created}}
             </ion-col>
             <ion-col col-15>{{result.player.username}}
@@ -48,6 +48,58 @@
             <ion-col col-15>{{result.KDresults[1].err}} / {{result.KDresults[1].time}}
             </ion-col>
             <ion-col col-15>{{result.KDresults[2].err}} / {{result.KDresults[2].time}}
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+
+    <ion-grid *ngIf='type==="DEM"' class='results'>
+        <ion-row class='result-head' text-center color='primary'>
+            <ion-col col-10>Date
+            </ion-col>
+            <ion-col col-10>Student
+            </ion-col>
+            <ion-col col-5>Type <br> (BT/CT)
+            </ion-col>
+            <ion-col col-5>NPC <br>(B/R)
+            </ion-col>
+            <ion-col col-5>Sup
+            </ion-col>
+            <ion-col col-5>Cor
+            </ion-col>
+            <ion-col col-12>AHT
+            </ion-col>
+            <ion-col col-12>GH
+            </ion-col>
+            <ion-col col-12>VT
+            </ion-col>
+            <ion-col col-12>VTE
+            </ion-col>
+            <ion-col col-12>HV
+            </ion-col>
+        </ion-row>
+        <ion-row *ngFor='let result of results.dem' class='result-body' text-center (click)='review(result)'>
+            <ion-col col-10>{{result.created}}
+            </ion-col>
+            <ion-col col-10>{{result.player.username}}
+            </ion-col>
+            <ion-col col-5>{{result.type}}
+            </ion-col>
+            <ion-col col-5>{{result.npcBreak}} / {{result.npcRecovery}}
+            </ion-col>
+            <ion-col col-5>{{result.suppression}}
+            </ion-col>
+            <ion-col col-5>{{result.habitual}}
+            </ion-col>
+            <ion-col col-12>{{result.DEMresults.results.aht}}
+            </ion-col>
+            <ion-col col-12>{{result.DEMresults.results.gH}}
+            </ion-col>
+            <ion-col col-12>{{result.DEMresults.results.vt}}
+            </ion-col>
+            <ion-col col-12>{{result.DEMresults.results.vtE}}
+            </ion-col>
+            <ion-col col-12>{{result.DEMresults.results.hV}}
             </ion-col>
         </ion-row>
     </ion-grid>

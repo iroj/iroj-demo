@@ -43,35 +43,31 @@ export class DemPage {
     this.demService.resetDEMcards();
     this.navCtrl.push(DemTestCardPage, { index: i })
   }
-  back() {      
-
-      if (this.cards[0].time == 0 || this.cards[1].time == 0 || this.cards[2].time == 0) {
+  back() {
+    if (this.cards[0].time == 0 || this.cards[1].time == 0 || this.cards[2].time == 0) {
       this.toast.showToast('All test cards not completed. Result not saved.')
-          this.navCtrl.pop();
-          this.demService.resetDEMcards();
-
+      this.navCtrl.pop();
+      this.demService.resetDEMcards();
     }
     else {
-        let loading = this.loadingController.create({
-          content: 'Saving test'
-        });
-        loading.present()
-        this.testService.saveTest('DEM').subscribe(data => {
-          loading.dismiss();
-          this.demService.resetDEMcards();
-          this.navCtrl.pop();
-        }, err=>this.toast.showToast(err))
-      }
+      this.save();
+    }
   }
 
   save() {
+    let loading = this.loadingController.create({
+      content: 'Saving test'
+    });
+    loading.present()
     this.testService.saveTest('DEM').subscribe(data => {
-      console.log(data);
-    })
+      this.demService.resetDEMcards();
+      this.navCtrl.pop();
+      loading.dismiss();
+    }, err => this.toast.showToast(err));
   }
 
-  review(i){
-  this.navCtrl.push(DemReviewPage, {index:i});
+  review(i) {
+    this.navCtrl.push(DemReviewPage, { index: i });
   }
 
 }

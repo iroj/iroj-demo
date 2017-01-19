@@ -17,7 +17,7 @@ export class TestService {
   public user: any;
   public test: any;
 
-  constructor(public http: Http, public global: GlobalService, public config: Config, public dataService: DataService, public kdService: KdService,public demService: DemService) {
+  constructor(public http: Http, public global: GlobalService, public config: Config, public dataService: DataService, public kdService: KdService, public demService: DemService) {
     this.serverAdd = this.config.getServer();
     this.headers = new Headers({
       'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ export class TestService {
   getPlayersList() {
     let link = this.serverAdd + "api/getPlayers";
     this.user = this.global.getUser();
-        return this.http.post(link, JSON.stringify({ school: this.user.school }), this.options)
+    return this.http.post(link, JSON.stringify({ school: this.user.school }), this.options)
       .map(res => res.json());
   }
   addPlayer(player) {
@@ -48,22 +48,22 @@ export class TestService {
 
   saveTest(type) {
     this.user = this.global.getUser();
-    if (type == 'KD') {
+    this.test.examiner = this.user._id;
+    if (type == 'KD')
       this.test.KDresults = this.kdService.getKDResults();
-      this.test.examiner = this.user._id;
-      console.log('saving test', this.test);
-      let link = this.serverAdd + "api/saveTest";
-      return this.http.post(link, JSON.stringify(this.test), this.options)
-        .map(res => res.json());
-    }
-       if (type == 'DEM') {
+    else
       this.test.DEMresults = this.demService.getDEMresultCards();
-      this.test.examiner = this.user._id;
-      console.log('saving test', this.test);
-      return this.test;
-      // let link = this.serverAdd + "api/saveTest";
-      // return this.http.post(link, JSON.stringify(this.test), this.options)
-      //   .map(res => res.json());
-    }
+    console.log('saving test', this.test);
+    let link = this.serverAdd + "api/saveTest";
+    return this.http.post(link, JSON.stringify(this.test), this.options)
+      .map(res => res.json());
+  }
+  updateDEMResult(){
+     this.user = this.global.getUser();
+    this.test.examiner = this.user._id;
+    console.log('saving test', this.test);
+    let link = this.serverAdd + "api/updateDEMResult";
+    return this.http.post(link, JSON.stringify(this.test), this.options)
+      .map(res => res.json());
   }
 }

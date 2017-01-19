@@ -22,5 +22,5 @@ export class TabsPage {
   console.log(this.user);
   }
 
- 
+
 }

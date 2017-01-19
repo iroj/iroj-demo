@@ -4,7 +4,6 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
-import { DemPage } from '../pages/dem/dem';
 
 import { StudentTabsPage } from '../pages/student-tabs/student-tabs';
 import { AdminTabsPage } from '../pages/admin-tabs/admin-tabs';

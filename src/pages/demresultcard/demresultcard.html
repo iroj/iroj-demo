@@ -1,0 +1,48 @@
+<ion-content>
+    <div class='header-page'>
+        <button (click)='back()' ion-button clear icon-only><ion-icon name='md-arrow-back'></ion-icon></button>
+        <h1 text-center>DEM</h1>
+    </div>
+    <ion-grid class='dem'>
+        <ion-row text-center>
+            <ion-col width-30></ion-col>
+            <ion-col width-50>Errors</ion-col>
+            <ion-col width-20>Time</ion-col>
+        </ion-row>
+        <ion-row text-center>
+            <ion-col width-30></ion-col>
+            <ion-col width-10>O</ion-col>
+            <ion-col width-10>S</ion-col>
+            <ion-col width-10>A</ion-col>
+            <ion-col width-10>T</ion-col>
+            <ion-col width-10>Total</ion-col>
+            <ion-col width-20></ion-col>
+        </ion-row>
+        <div>
+            <ion-row *ngFor='let card of result.DEMresults.cards; let i =index' text-center center>
+                <ion-col width-30>
+                    <button ion-button (click)='review(i)' full round>{{card.name}}<br> Review</button>
+                </ion-col>
+                <ion-col width-10>{{card.errors.O}}</ion-col>
+                <ion-col width-10>{{card.errors.S}}</ion-col>
+                <ion-col width-10>{{card.errors.A}}</ion-col>
+                <ion-col width-10>{{card.errors.T}}</ion-col>
+                <ion-col width-10>{{card.totalErrors}}</ion-col>
+                <ion-col width-20>{{card.time}}</ion-col>
+            </ion-row>
+        </div>
+        <div class='result'>
+            <ion-row>
+                <ion-col col-50><span class='value'>{{result.DEMresults.results.vt}}</span> <br> Vertical Time</ion-col>
+                <ion-col col-50><span class='value'>{{result.DEMresults.results.vtE}}</span> <br> Vertical Time/Total Errors</ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-33><span class='value'>{{result.DEMresults.results.gH}}</span> <br> Gross Horizontal</ion-col>
+                <ion-col col-33><span class='value'>{{result.DEMresults.results.aht}}</span> <br> Adjusted Horizontal Time</ion-col>
+                <ion-col col-33><span class='value'>{{result.DEMresults.results.hV}}</span> <br> H/V Ratio</ion-col>
+            </ion-row>
+            <ion-row text-center><button color='secondary' round full ion-button (click)='update()'>Update results</button></ion-row>
+        </div>
+    </ion-grid>
+</ion-content>

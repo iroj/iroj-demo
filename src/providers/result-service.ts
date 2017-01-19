@@ -24,4 +24,9 @@ export class ResultService {
     return this.http.post(link, JSON.stringify({ examiner: this.user._id }), this.options)
       .map(res => res.json());
   }
+  getResultsStudent() {
+    let link = this.serverAdd + "api/getResultsStudent";
+    return this.http.post(link, JSON.stringify({ student: this.user._id }), this.options)
+      .map(res => res.json());
+  }
 }

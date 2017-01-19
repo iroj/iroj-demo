@@ -12,6 +12,9 @@ export class DemReviewPage {
   public mySlideOptions = {
     initialSlide: 0
   };
+  public inputIndex = 0;
+  public dataIndex = 0;
+  public lock: false;
   constructor(public navCtrl: NavController, public navParams: NavParams, public demService: DemService) {
 
     this.card = this.demService.getDEMcard(this.navParams.get('index'));
@@ -30,6 +33,21 @@ export class DemReviewPage {
     // })
 
 
+  }
+
+  swiped(e) {
+    console.log(e.direction);
+    //left:2, right:4
+    if (e.direction === 2) {
+      this.inputIndex++
+      if (this.lock)
+        this.dataIndex++
+    }
+    else if (e.direction === 4 && this.inputIndex != 0) {
+      this.inputIndex--
+      if (this.lock && this.dataIndex != 0)
+        this.dataIndex--
+    }
   }
 
   ionViewDidLoad() {

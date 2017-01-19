@@ -3,14 +3,25 @@
           height: auto;
           .swiper-slide {
               width: 200px !important;
-              .numbers {
-                  background-color: #16675f;
-                  color: #fff;
-                  height: 100px !important;
-                  width: 180px !important;
-                  margin: 2%;
-                  font-size: 40px
-              }
           }
+      }
+      .box {
+          width: 200px !important;
+      }
+      .numbers {
+          background-color: #16675f;
+          color: #fff;
+          height: 100px !important;
+          width: 180px !important;
+          margin: 10px;
+          font-size: 40px;
+          ion-badge {
+              position: absolute;
+              margin-left: -30px;
+          }
+      }
+      .lock-icon {
+          font-size: 60px!important;
+          line-height: 65px;
       }
   }

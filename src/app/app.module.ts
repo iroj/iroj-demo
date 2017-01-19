@@ -17,6 +17,7 @@ import { KingdevickPage } from '../pages/kingdevick/kingdevick';
 import { KingDevickCardPage } from '../pages/kingdevickcard/kingdevickcard';
 import { DemPage } from '../pages/dem/dem';
 import { DemTestCardPage } from '../pages/demtestcard/demtestcard';
+import { DemresultcardPage } from '../pages/demresultcard/demresultcard';
 import { DemReviewPage } from '../pages/dem-review/dem-review';
 
 //pages for student
@@ -60,6 +61,7 @@ const cloudSettings: CloudSettings = {
     DemPage,
     DemTestCardPage,
     DemReviewPage,
+    DemresultcardPage,
     ResultsPage,
     StudentTabsPage,
     StudentProfilePage,
@@ -84,6 +86,7 @@ const cloudSettings: CloudSettings = {
     DemPage,
     DemTestCardPage,
     DemReviewPage,
+    DemresultcardPage,
     ProfilePage,
     TestingPage,
     ResultsPage,

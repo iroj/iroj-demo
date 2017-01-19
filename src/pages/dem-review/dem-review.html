@@ -9,30 +9,62 @@
         </ion-row>
         <ion-row text-center>
             <ion-col col-100>
-                <p> Data Array</p>
+                <h2> Data Array</h2>
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-slides #mySlider [options]="mySlideOptions">
-                <ion-slide *ngFor='let x of card.dataArray; let i=index'>
-                    <button class='numbers'>{{x}}
-                      </button><br>
-                    <button class='numbers'>
-                      {{card.inputArray[i]}}
-                    </button>
-                </ion-slide>
-            </ion-slides>
+            <div *ngFor='let x of card.dataArray; let i=index' class='box'>
+                <button class='numbers' *ngIf='i>=dataIndex && i<dataIndex+5'>
+                      <ion-badge>{{i+1}}</ion-badge>
+
+                      {{x}}
+                </button>
+            </div>
+        </ion-row>
+        <ion-row text-center>
+            <ion-col col-100 class='lock-icon'>
+                <ion-icon *ngIf='!lock' name="ios-unlock-outline" (click)='lock=true'></ion-icon>
+                <ion-icon *ngIf='lock' name="ios-lock-outline" (click)='lock=false'></ion-icon>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <div *ngFor='let x of card.inputArray; let i=index' class='box' (swipe)='swiped($event)'>
+                <button class='numbers' *ngIf='i>=inputIndex && i<inputIndex+5'>
+                      <ion-badge>{{i+1}}</ion-badge>
+
+                      {{x}}
+                </button>
+            </div>
         </ion-row>
         <ion-row text-center>
             <ion-col col-100>
-                <p>Input Array</p>
+                <h2>Input Array</h2>
             </ion-col>
         </ion-row>
-
         <ion-row>
-            <ion-card>
-                <p>Total Errors: {{card.errors}}</p>
-            </ion-card>
+            Auto Generated Results
+        </ion-row>
+        <ion-row>
+            <ion-col col-20>
+                Omission : {{card.errors.O}}
+            </ion-col>
+            <ion-col col-20>
+                Substitution : {{card.errors.S}}
+            </ion-col>
+            <ion-col col-20>
+                Addition : {{card.errors.A}}
+            </ion-col>
+            <ion-col col-20>
+                Trasnposition : {{card.errors.T}}
+            </ion-col>
+            <ion-col col-20>
+                Total: {{card.totalErrors}}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-25>
+                Omission<br>
+                <ion-button ion- </ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>

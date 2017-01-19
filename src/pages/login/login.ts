@@ -14,7 +14,7 @@ import { ToastService } from '../../providers/toast-service';
 export class LoginPage {
   public showLogin = true;
   public loginData = { username: '', password: '' };
-  public signupData = { username: '', password: '' };
+  public signupData = { email: '', username: '', password: '' };
   constructor(public navCtrl: NavController, public toast: ToastService, public loadingController: LoadingController,
     public alertController: AlertController, public data: DataService, public global: GlobalService, public auth: AuthService) { }
 
@@ -39,13 +39,8 @@ export class LoginPage {
           if (data.roles[0] === 'admin') {
             this.global.setUser(data);
             this.data.save('user', data);
-            this.navCtrl.pop().then(success => {
-              if (data.roles[0] === 'student')
-                this.navCtrl.setRoot(StudentTabsPage)
-              else if (data.roles[0] === 'admin')
-                this.navCtrl.setRoot(AdminTabsPage);
-              else
-                this.navCtrl.setRoot(TabsPage)
+            this.navCtrl.popToRoot().then(success => {
+                this.navCtrl.push(AdminTabsPage);
             })
           }
           else if (data.roles.length == 0 || !data.approved)
@@ -53,13 +48,12 @@ export class LoginPage {
           else {
             this.global.setUser(data);
             this.data.save('user', data);
-            this.navCtrl.pop().then(success => {
+            this.navCtrl.popToRoot().then(success => {
               if (data.roles[0] === 'student')
-                this.navCtrl.setRoot(StudentTabsPage)
+                this.navCtrl.push(StudentTabsPage)
               else
-                this.navCtrl.setRoot(TabsPage)
+                this.navCtrl.push(TabsPage)
             })
-
           }
         },
         error => {
@@ -72,7 +66,7 @@ export class LoginPage {
 
 
   signup() {
-    if (!this.signupData.username || !this.signupData.password)
+    if (!this.signupData.username || !this.signupData.email || !this.signupData.password)
       this.toast.showToast('Enter credentials')
     else {
       this.signupData.username = this.signupData.username.trim();

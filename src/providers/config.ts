@@ -3,8 +3,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class Config {
-  // public server = 'http://localhost:3000/'
-  public server = 'https://pomona-server.herokuapp.com/'
+  public server = 'http://localhost:3000/'
+  // public server = 'https://pomona-server.herokuapp.com/'
 
   constructor() {
   }

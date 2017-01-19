@@ -1,20 +1,23 @@
 page-login {
     .header-login {
         height: 15%!important;
+        margin-top: 10%;
         h1 {
             color: #fff;
+            font-size: 5rem;
         }
     }
     .loginform {
         position: fixed;
-        width: 100%;
+        width: 70%;
+        margin: 15%;
         ion-input {
             color: #fff;
             padding-left: 5%;
         }
         .toggle-form {
             color: #fff;
-            font-size: 12px;
+            font-size: 2rem;
             text-decoration: underline;
         }
     }

@@ -15,13 +15,19 @@
         </ion-item>
 
         <ion-item text-center>
-            <button (click)='signin()' ion-button color="secondary">Login</button>
+            <button (click)='signin()' ion-button large color="secondary">Login</button>
         </ion-item>
         <ion-item text-center (click)='showLogin=false'>
             <p class='toggle-form'>Or <br>Signup with Pomona</p>
         </ion-item>
     </ion-list>
     <ion-list no-lines *ngIf='!showLogin' class='loginform'>
+
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email" [(ngModel)]='signupData.email'>
+            </ion-input>
+        </ion-item>
         <ion-item>
             <ion-label floating>Username</ion-label>
             <ion-input type="text" [(ngModel)]='signupData.username'>
@@ -34,7 +40,7 @@
         </ion-item>
 
         <ion-item text-center>
-            <button (click)='signup()' ion-button color="secondary">Sign Up</button>
+            <button (click)='signup()' ion-button large color="secondary">Sign Up</button>
         </ion-item>
         <ion-item text-center>
             <p class='toggle-form' (click)='showLogin=true'>Or <br> Login using your credentials</p>

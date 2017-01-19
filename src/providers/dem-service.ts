@@ -103,9 +103,9 @@ export class DemService {
   resetDEMcards() {
     _.forEach(this.DEMcards.cards, function (x) {
       x.errors.O = 0;
-      x.errors.S = 0;  
-      x.errors.A = 0;  
-      x.errors.T = 0;       
+      x.errors.S = 0;
+      x.errors.A = 0;
+      x.errors.T = 0;
       x.totalErrors = 0;
       x.inputArray = [];
       x.logs = [];
@@ -115,7 +115,9 @@ export class DemService {
   getDEMresultCards() {
     return this.DEMcards
   }
-
+  setDEMresultCards(cards) {
+    this.DEMcards = cards
+  }
   analyze(selectedcard, cardIndex) {
     this.toast.showToast('Analysing data');
     let  inputArray= selectedcard.dataArray;
