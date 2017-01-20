@@ -7,6 +7,21 @@
                 <h1 text-center>{{card.name}} Review</h1>
             </ion-col>
         </ion-row>
+
+        <ion-row>
+            <ion-col col-25>
+                O : {{newErrors.O}}
+            </ion-col>
+            <ion-col col-25>
+                S : {{newErrors.S}}
+            </ion-col>
+            <ion-col col-25>
+                A : {{newErrors.A}}
+            </ion-col>
+            <ion-col col-25>
+                T : {{newErrors.T}}
+            </ion-col>
+        </ion-row>
         <ion-row text-center>
             <ion-col col-100>
                 <h2> Data Array</h2>
@@ -14,24 +29,29 @@
         </ion-row>
         <ion-row>
             <div *ngFor='let x of card.dataArray; let i=index' class='box'>
-                <button class='numbers' *ngIf='i>=dataIndex && i<dataIndex+5'>
+                <button class='numbers' *ngIf='i>=dataIndex && i<dataIndex+5' (click)='selectedData(i)' [ngClass]="{'active': selectData.indexOf(i)>-1}">
                       <ion-badge>{{i+1}}</ion-badge>
-
                       {{x}}
                 </button>
             </div>
         </ion-row>
         <ion-row text-center>
-            <ion-col col-100 class='lock-icon'>
+            <ion-col col-25 class='lock-icon'>
+                <ion-icon name="ios-arrow-dropleft" (click)='swipeRight()'></ion-icon>
+            </ion-col>
+            <ion-col col-50 class='lock-icon'>
                 <ion-icon *ngIf='!lock' name="ios-unlock-outline" (click)='lock=true'></ion-icon>
                 <ion-icon *ngIf='lock' name="ios-lock-outline" (click)='lock=false'></ion-icon>
             </ion-col>
+            <ion-col col-25 class='lock-icon'>
+                <ion-icon name="ios-arrow-dropright" (click)='swipeLeft()'></ion-icon>
+            </ion-col>
+
         </ion-row>
         <ion-row>
             <div *ngFor='let x of card.inputArray; let i=index' class='box' (swipe)='swiped($event)'>
-                <button class='numbers' *ngIf='i>=inputIndex && i<inputIndex+5'>
+                <button class='numbers' *ngIf='i>=inputIndex && i<inputIndex+5' (click)='selectedInput(i)' [ngClass]="{'active': selectInput.indexOf(i)>-1}">
                       <ion-badge>{{i+1}}</ion-badge>
-
                       {{x}}
                 </button>
             </div>
@@ -41,7 +61,7 @@
                 <h2>Input Array</h2>
             </ion-col>
         </ion-row>
-        <ion-row>
+        <!--<ion-row>
             Auto Generated Results
         </ion-row>
         <ion-row>
@@ -60,11 +80,36 @@
             <ion-col col-20>
                 Total: {{card.totalErrors}}
             </ion-col>
-        </ion-row>
+        </ion-row>-->
+
+
         <ion-row>
             <ion-col col-25>
-                Omission<br>
-                <ion-button ion- </ion-col>
+                <button ion-button icon-only full round (click)='omission()' [disabled]='disabled.O'>
+                Omission
+              </button>
+            </ion-col>
+            <ion-col col-25>
+                <button ion-button icon-only full round (click)='substitution()' [disabled]='disabled.S'>
+                Substitution
+              </button>
+            </ion-col>
+            <ion-col col-25>
+                <button ion-button full round icon-only (click)='addition()' [disabled]='disabled.A'>
+                Addition
+              </button>
+            </ion-col>
+            <ion-col col-25>
+                <button ion-button full round icon-only (click)='transposition()' [disabled]='disabled.T'>
+                Trasnposition
+              </button>
+            </ion-col>
+
+
         </ion-row>
+
+
+
+
     </ion-grid>
 </ion-content>
