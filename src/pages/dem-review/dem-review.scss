@@ -5,9 +5,6 @@
               width: 200px !important;
           }
       }
-      .box {
-          width: 200px !important;
-      }
       .numbers {
           background-color: #16675f;
           color: #fff;
@@ -21,10 +18,36 @@
           }
       }
       .lock-icon {
-          font-size: 60px!important;
-          line-height: 65px;
+          font-size: 45px!important;
+          line-height: 45px;
       }
       .active {
           background-color: #fafa3e;
+      }
+      .omission {
+          background-color: #e55664;
+      }
+      .substitution {
+          background-color: #5540a0;
+      }
+      .transposition {
+          background-color: #50f564;
+      }
+      .addition {
+          background-color: #90ef00;
+          height: 50px !important;
+          width: 180px !important;
+          margin: 10px;
+          font-size: 30px;
+      }
+      .blank {
+          width: 200px;
+          background: transparent;
+      }
+      .back {
+          float: left
+      }
+      .reset {
+          float: right
       }
   }

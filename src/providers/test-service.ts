@@ -58,12 +58,10 @@ export class TestService {
     return this.http.post(link, JSON.stringify(this.test), this.options)
       .map(res => res.json());
   }
-  updateDEMResult(){
-     this.user = this.global.getUser();
-    this.test.examiner = this.user._id;
-    console.log('saving test', this.test);
+  updateDEMResult(result){
+
     let link = this.serverAdd + "api/updateDEMResult";
-    return this.http.post(link, JSON.stringify(this.test), this.options)
+    return this.http.post(link, JSON.stringify(result), this.options)
       .map(res => res.json());
   }
 }

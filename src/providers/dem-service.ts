@@ -200,4 +200,8 @@ export class DemService {
     return selectedcard
   }
 
+  updateDEMresultcard(card, i){
+    this.DEMcards.cards[i] = card;
+  }
+
 }
