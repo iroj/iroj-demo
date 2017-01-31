@@ -11,7 +11,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ProfilePage } from '../pages/profile/profile';
 import { ResultsPage } from '../pages/results/results';
 import { TestingPage } from '../pages/testing/testing';
-import { AddPlayerPage } from '../pages/testing/testing';
+import { AddPlayerPage } from '../pages/testing/addPlayer';
 import { MainTestPage } from '../pages/main-test/main-test';
 import { KingdevickPage } from '../pages/kingdevick/kingdevick';
 import { KingDevickCardPage } from '../pages/kingdevickcard/kingdevickcard';
