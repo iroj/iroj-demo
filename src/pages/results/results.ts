@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ResultService } from '../../providers/result-service';
-import { ScreenOrientation } from 'ionic-native';
 import { DemresultcardPage } from '../demresultcard/demresultcard';
 
 import _ from 'lodash';
@@ -20,11 +19,9 @@ export class ResultsPage {
   }
   ionViewWillEnter() {
     this.getResults();
-    ScreenOrientation.lockOrientation('landscape');
   }
 
   ionViewWillLeave() {
-    ScreenOrientation.unlockOrientation();
   }
   getResults() {
     this.resultService.getResultsExaminer().subscribe(data => {

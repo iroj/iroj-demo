@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ScreenOrientation } from 'ionic-native';
 import { TimerObservable } from "rxjs/observable/TimerObservable";
 import { KdService } from '../../providers/kd-service';
 @Component({
@@ -24,10 +23,8 @@ export class KingDevickCardPage {
     this.navCtrl.pop();
   }
   ionViewWillEnter() {
-    // ScreenOrientation.lockOrientation('landscape');
   }
   ionViewWillLeave() {
-    // ScreenOrientation.unlockOrientation();
   }
   start() {
     this.status = 'running';

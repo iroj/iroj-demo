@@ -24,12 +24,4 @@ export class AuthService {
     return this.http.post(link, JSON.stringify(loginCred), this.options)
       .map(res => res.json());
   }
-
-  signup(signupCred) {
-      let link = this.serverAdd + "api/signup";
-      return this.http.post(link, JSON.stringify(signupCred), this.options)
-        .map(res => res.json());
-  }
-
-
 }

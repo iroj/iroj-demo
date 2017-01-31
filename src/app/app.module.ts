@@ -25,7 +25,6 @@ import { StudentTabsPage } from '../pages/student-tabs/student-tabs';
 import { StudentProfilePage } from '../pages/student-profile/student-profile';
 import { StudentResultsPage } from '../pages/student-results/student-results';
 //pages for admin
-import { AdminTabsPage } from '../pages/admin-tabs/admin-tabs';
 //providers
 import { AuthService } from '../providers/auth-service'
 import { ProfileService } from '../providers/profile-service'
@@ -65,8 +64,7 @@ const cloudSettings: CloudSettings = {
     ResultsPage,
     StudentTabsPage,
     StudentProfilePage,
-    StudentResultsPage,
-    AdminTabsPage
+    StudentResultsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -92,8 +90,7 @@ const cloudSettings: CloudSettings = {
     ResultsPage,
     StudentTabsPage,
     StudentProfilePage,
-    StudentResultsPage,
-    AdminTabsPage
+    StudentResultsPage
   ],
   providers: [AuthService, ProfileService, TestService, ResultService, DataService, GlobalService, KdService, DemService,Damlev, Config, Storage, AuthService, ToastService]
 })

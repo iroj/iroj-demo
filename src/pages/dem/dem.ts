@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
-import { ScreenOrientation } from 'ionic-native';
 import { TestService } from '../../providers/test-service';
 import { DemService } from '../../providers/dem-service';
 import { ToastService } from '../../providers/toast-service';
@@ -21,7 +20,6 @@ export class DemPage {
     console.log(this.cards);
   }
   ionViewWillEnter() {
-    // ScreenOrientation.lockOrientation('landscape');
     this.cards = this.demService.getDEMcards();
     console.log(this.cards);
 
@@ -34,7 +32,6 @@ export class DemPage {
     }
   }
   ionViewWillLeave() {
-    // ScreenOrientation.unlockOrientation();
   }
   start(i) {
     this.navCtrl.push(DemTestCardPage, { index: i })

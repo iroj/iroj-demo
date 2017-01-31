@@ -5,19 +5,18 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DataService {
-       constructor( public storage: Storage) {     
-    }
+  constructor(public storage: Storage) {
+  }
 
-    getData(item) {
-        console.log(item);
-        return this.storage.get(item);
-    }
-    save(item, data) {
-        let newData = JSON.stringify(data);
-        this.storage.set(item, newData);
-    }
-    remove(item) {
-        this.storage.remove(item);
-    }
+  getData(item) {
+    return this.storage.get(item);
+  }
+  save(item, data) {
+    let newData = JSON.stringify(data);
+    this.storage.set(item, newData);
+  }
+  remove(item) {
+    this.storage.remove(item);
+  }
 
-    }
+}

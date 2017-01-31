@@ -6,11 +6,8 @@ import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StudentTabsPage } from '../pages/student-tabs/student-tabs';
-import { AdminTabsPage } from '../pages/admin-tabs/admin-tabs';
-import {GlobalService} from '../providers/global-service'
-import {DataService} from '../providers/data-service'
-
-// import { DemPage } from '../pages/dem/dem';
+import { GlobalService } from '../providers/global-service'
+import { DataService } from '../providers/data-service'
 
 @Component({
   template: `<ion-nav [root]="rootPage"></ion-nav>`
@@ -18,26 +15,22 @@ import {DataService} from '../providers/data-service'
 export class MyApp {
   public rootPage: any;
 
-  constructor(platform: Platform, public global: GlobalService, public data:DataService) {
-
-
+  constructor(platform: Platform, public global: GlobalService, public data: DataService) {
     platform.ready().then(() => {
       this.data.getData('user').then(
         data => {
           if (data) {
             let user = JSON.parse(data)
             this.global.setUser(user);
-            if (user._id && user.roles[0]==='student')
+            if (user._id && user.roles[0] === 'student')
               this.rootPage = StudentTabsPage;
-            else if (user._id && user.roles[0]==='admin')
-              this.rootPage = AdminTabsPage;
-            else if (!user._id)
+            else if (user._id && user.roles[0] === 'examiner')
+              this.rootPage = TabsPage
+            else
               this.rootPage = LoginPage;
-            else this.rootPage = TabsPage
-        }
-        else this.rootPage = LoginPage
+          }
+          else this.rootPage = LoginPage
         });
-      // this.rootPage = DemPage
       StatusBar.overlaysWebView(false);
       StatusBar.styleDefault();
       Splashscreen.hide();

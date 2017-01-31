@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
-import { ScreenOrientation } from 'ionic-native';
 import { KingDevickCardPage } from '../kingdevickcard/kingdevickcard';
 import { ToastService } from '../../providers/toast-service';
 import { KdService } from '../../providers/kd-service';
