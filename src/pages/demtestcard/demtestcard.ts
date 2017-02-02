@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
-import { TimerObservable } from "rxjs/observable/TimerObservable";
-import { MediaPlugin } from 'ionic-native';
+import {Component} from '@angular/core';
+import {NavController, NavParams, LoadingController} from 'ionic-angular';
+import {TimerObservable} from "rxjs/observable/TimerObservable";
+import {MediaPlugin, File} from 'ionic-native';
 
-import { DemService } from '../../providers/dem-service';
-import { ToastService } from '../../providers/toast-service';
-import { TestService } from '../../providers/test-service';
+import {DemService} from '../../providers/dem-service';
+import {ToastService} from '../../providers/toast-service';
+import {TestService} from '../../providers/test-service';
 import _ from 'lodash';
+declare var cordova: any;
 @Component({
   selector: 'page-demtestcard',
   templateUrl: 'demtestcard.html'
@@ -20,8 +21,10 @@ export class DemTestCardPage {
   public inputString = '';
   public type = '';
   public newFile: any;
+  public playFile = false;
+  public oldFile: any;
   constructor(public navParams: NavParams, public loadingController: LoadingController, public navCtrl: NavController,
-    public demService: DemService, public toast: ToastService, public testService: TestService) {
+              public demService: DemService, public toast: ToastService, public testService: TestService) {
     this.selectedCard = this.demService.getDEMcard(this.navParams.get('index'));
     this.timer = this.selectedCard.time;
     let test = this.testService.returnTest()
@@ -39,36 +42,56 @@ export class DemTestCardPage {
 
   ionViewWillLeave() {
   }
+
   add(x) {
     // this.inputs[Math.floor(this.selectedCard.inputArray.length / 10)].push(x);
     this.selectedCard.inputArray.push(x);
     this.inputString = this.selectedCard.inputArray.join('')
   }
+
   start() {
     this.status = 'running';
     this.clock = TimerObservable.create(0, 1000).subscribe(t => {
       this.timer = t;
     });
-    this.newFile = new MediaPlugin('../Library/NoCloud/recording.wav');
+    this.newFile = new MediaPlugin('recording.wav');
     this.newFile.startRecord();
 
   }
 
   stop() {
-    if (this.type === 'Concussion') {
-      if (this.selectedCard.inputArray.length < 30) {
-        this.toast.showToast('Not enough data..please reset test')
-      }
-      else {
-        this.selectedCard.time = this.timer;
-        this.selectedCard = this.demService.analyze(this.selectedCard, this.navParams.get('index'));
-        console.log(this.selectedCard)
-      }
+
+    if (this.type === 'Concussion' && this.selectedCard.inputArray.length < 30) {
+      this.toast.showToast('Not enough data..please reset test')
     }
+    this.selectedCard.time = this.timer;
+    this.selectedCard = this.demService.analyze(this.selectedCard, this.navParams.get('index'));
+    console.log(this.selectedCard);
+    let fileName = this.newFile._objectInstance.id + 'recording.wav';
+    console.log(fileName);
+    console.log(this.newFile);
     this.newFile.stopRecord();
-    this.newFile.play();
+    // this.newFile.play();
+    File.listDir(cordova.file.documentsDirectory, '').then(data=>{
+      console.log(data);
+    })
+    File.listDir(cordova.file.dataDirectory,'').then(data=>{
+      console.log(data);
+    })
+    File.readAsDataURL(cordova.file.dataDirectory, 'recording.wav').then(data => {
+      this.oldFile = data;
+        console.log(typeof (this.oldFile));
+      this.playFile = true;
+      });
+
+let oldFile = new MediaPlugin(cordova.file.dataDirectory+'recording.wav');
+oldFile.play();
+    this.selectedCard.recording = this.newFile
+    // this.newFile.play();
     // this.navCtrl.pop();
   }
+
+
 
   pause() {
     this.status = 'paused';
