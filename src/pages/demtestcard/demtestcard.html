@@ -9,10 +9,7 @@
                 <h1 text-center>{{selectedCard.name}}</h1>
             </ion-col>
         </ion-row>
-<ion-row *ngIf="playFile">
-  <audio controls src="{{oldFile}}">
-  </audio>
-</ion-row>
+
         <ion-row class='dialpad' *ngIf='type==="Concussion"'>
             <ion-col col-40>
                 <ion-textarea rows="5" col='10' [(ngModel)]="inputString"></ion-textarea>

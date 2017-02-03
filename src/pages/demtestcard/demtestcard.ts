@@ -21,8 +21,7 @@ export class DemTestCardPage {
   public inputString = '';
   public type = '';
   public newFile: any;
-  public playFile = false;
-  public oldFile: any;
+
   constructor(public navParams: NavParams, public loadingController: LoadingController, public navCtrl: NavController,
               public demService: DemService, public toast: ToastService, public testService: TestService) {
     this.selectedCard = this.demService.getDEMcard(this.navParams.get('index'));
@@ -60,43 +59,26 @@ export class DemTestCardPage {
   }
 
   stop() {
-
     if (this.type === 'Concussion' && this.selectedCard.inputArray.length < 30) {
-      this.toast.showToast('Not enough data..please reset test')
+      this.toast.showToast('Not enough data.');
+      return
     }
     this.selectedCard.time = this.timer;
     this.selectedCard = this.demService.analyze(this.selectedCard, this.navParams.get('index'));
-    console.log(this.selectedCard);
-    let fileName = this.newFile._objectInstance.id + 'recording.wav';
-    console.log(fileName);
-    console.log(this.newFile);
     this.newFile.stopRecord();
-    // this.newFile.play();
-    File.listDir(cordova.file.documentsDirectory, '').then(data=>{
-      console.log(data);
-    })
-    File.listDir(cordova.file.dataDirectory,'').then(data=>{
-      console.log(data);
-    })
     File.readAsDataURL(cordova.file.dataDirectory, 'recording.wav').then(data => {
-      this.oldFile = data;
-        console.log(typeof (this.oldFile));
-      this.playFile = true;
+      this.selectedCard.audio = data;
       });
-
-let oldFile = new MediaPlugin(cordova.file.dataDirectory+'recording.wav');
-oldFile.play();
-    this.selectedCard.recording = this.newFile
-    // this.newFile.play();
-    // this.navCtrl.pop();
+    console.log(this.selectedCard);
+    this.navCtrl.pop();
   }
 
 
-
+  c
   pause() {
     this.status = 'paused';
-    this.newFile.pauseRecord();
     this.clock.unsubscribe();
+    this.newFile.pauseRecord();
     this.elapsedTime = this.timer;
   }
 
