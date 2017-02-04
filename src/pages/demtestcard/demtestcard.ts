@@ -74,7 +74,6 @@ export class DemTestCardPage {
   }
 
 
-  c
   pause() {
     this.status = 'paused';
     this.clock.unsubscribe();

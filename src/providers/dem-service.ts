@@ -31,7 +31,7 @@ export class DemService {
           3, 7, 5, 9, 8, 2, 5, 7, 4, 6, 1, 4, 7, 6, 3, 7, 9, 3, 9, 2, 4, 5, 2, 1, 7, 5, 3, 7, 4, 8, 7, 4, 6, 5, 2, 9, 2, 3, 6, 4],
         time: 0,
         logs: [],
-        audio:''
+        audio: undefined
       },
       {
         name: 'DEM B',
@@ -52,7 +52,7 @@ export class DemService {
         dataArray: [6, 3, 2, 9, 1, 7, 4, 6, 5, 2, 5, 3, 7, 4, 8, 4, 5, 2, 1, 7, 7, 9, 3, 9, 2, 1, 4, 7, 6, 3, 2, 5, 7, 4, 6, 3, 7, 5, 9, 8],
         time: 0,
         logs: [],
-        audio:''
+        audio: undefined
       },
       {
         name: 'DEM C',
@@ -74,7 +74,7 @@ export class DemService {
           3, 7, 5, 9, 8, 2, 5, 7, 4, 6, 1, 4, 7, 6, 3, 7, 9, 3, 9, 2, 4, 5, 2, 1, 7, 5, 3, 7, 4, 8, 7, 4, 6, 5, 2, 9, 2, 3, 6, 4],
         time: 0,
         logs: [],
-        audio:''
+        audio : undefined
       }]
   };
   constructor(public http: Http, public toast: ToastService, public damlev: Damlev) {
