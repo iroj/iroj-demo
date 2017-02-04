@@ -1,23 +1,28 @@
 <ion-content>
-    <div class='header-login'>
-        <h1 text-center> Welcome to Pomono App</h1>
-    </div>
-    <ion-list no-lines *ngIf='showLogin' class='loginform'>
-        <ion-item>
-            <ion-label floating>Username</ion-label>
-            <ion-input type="text" [(ngModel)]='loginData.username'>
-            </ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label floating>Password</ion-label>
-            <ion-input type="password" [(ngModel)]='loginData.password'>
-            </ion-input>
-        </ion-item>
+    <ion-grid>
+        <ion-row>
+            <ion-col width-33 class='intro'>
+                <h1 text-right>safe </h1>
+                <h2 text-right>sidelines</h2>
+                <p text-right>Working together to make <br>sidelines safe</p>
+            </ion-col>
+            <ion-col width-66 class='loginform'>
+                <h4 color='primary'>Login to your account</h4>
+                <ion-list no-lines>
+                    <ion-item>
+                        <ion-label color='dark'>Username</ion-label>
+                        <ion-input type="text" color='dark' [(ngModel)]='loginData.username'>
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label color='dark'>Password</ion-label>
+                        <ion-input type="password" [(ngModel)]='loginData.password'>
+                        </ion-input>
+                    </ion-item>
+                </ion-list>
+                <button (click)='signin()' ion-button large icon-right color="primary">Login<ion-icon name="ios-arrow-round-forward-outline"></ion-icon></button>
+            </ion-col>
+        </ion-row>
 
-        <ion-item text-center>
-            <button (click)='signin()' ion-button large color="secondary">Login</button>
-        </ion-item>
-
-    </ion-list>
-
+    </ion-grid>
 </ion-content>

@@ -1,54 +1,57 @@
 <ion-content>
-    <div class='header-page'>
-        <button (click)='back()' ion-button clear icon-only><ion-icon name='md-arrow-back'></ion-icon></button>
-        <h1 text-center>DEM</h1>
-    </div>
-    <ion-grid class='dem'>
-        <ion-row text-center>
-            <ion-col width-30></ion-col>
-            <ion-col width-50>Errors</ion-col>
-            <ion-col width-20>Time</ion-col>
+    <ion-grid>
+        <ion-row center class='header-page'>
+            <ion-icon color='primary' (click)='back()' class='medium-icon' name='md-arrow-back'></ion-icon>
+            <ion-col width-100>
+                <h2 color='light' text-center>DEM</h2>
+                <h4 text-center>({{test.type}} Testing)</h4>
+            </ion-col>
         </ion-row>
-        <ion-row text-center>
-            <ion-col width-30></ion-col>
-            <ion-col width-10>O</ion-col>
-            <ion-col width-10>S</ion-col>
-            <ion-col width-10>A</ion-col>
-            <ion-col width-10>T</ion-col>
-            <ion-col width-10>Total</ion-col>
-            <ion-col width-20></ion-col>
-        </ion-row>
-        <div>
+        <div class='result-cards'>
+            <ion-row text-center>
+                <ion-col width-30></ion-col>
+                <ion-col class='headers' width-10>O</ion-col>
+                <ion-col class='headers' width-10> S</ion-col>
+                <ion-col class='headers' width-10>A</ion-col>
+                <ion-col class='headers' width-10>T</ion-col>
+                <ion-col class='headers' width-10>Total</ion-col>
+                <ion-col class='headers' width-10>Time</ion-col>
+                <ion-col width-10></ion-col>
+            </ion-row>
             <ion-row *ngFor='let card of cards; let i =index' text-center center>
-                <ion-col width-30 *ngIf='card.time===0'>
-                    <button ion-button (click)='start(i)' full round>{{card.name}}<br> Start</button>
+                <ion-col width-10></ion-col>
+                <ion-col width-20 *ngIf='card.time===0'>
+                    <button ion-button (click)='start(i)' full icon-right round>{{card.name}} <ion-icon name='ios-play'></ion-icon></button>
                 </ion-col>
-                <ion-col width-15 *ngIf='card.time>0'>
+                <!--<ion-col width-5></ion-col>-->
+
+                <ion-col class='values' width-15 *ngIf='card.time>0'>
                     <button ion-button (click)='review(i)' full round>Review</button>
                 </ion-col>
-                <ion-col width-15 *ngIf='card.time>0'>
+                <ion-col class='values' width-15 *ngIf='card.time>0'>
                     <button ion-button (click)='restart(i)' full round>{{card.name}}<br> Restart</button>
                 </ion-col>
-                <ion-col width-10>{{card.errors.O}}</ion-col>
-                <ion-col width-10>{{card.errors.S}}</ion-col>
-                <ion-col width-10>{{card.errors.A}}</ion-col>
-                <ion-col width-10>{{card.errors.T}}</ion-col>
-                <ion-col width-10>{{card.totalErrors}}</ion-col>
-                <ion-col width-20>{{card.time}}</ion-col>
+                <ion-col class='values' width-10>{{card.errors.O}}</ion-col>
+                <ion-col class='values' width-10>{{card.errors.S}}</ion-col>
+                <ion-col class='values' width-10>{{card.errors.A}}</ion-col>
+                <ion-col class='values' width-10>{{card.errors.T}}</ion-col>
+                <ion-col class='values' width-10>{{card.totalErrors}}</ion-col>
+                <ion-col class='values' width-10>{{card.time}}</ion-col>
+                <ion-col width-10></ion-col>
             </ion-row>
-        </div>
-        <div *ngIf='results' class='result'>
-            <ion-row>
-                <ion-col col-50><span class='value'>{{results.vt}}</span> <br> Vertical Time</ion-col>
-                <ion-col col-50><span class='value'>{{results.vtE}}</span> <br> Vertical Time/Total Errors</ion-col>
-            </ion-row>
+            <div *ngIf='results' class='result'>
+                <ion-row>
+                    <ion-col col-50><span class='value'>{{results.vt}}</span> <br> Vertical Time</ion-col>
+                    <ion-col col-50><span class='value'>{{results.vtE}}</span> <br> Vertical Time/Total Errors</ion-col>
+                </ion-row>
 
-            <ion-row>
-                <ion-col col-33><span class='value'>{{results.gH}}</span> <br> Gross Horizontal</ion-col>
-                <ion-col col-33><span class='value'>{{results.aht}}</span> <br> Adjusted Horizontal Time</ion-col>
-                <ion-col col-33><span class='value'>{{results.hV}}</span> <br> H/V Ratio</ion-col>
-            </ion-row>
-            <ion-row text-center><button color='secondary' round full ion-button (click)='save()'>Save results</button></ion-row>
+                <ion-row>
+                    <ion-col col-33><span class='value'>{{results.gH}}</span> <br> Gross Horizontal</ion-col>
+                    <ion-col col-33><span class='value'>{{results.aht}}</span> <br> Adjusted Horizontal Time</ion-col>
+                    <ion-col col-33><span class='value'>{{results.hV}}</span> <br> H/V Ratio</ion-col>
+                </ion-row>
+                <ion-row text-center><button color='secondary' round full ion-button (click)='save()'>Save results</button></ion-row>
+            </div>
         </div>
     </ion-grid>
 </ion-content>

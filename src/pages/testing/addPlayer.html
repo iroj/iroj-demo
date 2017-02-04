@@ -1,13 +1,15 @@
 <ion-content>
-    <div class='header-page'>
-        <button (click)='back()' ion-button clear icon-only><ion-icon name='md-arrow-back'></ion-icon></button>
-        <h1 text-center>Add new player </h1>
-    </div>
     <ion-grid class='addPlayer'>
+        <ion-row center>
+            <ion-icon color='primary' class='medium-icon' name='ios-arrow-round-back-outline' (click)='back()'></ion-icon>
+            <ion-col width-100 text-center>
+                <h2 color='primary'>Add new player </h2>
+            </ion-col>
+        </ion-row>
         <ion-row>
             <ion-col width-30></ion-col>
             <ion-col *ngIf='!newPlayer.profileImageId' width-40 class='icons'>
-                <ion-icon class='profileIcon' name='md-person'></ion-icon>
+                <ion-icon color='light' class='profileIcon' name='md-person'></ion-icon>
             </ion-col>
             <ion-col *ngIf='newPlayer.profileImageId' width-40 class='icons'>
                 <img class='profileImg' src='{{newPlayer.profileImageId}}' />
@@ -15,15 +17,15 @@
             <ion-col width-30></ion-col>
         </ion-row>
         <ion-row>
-            <ion-col class='addNewImg' width-100>
-                <button ion-button (click)='openCamera()' small> <ion-icon name='md-camera' > </ion-icon></button>
-                <button ion-button (click)='getFile()' small> <ion-icon name='md-folder'> </ion-icon></button>
+            <ion-col width-100 text-center>
+                <ion-icon (click)='openCamera()' color='light' class='medium-icon' name='md-camera'> </ion-icon>
+                <ion-icon (click)='getFile()' color='light' class='medium-icon' name='md-images'> </ion-icon>
             </ion-col>
         </ion-row>
         <ion-list no-lines>
             <ion-item>
-                <ion-label color='dark'>Player's Name</ion-label>
-                <ion-input type="text" [(ngModel)]='newPlayer.fullName' placeholder='Players Name'>
+                <ion-label color='dark'>Full Name</ion-label>
+                <ion-input type="text" [(ngModel)]='newPlayer.fullName' placeholder='fullname'>
                 </ion-input>
             </ion-item>
             <ion-item>
@@ -32,7 +34,7 @@
             </ion-item>
             <ion-item *ngIf='access'>
                 <ion-label color='dark'>Email</ion-label>
-                <ion-input placeholder='player email address' [(ngModel)]='newPlayer.email'></ion-input>
+                <ion-input placeholder='email address' [(ngModel)]='newPlayer.email'></ion-input>
             </ion-item>
             <ion-item *ngIf='err' text-center>
                 <p color='danger'>{{err}}</p>
@@ -41,7 +43,7 @@
         <ion-row text-center>
             <ion-col width-30></ion-col>
             <ion-col width-40>
-                <button (click)='add()' ion-button color="secondary">Add</button>
+                <button full (click)='add()' ion-button color="danger">Add</button>
             </ion-col>
             <ion-col width-30></ion-col>
         </ion-row>

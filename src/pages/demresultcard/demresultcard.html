@@ -1,9 +1,11 @@
 <ion-content>
-    <div class='header-page'>
-        <button (click)='back()' ion-button clear icon-only><ion-icon name='md-arrow-back'></ion-icon></button>
-        <h1 text-center>DEM</h1>
-    </div>
     <ion-grid class='dem'>
+        <ion-row center class='header-page'>
+            <ion-icon color='primary' (click)='back()' class='medium-icon' name='md-arrow-back'></ion-icon>
+            <ion-col width-100>
+                <h2 color='light' text-center>DEM</h2>
+            </ion-col>
+        </ion-row>
         <ion-row text-center>
             <ion-col width-30></ion-col>
             <ion-col width-50>Errors</ion-col>

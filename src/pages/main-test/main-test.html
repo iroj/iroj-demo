@@ -1,36 +1,38 @@
 <ion-content>
-    <div class='header-page'>
-        <button (click)='back()' ion-button clear icon-only><ion-icon name='md-arrow-back'></ion-icon></button>
-        <h1 text-center>{{type}} Testing</h1>
-    </div>
     <ion-grid>
+        <ion-row center class='header-page'>
+            <ion-icon color='primary' (click)='back()' class='medium-icon' name='md-arrow-back'></ion-icon>
+            <ion-col width-100>
+                <h2 color='light' text-center>{{type}} Testing</h2>
+            </ion-col>
+        </ion-row>
         <ion-row text-center>
-            <ion-col width-10></ion-col>
-            <ion-col width-80>
+            <ion-col width-20></ion-col>
+            <ion-col width-60>
                 <button (click)='kd()' full round ion-button>King Devick</button>
             </ion-col>
-            <ion-col width-10></ion-col>
+            <ion-col width-20></ion-col>
         </ion-row>
         <ion-row text-center>
-            <ion-col width-10></ion-col>
-            <ion-col width-80>
+            <ion-col width-20></ion-col>
+            <ion-col width-60>
                 <button (click)='dem()' full round ion-button>DEM</button>
             </ion-col>
-            <ion-col width-10></ion-col>
+            <ion-col width-20></ion-col>
         </ion-row>
         <ion-row text-center>
-            <ion-col width-10></ion-col>
-            <ion-col width-80>
+            <ion-col width-20></ion-col>
+            <ion-col width-60>
                 <button full round ion-button>Do I need to call 911</button>
             </ion-col>
-            <ion-col width-10></ion-col>
+            <ion-col width-20></ion-col>
         </ion-row>
         <ion-row text-center>
-            <ion-col width-10></ion-col>
-            <ion-col width-80>
+            <ion-col width-20></ion-col>
+            <ion-col width-60>
                 <button full round ion-button>Concussion Recognition Tool</button>
             </ion-col>
-            <ion-col width-10></ion-col>
+            <ion-col width-20></ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>

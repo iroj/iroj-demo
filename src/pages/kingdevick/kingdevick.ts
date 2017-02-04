@@ -4,8 +4,6 @@ import { KingDevickCardPage } from '../kingdevickcard/kingdevickcard';
 import { ToastService } from '../../providers/toast-service';
 import { KdService } from '../../providers/kd-service';
 import {TestService } from '../../providers/test-service';
-import { ResultsPage } from '../results/results';
-import _ from 'lodash';
 @Component({
   selector: 'page-kingdevick',
   templateUrl: 'kingdevick.html'
@@ -13,9 +11,11 @@ import _ from 'lodash';
 
 export class KingdevickPage {
   public cards = [];
+public test:any;
   constructor(public navCtrl: NavController, public loadingController: LoadingController, public navParams: NavParams, public toast: ToastService, public kdService: KdService,public testService: TestService) {
     this.cards = this.kdService.getKDcards()
-  }
+    this.test = this.testService.returnTest();
+}
   back() {
     if (this.cards[0].time == 0 || this.cards[1].time == 0 || this.cards[2].time == 0) {
       this.toast.showToast('All test cards not completed. Result not saved.')

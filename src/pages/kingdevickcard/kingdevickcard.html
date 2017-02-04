@@ -1,64 +1,98 @@
 <ion-content>
-    <ion-grid class='test-card'>
-        <ion-row class='info'>
-
-            <ion-col col-20>
-                <button ion-fab mini (click)='back()'>X</button>
+    <ion-grid>
+        <ion-row center class='header-page'>
+            <ion-col width-10 text-center>
+                <ion-icon color='primary' (click)='back()' class='medium-icon' name='md-arrow-back'></ion-icon>
+            </ion-col>
+            <ion-col width-80>
+                <h2 color='light' text-center>{{selectedCard.name}}</h2>
+            </ion-col>
+            <ion-col width-10 text-center>
+                <ion-icon color='danger' *ngIf='status==="running"' class='medium-icon' name="recording"></ion-icon>
             </ion-col>
         </ion-row>
+
         <ion-row>
-            <ion-col col-50 class='timer-buttons' text-center>
-                <button class='timer' ion-button full round>Time: {{timer}} sec </button>
-                <button ion-button full round>Errors: {{errors}}</button>
-                <button full round ion-button *ngIf='status==="stop"' full round (click)='start()'> Start</button>
-                <button *ngIf='status==="running"' ion-button full round (click)='pause()'> Pause</button>
-                <button *ngIf='status==="paused"' full round ion-button (click)='resume()'> Resume</button>
-                <button ion-button full round (click)='stop()'> Stop</button>
-                <button ion-button full round (click)='reset()'> Reset</button>
+            <ion-col width-40>
+                <ion-row>
+                    <ion-col width-25 text-center>
+                        <ion-icon color='light' class='medium-icon' name='ios-timer-outline'></ion-icon>
+                        <h4>{{timer}} sec</h4>
+                        <!--<button ion-button full round>Errors: {{errors}}</button>-->
+                    </ion-col>
+                    <ion-col width-25 *ngIf='status==="stop" ' text-center>
+                        <ion-icon color='light' class='medium-icon' name='ios-play' (click)='start() '></ion-icon><br>
+                        <h4>Start</h4>
+                    </ion-col>
+                    <ion-col *ngIf='status==="running" ' width-25 text-center>
+                        <ion-icon color='light' class='medium-icon' name='ios-pause' (click)='pause() '></ion-icon><br>
+                        <h4>Pause</h4>
+                    </ion-col>
+                    <ion-col *ngIf='status==="paused" ' width-25 text-center>
+                        <ion-icon color='light' class='medium-icon' name='ios-skip-forward' (click)='resume() '></ion-icon><br>
+                        <h4> Resume</h4>
+                    </ion-col>
+                    <ion-col width-25 text-center>
+                        <ion-icon color='light' class='medium-icon' name='ios-square' (click)='stop() '></ion-icon><br>
+                        <h4> Stop</h4>
+                    </ion-col>
+                    <ion-col width-25 text-center>
+                        <ion-icon color='light' class='medium-icon' name='ios-refresh' (click)='reset() '></ion-icon><br>
+                        <h4>Reset</h4>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col width-100 text-center>
+                        <ion-icon color='danger' class='medium-icon' name='ios-alert-outline'></ion-icon><br>
+                        <h4>{{errors}}</h4>
+                    </ion-col>
+                </ion-row>
             </ion-col>
-            <ion-col col-50 class='card'>
+            <ion-col width-50 class='card' text-center>
                 <ion-grid>
                     <ion-row>
                         <ion-col *ngFor='let x of selectedCard.row1' col-20 text-center>
-                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col *ngFor='let x of selectedCard.row2' col-20 text-center>
-                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col *ngFor='let x of selectedCard.row3' col-20 text-center>
-                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col *ngFor='let x of selectedCard.row4' col-20 text-center>
-                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col *ngFor='let x of selectedCard.row5' col-20 text-center>
-                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col *ngFor='let x of selectedCard.row6' col-20 text-center>
-                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col *ngFor='let x of selectedCard.row7' col-20 text-center>
-                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                     <ion-row>
                         <ion-col *ngFor='let x of selectedCard.row8' col-20 text-center>
-                            <button [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-button>{{x}}</button>
+                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
+            </ion-col>
+            <ion-col width-10>
             </ion-col>
         </ion-row>
     </ion-grid>

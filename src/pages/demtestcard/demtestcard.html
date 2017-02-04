@@ -1,12 +1,14 @@
 <ion-content>
     <ion-grid class='test-card'>
-
-        <ion-row class='info'>
-            <ion-col col-20>
-                <button ion-fab mini (click)='back()'>X</button>
+        <ion-row center class='header-page'>
+            <ion-col width-10 text-center>
+                <ion-icon color='primary' (click)='back()' class='medium-icon' name='md-arrow-back'></ion-icon>
             </ion-col>
-            <ion-col col-80>
-                <h1 text-center>{{selectedCard.name}}</h1>
+            <ion-col width-80>
+                <h2 color='light' text-center>{{selectedCard.name}}</h2>
+            </ion-col>
+            <ion-col width-10 text-center>
+                <ion-icon color='danger' *ngIf='status==="running"' class='medium-icon' name="recording"></ion-icon>
             </ion-col>
         </ion-row>
 
@@ -42,32 +44,32 @@
 
             </ion-col>
         </ion-row>
-        <ion-row text-center class='recording' *ngIf='status==="running"'>
-            <ion-col col-100 text-center>
-                <ion-icon name="recording"></ion-icon>
-            </ion-col>
-        </ion-row>
-
 
         <ion-row>
-            <ion-col col-25 class='timer-buttons ' text-center>
-                <button ion-button full round>Time: {{timer}} sec </button>
+            <ion-col col-25 text-center>
+                <ion-icon color='light' class='medium-icon' name='ios-timer-outline'></ion-icon>
+                <h4>{{timer}} sec</h4>
                 <!--<button ion-button full round>Errors: {{errors}}</button>-->
             </ion-col>
-            <ion-col col-25 *ngIf='status==="stop" ' class='timer-buttons ' text-center>
-                <button full round ion-button full round (click)='start() '> Start</button>
+            <ion-col col-25 *ngIf='status==="stop" ' text-center>
+                <ion-icon color='light' class='medium-icon' name='ios-play' (click)='start() '></ion-icon><br>
+                <h4>Start</h4>
             </ion-col>
-            <ion-col *ngIf='status==="running" ' col-25 class='timer-buttons ' text-center>
-                <button ion-button full round (click)='pause() '> Pause</button>
+            <ion-col *ngIf='status==="running" ' col-25 text-center>
+                <ion-icon color='light' class='medium-icon' name='ios-pause' (click)='pause() '></ion-icon><br>
+                <h4>Pause</h4>
             </ion-col>
-            <ion-col *ngIf='status==="paused" ' col-25 class='timer-buttons ' text-center>
-                <button full round ion-button (click)='resume() '> Resume</button>
+            <ion-col *ngIf='status==="paused" ' col-25 text-center>
+                <ion-icon color='light' class='medium-icon' name='ios-skip-forward' (click)='resume() '></ion-icon><br>
+                <h4> Resume</h4>
             </ion-col>
-            <ion-col col-25 class='timer-buttons ' text-center>
-                <button ion-button full round (click)='stop() '> Stop</button>
+            <ion-col col-25 text-center>
+                <ion-icon color='light' class='medium-icon' name='ios-square' (click)='stop() '></ion-icon><br>
+                <h4> Stop</h4>
             </ion-col>
-            <ion-col col-25 class='timer-buttons ' text-center>
-                <button ion-button full round (click)='reset() '> Reset</button>
+            <ion-col col-25 text-center>
+                <ion-icon color='light' class='medium-icon' name='ios-refresh' (click)='reset() '></ion-icon><br>
+                <h4>Reset</h4>
             </ion-col>
         </ion-row>
     </ion-grid>

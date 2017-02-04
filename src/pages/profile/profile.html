@@ -1,78 +1,85 @@
 <ion-content padding>
     <ion-grid class='profile'>
-        <ion-row>
-            <ion-col col-100>Logged in as {{user.roles[0]}}</ion-col>
+        <ion-row center>
+            <ion-col width-100 text-center>
+                <h2 *ngIf='school'>{{school.name}} </h2>
+                <p color='primary'>
+                    <ion-icon color='light' name='ios-lock-outline'> </ion-icon>
+                    Logged in as {{user.roles[0]}}</p>
+            </ion-col>
         </ion-row>
-        <ion-row>
+        <ion-row center>
             <ion-col width-30></ion-col>
+
             <ion-col *ngIf='!user.profileImageId' width-40 class='icons'>
-                <ion-icon class='profileIcon' name='md-person'></ion-icon>
+                <ion-icon color='light' class='profileIcon' name='md-person'>
+                </ion-icon><br>
             </ion-col>
             <ion-col *ngIf='user.profileImageId' width-40 class='icons'>
-                <img class='profileImg' src='{{user.profileImageId}}' />
+                <img class='profileImg' src='{{user.profileImageId}}' /><br>
             </ion-col>
             <ion-col width-30></ion-col>
         </ion-row>
         <ion-row>
-            <ion-col class='addNewImg' width-100>
-                <button ion-button (click)='openCamera()' small> <ion-icon name='md-camera' > </ion-icon></button>
-                <button ion-button (click)='getFile()' small> <ion-icon name='md-folder'> </ion-icon></button>
+            <ion-col width-100 text-center>
+                <ion-icon (click)='openCamera()' color='primary' class='medium-icon' name='md-camera'> </ion-icon>
+                <ion-icon (click)='getFile()' color='primary' class='medium-icon' name='md-images'> </ion-icon>
             </ion-col>
         </ion-row>
-        <ion-list no-lines class='profile-form'>
-            <ion-item no-lines>
-                <ion-label color='dark'>Fullname</ion-label>
-                <ion-input [(ngModel)]='user.fullName'></ion-input>
-            </ion-item>
-            <ion-item no-lines>
-                <ion-label color='dark'>Username</ion-label>
-                <ion-input [(ngModel)]='user.username'></ion-input>
-            </ion-item>
+        <ion-row>
+            <ion-col width-20></ion-col>
+            <ion-col width-60>
 
-            <ion-item no-lines>
-                <ion-label color='dark'>Date of Birth</ion-label>
-                <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="user.dob"></ion-datetime>
-            </ion-item>
-            <ion-item>
-                <ion-label color='dark'>School</ion-label>
-                <ion-select color='secondary' [(ngModel)]="user.school">
-                    <ion-option *ngFor='let school of schools' value="{{school._id}}">{{school.name}}</ion-option>
-                </ion-select>
-            </ion-item>
-            <ion-item (click)='showGames=!showGames'>
-                <ion-label color='dark'>Games</ion-label>
-                <ion-icon class='drop-down-icon' item-right name='md-arrow-dropdown'> </ion-icon>
-            </ion-item>
-            <div *ngIf='showGames' class='games'>
-                <ion-item>
-                    <ion-label color='dark'>Football</ion-label>
-                    <ion-checkbox [(ngModel)]="user.game.football"></ion-checkbox>
-                </ion-item>
-                <ion-item>
-                    <ion-label color='dark'>Baseball</ion-label>
-                    <ion-checkbox [(ngModel)]="user.game.baseball"></ion-checkbox>
-                </ion-item>
-                <ion-item>
-                    <ion-label color='dark'>Basketball</ion-label>
-                    <ion-checkbox [(ngModel)]="user.game.basketball"></ion-checkbox>
-                </ion-item>
-                <ion-item>
-                    <ion-label color='dark'>Soccer</ion-label>
-                    <ion-checkbox [(ngModel)]="user.game.soccer"></ion-checkbox>
-                </ion-item>
-            </div>
-        </ion-list>
+                <ion-list no-lines class='profile-form'>
+                    <ion-item no-lines>
+                        <ion-label color='dark'>Fullname</ion-label>
+                        <ion-input [(ngModel)]='user.fullName'></ion-input>
+                    </ion-item>
+                    <ion-item no-lines>
+                        <ion-label color='dark'>Username</ion-label>
+                        <ion-input [(ngModel)]='user.username'></ion-input>
+                    </ion-item>
 
-        <ion-row text-center>
-            <ion-col width-30></ion-col>
-            <ion-col width-40>
-                <button (click)='submit()' ion-button color="primary">Update</button>
+                    <ion-item no-lines>
+                        <ion-label color='dark'>Date of Birth</ion-label>
+                        <ion-datetime displayFormat="DD MMM YYYY" pickerFormat="DD MMM YYYY" [(ngModel)]="user.dob"></ion-datetime>
+                    </ion-item>
+
+                    <ion-item (click)='showGames=!showGames'>
+                        <ion-label color='dark'>Games</ion-label>
+                        <ion-icon class='drop-down-icon' item-right name='md-arrow-dropdown'> </ion-icon>
+                    </ion-item>
+                    <div *ngIf='showGames' class='games'>
+                        <ion-item>
+                            <ion-label color='dark'>Football</ion-label>
+                            <ion-checkbox [(ngModel)]="user.game.football"></ion-checkbox>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label color='dark'>Baseball</ion-label>
+                            <ion-checkbox [(ngModel)]="user.game.baseball"></ion-checkbox>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label color='dark'>Basketball</ion-label>
+                            <ion-checkbox [(ngModel)]="user.game.basketball"></ion-checkbox>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label color='dark'>Soccer</ion-label>
+                            <ion-checkbox [(ngModel)]="user.game.soccer"></ion-checkbox>
+                        </ion-item>
+                    </div>
+                </ion-list>
+            </ion-col>
+            <ion-col width-20></ion-col>
+        </ion-row>
+        <ion-row center>
+            <ion-col width-20></ion-col>
+            <ion-col width-30 text-left>
+                <button color='danger' full (click)='submit()' ion-button>Update</button>
             </ion-col>
             <ion-col width-30></ion-col>
+            <ion-col width-20 text-center>
+                <ion-icon (click)=' signout()' color='primary' class='medium-icon' name="ios-log-out-outline"></ion-icon>
+            </ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>
-
-<ion-fab right bottom>
-    <button (click)='signout()' ion-fab color='light'><ion-icon name="md-log-out"></ion-icon></button>
-</ion-fab>

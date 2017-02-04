@@ -45,7 +45,7 @@ export class AddPlayerPage {
 
   add() {
     if (!this.newPlayer.fullName)
-      this.err = 'Please enter username'
+      this.err = 'Please enter full name'
     else if (this.access && !this.newPlayer.email)
       this.err = 'Please enter email address if the player wants access to personal records'
     else {

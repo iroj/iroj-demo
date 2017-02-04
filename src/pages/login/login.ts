@@ -36,21 +36,20 @@ export class LoginPage {
           loading.dismiss();
           this.global.setUser(data);
           this.data.save('user', data);
-          this.navCtrl.popToRoot().then(success => {
-            if (data.roles[0] === 'student')
+          if (data.roles[0] === 'student')
               this.navCtrl.push(StudentTabsPage)
-            else
+          else if (data.roles[0] === 'examiner')
               this.navCtrl.push(TabsPage)
-          })
-        },
-        error => {
+          else {
+            this.toast.showToast('Only examiner and student login accepted here.');
+            loading.dismiss();
+          }
+        }, error => {
           this.toast.showToast(JSON.parse(error._body).message);
           loading.dismiss();
         })
     }
-    // this.navCtrl.setRoot(TabsPage)
   }
-
 
   startTutorials() {
     console.log('start tutorials')

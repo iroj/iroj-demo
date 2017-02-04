@@ -1,19 +1,14 @@
 page-kingdevickcard {
-    .header-page {
-        height: 15%!important;
-        button {
-            float: left;
-            color: #fff;
-        }
-        h1 {
-            color: #fff;
-        }
-    }
-    .info {}
     .card {
-        button {
-            padding: 2% 20px;
-            font-size: 24px;
+        background: #fff;
+        .number {
+            background: none;
+            border: 2px #454f5e solid;
+            color: #454f5e;
+            font-size: 3rem;
+            width: 6.5vw;
+            height: 6.5vw;
+            margin: 1.5%;
         }
     }
 }

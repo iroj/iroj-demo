@@ -1,9 +1,6 @@
 <ion-content padding>
-    <ion-fab top right *ngIf='selectedPlayer._id'>
-        <button ion-fab clear color='light' (click)='selectedPlayer={}'><ion-icon name='md-search'></ion-icon>
-                </button>
-    </ion-fab>
-    <ion-grid class='test'>
+
+    <ion-grid>
         <div *ngIf='!selectedPlayer._id'>
             <ion-row>
                 <ion-col>
@@ -11,90 +8,102 @@
                     </ion-searchbar>
                 </ion-col>
             </ion-row>
-            <ion-list no-lines *ngIf='filterList.length>0'>
+            <ion-list no-lines *ngIf='filterList.length>0' class='search-list'>
                 <ion-item *ngFor='let player of filterList' (click)='selectPlayer(player)'>
                     <ion-avatar item-left>
-                        <ion-icon *ngIf='!player.profileImageId' class='icon-img' name='md-person'></ion-icon>
+                        <ion-icon *ngIf='!player.profileImageId' color='light' class='medium-icon' name='md-person'></ion-icon>
                         <img *ngIf='player.profileImageId' src="{{player.profileImageId}}">
                     </ion-avatar>
-                    <h2 *ngIf='player.fullName'>{{player.fullName}}</h2>
-                    <h2 *ngIf='!player.fullName'>{{player.username}}</h2>
+                    <h4 *ngIf='player.fullName'>{{player.fullName}}</h4>
+                    <h4 *ngIf='!player.fullName'>{{player.username}}</h4>
                 </ion-item>
             </ion-list>
             <ion-row text-center>
                 <ion-col>
-                    <p>OR</p>
+                    <h4>OR</h4>
                 </ion-col>
             </ion-row>
             <ion-row text-center>
+                <ion-col width-30></ion-col>
+                <ion-col width-40>
+                    <button full (click)='addPlayer()' icon-left ion-button color="danger">
+                      <ion-icon name='ios-add-circle-outline'></ion-icon> Add New Player</button>
+                </ion-col>
+                <ion-col width-30></ion-col>
+            </ion-row>
+        </div>
+        <div *ngIf='selectedPlayer._id' class='profile'>
+            <ion-row center>
+                <ion-col width-30></ion-col>
+                <ion-col width-40 text-center *ngIf='!selectedPlayer.profileImageId' class='icons'>
+                    <ion-icon color='light' class='profileIcon' name='md-person'></ion-icon>
+                </ion-col>
+                <ion-col width-40 text-center class='profileImg' *ngIf='selectedPlayer.profileImageId' class='icons'>
+                    <img src='{selectedPlayer.profileImageId}}' />
+                </ion-col>
+                <ion-col width-30 text-right>
+                    <ion-icon (click)='selectedPlayer={}' class='medium-icon' name='ios-search-outline' color='light'>
+                    </ion-icon>
+                </ion-col>
+            </ion-row>
+            <ion-row>
                 <ion-col width-20></ion-col>
                 <ion-col width-60>
-                    <button (click)='addPlayer()' ion-button color="primary">Add New Player</button>
+                    <ion-list no-lines class='profile-form'>
+                        <ion-item *ngIf='selectedPlayer.fullName'>
+                            <ion-label disabled='true' color='dark'>Full Name</ion-label>
+                            <ion-input disabled='true' [(ngModel)]='selectedPlayer.fullName'></ion-input>
+                        </ion-item>
+                        <ion-item *ngIf='!selectedPlayer.fullName'>
+                            <ion-label color='dark'>Username</ion-label>
+                            <ion-input disabled='true' [(ngModel)]='selectedPlayer.username'></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label color='dark'>Test Date </ion-label>
+                            <ion-input disabled='true' [(ngModel)]='newtest.date'></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label color='dark'>Habitual Correction</ion-label>
+                            <ion-select [(ngModel)]="newtest.habitual">
+                                <ion-option selected="true" value="default">None</ion-option>
+                                <ion-option value="glasses">Glasses</ion-option>
+                                <ion-option value="contacts">Contacts</ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label color='dark'>NPC Break</ion-label>
+                            <ion-select [(ngModel)]="newtest.npcBreak">
+                                <ion-option *ngFor='let x of npcgenerator(100), let i = index' value="{{i}}">{{i}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label color='dark'>NPC Recovery</ion-label>
+                            <ion-select [(ngModel)]="newtest.npcRecovery">
+                                <ion-option *ngFor='let x of npcgenerator(100), let i = index' value="{{i}}">{{i}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label color='dark'>Suppresion</ion-label>
+                            <ion-toggle [(ngModel)]="newtest.suppression"></ion-toggle>
+                        </ion-item>
+                    </ion-list>
                 </ion-col>
                 <ion-col width-20></ion-col>
             </ion-row>
-        </div>
-        <div *ngIf='selectedPlayer._id'>
-            <ion-list no-lines class='selectedPlayer'>
-                <ion-item text-center *ngIf='!selectedPlayer.profileImageId'>
-                    <ion-icon class='profileIcon' name='md-person'></ion-icon>
-                </ion-item>
-                <ion-item class='profileImg' *ngIf='selectedPlayer.profileImageId'>
-                    <img src='{selectedPlayer.profileImageId}}' />
-                </ion-item>
-                <ion-item *ngIf='selectedPlayer.fullName'>
-                    <ion-label item-left>Full Name</ion-label>
-                    <ion-input disabled='true' item-right [(ngModel)]='selectedPlayer.fullName'></ion-input>
-                </ion-item>
-                <ion-item *ngIf='!selectedPlayer.fullName'>
-                    <ion-label>Username</ion-label>
-                    <ion-input disabled='true' item-right [(ngModel)]='selectedPlayer.username'></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label>Test Date </ion-label>
-                    <ion-input disabled='true' item-right [(ngModel)]='newtest.date'></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label>Habitual Correction</ion-label>
-                    <ion-select [(ngModel)]="newtest.habitual">
-                        <ion-option selected="true" value="default">None</ion-option>
-                        <ion-option value="glasses">Glasses</ion-option>
-                        <ion-option value="contacts">Contacts</ion-option>
-                    </ion-select>
-                </ion-item>
-                <ion-item>
-                    <ion-label>NPC Break</ion-label>
-                    <ion-select [(ngModel)]="newtest.npcBreak">
-                        <ion-option *ngFor='let x of npcgenerator(100), let i = index' value="{{i}}">{{i}}</ion-option>
-                    </ion-select>
-                </ion-item>
-                <ion-item>
-                    <ion-label>NPC Recovery</ion-label>
-                    <ion-select [(ngModel)]="newtest.npcRecovery">
-                        <ion-option *ngFor='let x of npcgenerator(100), let i = index' value="{{i}}">{{i}}</ion-option>
-                    </ion-select>
-                </ion-item>
-                <ion-item>
-                    <ion-label>Suppresion</ion-label>
-                    <ion-toggle [(ngModel)]="newtest.suppression"></ion-toggle>
-                </ion-item>
-            </ion-list>
-            <div>
-                <ion-row text-center>
-                    <ion-col width-10></ion-col>
-                    <ion-col width-80>
-                        <button (click)='beginTest("Baseline")' full round ion-button color="primary">Baseline Testing</button>
-                    </ion-col>
-                    <ion-col width-10> </ion-col>
-                </ion-row>
-                <ion-row text-center>
-                    <ion-col width-10></ion-col>
-                    <ion-col width-80>
-                        <button (click)='beginTest( "Concussion")' full round ion-button color="primary">Concussion Testing</button>
-                    </ion-col>
-                    <ion-col width-10></ion-col>
-                </ion-row>
-            </div>
+            <ion-row text-center>
+                <ion-col width-25></ion-col>
+                <ion-col width-50>
+                    <button (click)='beginTest("Baseline")' full round ion-button color="primary">Baseline Testing</button>
+                </ion-col>
+                <ion-col width-25> </ion-col>
+            </ion-row>
+            <ion-row text-center>
+                <ion-col width-25></ion-col>
+                <ion-col width-50>
+                    <button (click)='beginTest( "Concussion")' full round ion-button color="primary">Concussion Testing</button>
+                </ion-col>
+                <ion-col width-25></ion-col>
+            </ion-row>
         </div>
     </ion-grid>
 </ion-content>

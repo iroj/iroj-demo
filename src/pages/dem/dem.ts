@@ -13,11 +13,13 @@ import { DemTestCardPage } from '../demtestcard/demtestcard';
 
 export class DemPage {
   public cards = [];
-  public results: any;
+  public test:any;
+    public results: any;
   constructor(public navCtrl: NavController, public loadingController: LoadingController, public navParams: NavParams, public toast: ToastService,
     public testService: TestService, public demService: DemService) {
     this.cards = this.demService.getDEMcards();
     console.log(this.cards);
+    this.test = this.testService.returnTest();
   }
   ionViewWillEnter() {
     this.cards = this.demService.getDEMcards();

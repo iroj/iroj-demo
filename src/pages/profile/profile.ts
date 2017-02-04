@@ -1,26 +1,48 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, LoadingController, AlertController } from 'ionic-angular';
 import { GlobalService } from '../../providers/global-service';
 import { DataService } from '../../providers/data-service';
 import { ProfileService } from '../../providers/profile-service';
+import {ToastService } from '../../providers/toast-service';
 import { Camera } from 'ionic-native';
 import { LoginPage } from '../login/login';
+import moment from 'moment';
+
+
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html'
 })
 export class ProfilePage {
   public user: any;
-  public schools: any;
+  public school: any;
   public showGames = false;
 
-  constructor(public navCtrl: NavController, public global: GlobalService, public loading: LoadingController, public toast: ToastController, public data: DataService, public profile: ProfileService) {
+  constructor(public navCtrl: NavController, public toast: ToastService, public global: GlobalService, public loading: LoadingController, public alertCtrl: AlertController, public data: DataService, public profile: ProfileService) {
     this.user = this.global.getUser();
-    this.profile.getSchools().subscribe(data => {
-      this.schools = data;
-    })
+    this.checkSchool();
   }
+  checkSchool() {
+    console.log('checking')
+    this.profile.getSchool(this.user.school).subscribe(school => {
+      if (moment().isBefore(moment(school.expiring)))
+        this.school = school
+      else {
+        let alert = this.alertCtrl.create({
+          title: 'Expired',
+          subTitle: "This school's trial period has expired. Please contact Global Admin",
+          buttons: [{
+            text: 'Ok',
+            handler: data => {
+              this.signout();
+            }
+          }]
+        });
+        alert.present();
+      }
+    })
 
+  }
   ionViewDidLoad() {
   }
 
@@ -35,19 +57,9 @@ export class ProfilePage {
       this.global.setUser(data);
       this.data.save('user', data);
       loading.dismiss();
-      let toast = this.toast.create({
-        message: 'Profile updated successfully',
-        duration: 3000,
-        position: 'bottom'
-      });
-      toast.present()
+      this.toast.showToast('Profile updated successfully');
     }, err => {
-      let toast = this.toast.create({
-        message: JSON.parse(err._body).msg,
-        duration: 3000,
-        position: 'bottom'
-      })
-      toast.present();
+     this.toast.showToast(JSON.parse(err._body).msg)
     })
   }
 

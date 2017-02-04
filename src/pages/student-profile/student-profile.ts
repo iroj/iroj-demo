@@ -21,10 +21,10 @@ export class StudentProfilePage {
     if (this.user.email)
       this.personal = true;
     console.log(this.user)
-    this.profile.getSchools().subscribe(data=> {
-      this.schools = data;
-      console.log(this.schools)
-    })
+    // this.profile.getSchools().subscribe(data=> {
+    //   this.schools = data;
+    //   console.log(this.schools)
+    // })
   }
 
   ionViewDidLoad() {
