@@ -38,8 +38,8 @@
                 <ion-col width-40 text-center *ngIf='!selectedPlayer.profileImageId' class='icons'>
                     <ion-icon color='light' class='profileIcon' name='md-person'></ion-icon>
                 </ion-col>
-                <ion-col width-40 text-center class='profileImg' *ngIf='selectedPlayer.profileImageId' class='icons'>
-                    <img src='{selectedPlayer.profileImageId}}' />
+                <ion-col width-40 text-center *ngIf='selectedPlayer.profileImageId' class='icons'>
+                    <img  class='profileImg' src='{{selectedPlayer.profileImageId}}' />
                 </ion-col>
                 <ion-col width-30 text-right>
                     <ion-icon (click)='selectedPlayer={}' class='medium-icon' name='ios-search-outline' color='light'>

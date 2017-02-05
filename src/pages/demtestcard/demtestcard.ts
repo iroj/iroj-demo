@@ -44,8 +44,10 @@ export class DemTestCardPage {
 
   add(x) {
     // this.inputs[Math.floor(this.selectedCard.inputArray.length / 10)].push(x);
-    this.selectedCard.inputArray.push(x);
-    this.inputString = this.selectedCard.inputArray.join('')
+    if (this.selectedCard.inputArray.length < 50) {
+      this.selectedCard.inputArray.push(x);
+      this.inputString = this.selectedCard.inputArray.join('')
+    }
   }
 
   start() {
@@ -66,9 +68,10 @@ export class DemTestCardPage {
     this.selectedCard.time = this.timer;
     this.selectedCard = this.demService.analyze(this.selectedCard, this.navParams.get('index'));
     this.newFile.stopRecord();
+    this.newFile.play();
     File.readAsDataURL(cordova.file.dataDirectory, 'recording.wav').then(data => {
       this.selectedCard.audio = data;
-      });
+    });
     console.log(this.selectedCard);
     this.navCtrl.pop();
   }
@@ -77,17 +80,17 @@ export class DemTestCardPage {
   pause() {
     this.status = 'paused';
     this.clock.unsubscribe();
-    this.newFile.pauseRecord();
     this.elapsedTime = this.timer;
+    this.newFile.pauseRecord();
   }
 
   resume() {
     this.status = 'running';
-    this.newFile.resumeRecord();
-
     this.clock = TimerObservable.create(0, 1000).subscribe(t => {
       this.timer = this.elapsedTime + t;
     });
+    this.newFile.resumeRecord();
+
   }
 
   reset() {

@@ -48,46 +48,47 @@
                     </ion-col>
                 </ion-row>
             </ion-col>
-            <ion-col width-50 class='card' text-center>
+            <ion-col width-50 class='dialpad' text-center>
                 <ion-grid>
                     <ion-row>
-                        <ion-col *ngFor='let x of selectedCard.row1' col-20 text-center>
-                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
+                        <ion-col *ngFor='let x of selectedCard.row1; let i = index' col-20 text-center>
+                            <button class='number' [ngClass]="{err: errorsList[0].indexOf(i)>-1}" [disabled]='status==="stop" || status==="paused"' (click)='addError(0, i)' ion-fab>{{x}}</button>
+
                         </ion-col>
                     </ion-row>
                     <ion-row>
-                        <ion-col *ngFor='let x of selectedCard.row2' col-20 text-center>
-                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
+                        <ion-col *ngFor='let x of selectedCard.row2; let i = index' col-20 text-center>
+                            <button class='number' [ngClass]="{err: errorsList[1].indexOf(i)>-1}" [disabled]='status==="stop" || status==="paused"' (click)='addError(1, i)' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                     <ion-row>
-                        <ion-col *ngFor='let x of selectedCard.row3' col-20 text-center>
-                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
+                        <ion-col *ngFor='let x of selectedCard.row3; let i = index' col-20 text-center>
+                            <button class='number' [ngClass]="{err: errorsList[2].indexOf(i)>-1}" [disabled]='status==="stop" || status==="paused"' (click)='addError(2, i)' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                     <ion-row>
-                        <ion-col *ngFor='let x of selectedCard.row4' col-20 text-center>
-                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
+                        <ion-col *ngFor='let x of selectedCard.row4; let i = index' col-20 text-center>
+                            <button class='number' [ngClass]="{err: errorsList[3].indexOf(i)>-1}" [disabled]='status==="stop" || status==="paused"' (click)='addError(3, i)' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                     <ion-row>
-                        <ion-col *ngFor='let x of selectedCard.row5' col-20 text-center>
-                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
+                        <ion-col *ngFor='let x of selectedCard.row5; let i = index' col-20 text-center>
+                            <button class='number' [ngClass]="{err: errorsList[4].indexOf(i)>-1}" [disabled]='status==="stop" || status==="paused"' (click)='addError(4, i)' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                     <ion-row>
-                        <ion-col *ngFor='let x of selectedCard.row6' col-20 text-center>
-                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
+                        <ion-col *ngFor='let x of selectedCard.row6; let i = index' col-20 text-center>
+                            <button class='number' [ngClass]="{err: errorsList[5].indexOf(i)>-1}" [disabled]='status==="stop" || status==="paused"' (click)='addError(5, i)' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                     <ion-row>
-                        <ion-col *ngFor='let x of selectedCard.row7' col-20 text-center>
-                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
+                        <ion-col *ngFor='let x of selectedCard.row7; let i = index' col-20 text-center>
+                            <button class='number' [ngClass]="{err: errorsList[6].indexOf(i)>-1}" [disabled]='status==="stop" || status==="paused"' (click)='addError(6, i)' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                     <ion-row>
-                        <ion-col *ngFor='let x of selectedCard.row8' col-20 text-center>
-                            <button class='number' [disabled]='status==="stop" || status==="paused"' (click)='errors=errors+1' ion-fab>{{x}}</button>
+                        <ion-col *ngFor='let x of selectedCard.row8; let i = index' col-20 text-center>
+                            <button class='number' [ngClass]="{err: errorsList[7].indexOf(i)>-1}" [disabled]='status==="stop" || status==="paused"' (click)='addError(7, i)' ion-fab>{{x}}</button>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
