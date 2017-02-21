@@ -1,107 +1,113 @@
 <ion-content>
-    <ion-toolbar>
-        <ion-segment [(ngModel)]="type" color="primary">
-            <ion-segment-button value="KD">
-                King Devick
-            </ion-segment-button>
-            <ion-segment-button value="DEM">
-                DEM
-            </ion-segment-button>
-        </ion-segment>
-    </ion-toolbar>
-    <ion-grid *ngIf='type==="KD"' class='results'>
-        <ion-row class='result-head' text-center color='primary'>
-            <ion-col col-10>Date
+    <ion-grid class='results'>
+        <ion-row>
+            <ion-col width-25></ion-col>
+            <ion-col width-25 text-center>
+                <button (click)='type="KD"' ion-button full class='type-button' [ngClass]='{selected:type==="KD"}'>
+            King Devick
+        </button>
             </ion-col>
-            <ion-col col-15>Student
+            <ion-col width-25 text-center>
+                <button (click)='type="DEM"' ion-button full class='type-button' [ngClass]='{selected:type==="DEM"}'>
+            DEM
+        </button>
             </ion-col>
-            <ion-col col-5>Type <br> (BT/CT)
-            </ion-col>
-            <ion-col col-10>NPC <br>(B/R)
-            </ion-col>
-            <ion-col col-5>Sup
-            </ion-col>
-            <ion-col col-10>Cor
-            </ion-col>
-            <ion-col col-15>KD 1 <br> (E/T)
-            </ion-col>
-            <ion-col col-15>KD2<br> (E/T)
-            </ion-col>
-            <ion-col col-15>KD3<br> (E/T)
-            </ion-col>
+            <ion-col width-25></ion-col>
         </ion-row>
-        <ion-row *ngFor='let result of results.kd' class='result-body' text-center>
-            <ion-col col-10>{{result.created}}
-            </ion-col>
-            <ion-col col-15>{{result.player.username}}
-            </ion-col>
-            <ion-col col-5>{{result.type}}
-            </ion-col>
-            <ion-col col-10>{{result.npcBreak}} / {{result.npcRecovery}}
-            </ion-col>
-            <ion-col col-5>{{result.suppression}}
-            </ion-col>
-            <ion-col col-10>{{result.habitual}}
-            </ion-col>
-            <ion-col col-15>{{result.KDresults[0].err}} / {{result.KDresults[0].time}}
-            </ion-col>
-            <ion-col col-15>{{result.KDresults[1].err}} / {{result.KDresults[1].time}}
-            </ion-col>
-            <ion-col col-15>{{result.KDresults[2].err}} / {{result.KDresults[2].time}}
-            </ion-col>
-        </ion-row>
+        <div *ngIf='type==="KD"'>
+            <ion-row class='result-head' text-center color='primary'>
+                <ion-col col-10>Date
+                </ion-col>
+                <ion-col col-15>Student
+                </ion-col>
+                <ion-col col-5>Type <br> (BT/CT)
+                </ion-col>
+                <ion-col col-10>NPC <br>(B/R)
+                </ion-col>
+                <ion-col col-5>Sup
+                </ion-col>
+                <ion-col col-10>Cor
+                </ion-col>
+                <ion-col col-15>KD 1 <br> (E/T)
+                </ion-col>
+                <ion-col col-15>KD2<br> (E/T)
+                </ion-col>
+                <ion-col col-15>KD3<br> (E/T)
+                </ion-col>
+            </ion-row>
+            <ion-row *ngFor='let result of results.kd' class='result-body' text-center>
+                <ion-col col-10>{{result.created}}
+                </ion-col>
+                <ion-col col-15>{{result.player.username}}
+                </ion-col>
+                <ion-col col-5>{{result.type}}
+                </ion-col>
+                <ion-col col-10>{{result.npcBreak}} / {{result.npcRecovery}}
+                </ion-col>
+                <ion-col col-5>{{result.suppression}}
+                </ion-col>
+                <ion-col col-10>{{result.habitual}}
+                </ion-col>
+                <ion-col col-15>{{result.KDresults[0].err}} / {{result.KDresults[0].time}}
+                </ion-col>
+                <ion-col col-15>{{result.KDresults[1].err}} / {{result.KDresults[1].time}}
+                </ion-col>
+                <ion-col col-15>{{result.KDresults[2].err}} / {{result.KDresults[2].time}}
+                </ion-col>
+            </ion-row>
 
-    </ion-grid>
+        </div>
 
-    <ion-grid *ngIf='type==="DEM"' class='results'>
-        <ion-row class='result-head' text-center color='primary'>
-            <ion-col col-10>Date
-            </ion-col>
-            <ion-col col-10>Student
-            </ion-col>
-            <ion-col col-5>Type <br> (BT/CT)
-            </ion-col>
-            <ion-col col-5>NPC <br>(B/R)
-            </ion-col>
-            <ion-col col-5>Sup
-            </ion-col>
-            <ion-col col-5>Cor
-            </ion-col>
-            <ion-col col-12>AHT
-            </ion-col>
-            <ion-col col-12>GH
-            </ion-col>
-            <ion-col col-12>VT
-            </ion-col>
-            <ion-col col-12>VTE
-            </ion-col>
-            <ion-col col-12>HV
-            </ion-col>
-        </ion-row>
-        <ion-row *ngFor='let result of results.dem' class='result-body' text-center (click)='review(result)'>
-            <ion-col col-10>{{result.created}}
-            </ion-col>
-            <ion-col col-10>{{result.player.username}}
-            </ion-col>
-            <ion-col col-5>{{result.type}}
-            </ion-col>
-            <ion-col col-5>{{result.npcBreak}} / {{result.npcRecovery}}
-            </ion-col>
-            <ion-col col-5>{{result.suppression}}
-            </ion-col>
-            <ion-col col-5>{{result.habitual}}
-            </ion-col>
-            <ion-col col-12>{{result.DEMresults.results.aht}}
-            </ion-col>
-            <ion-col col-12>{{result.DEMresults.results.gH}}
-            </ion-col>
-            <ion-col col-12>{{result.DEMresults.results.vt}}
-            </ion-col>
-            <ion-col col-12>{{result.DEMresults.results.vtE}}
-            </ion-col>
-            <ion-col col-12>{{result.DEMresults.results.hV}}
-            </ion-col>
-        </ion-row>
+        <div *ngIf='type==="DEM"'>
+            <ion-row class='result-head' text-center color='primary'>
+                <ion-col col-10>Date
+                </ion-col>
+                <ion-col col-10>Student
+                </ion-col>
+                <ion-col col-5>Type <br> (BT/CT)
+                </ion-col>
+                <ion-col col-5>NPC <br>(B/R)
+                </ion-col>
+                <ion-col col-5>Sup
+                </ion-col>
+                <ion-col col-5>Cor
+                </ion-col>
+                <ion-col col-12>AHT
+                </ion-col>
+                <ion-col col-12>GH
+                </ion-col>
+                <ion-col col-12>VT
+                </ion-col>
+                <ion-col col-12>VTE
+                </ion-col>
+                <ion-col col-12>HV
+                </ion-col>
+            </ion-row>
+            <ion-row *ngFor='let result of results.dem' class='result-body' text-center (click)='review(result)'>
+                <ion-col col-10>{{result.created}}
+                </ion-col>
+                <ion-col col-10>{{result.player.username}}
+                </ion-col>
+                <ion-col col-5>{{result.type}}
+                </ion-col>
+                <ion-col col-5>{{result.npcBreak}} / {{result.npcRecovery}}
+                </ion-col>
+                <ion-col col-5>{{result.suppression}}
+                </ion-col>
+                <ion-col col-5>{{result.habitual}}
+                </ion-col>
+                <ion-col col-12>{{result.DEMresults.results.aht}}
+                </ion-col>
+                <ion-col col-12>{{result.DEMresults.results.gH}}
+                </ion-col>
+                <ion-col col-12>{{result.DEMresults.results.vt}}
+                </ion-col>
+                <ion-col col-12>{{result.DEMresults.results.vtE}}
+                </ion-col>
+                <ion-col col-12>{{result.DEMresults.results.hV}}
+                </ion-col>
+            </ion-row>
+        </div>
     </ion-grid>
 
 </ion-content>

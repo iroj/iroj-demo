@@ -55,23 +55,23 @@ export class DemTestCardPage {
     this.clock = TimerObservable.create(0, 1000).subscribe(t => {
       this.timer = t;
     });
-    this.newFile = new MediaPlugin('recording.wav');
-    this.newFile.startRecord();
+    // this.newFile = new MediaPlugin('recording.wav');
+    // this.newFile.startRecord();
 
   }
 
   stop() {
-    if (this.type === 'Concussion' && this.selectedCard.inputArray.length < 30) {
+    if (this.selectedCard.inputArray.length < 30) {
       this.toast.showToast('Not enough data.');
       return
     }
     this.selectedCard.time = this.timer;
     this.selectedCard = this.demService.analyze(this.selectedCard, this.navParams.get('index'));
-    this.newFile.stopRecord();
-    this.newFile.play();
-    File.readAsDataURL(cordova.file.dataDirectory, 'recording.wav').then(data => {
-      this.selectedCard.audio = data;
-    });
+    // this.newFile.stopRecord();
+    // this.newFile.play();
+    // File.readAsDataURL(cordova.file.dataDirectory, 'recording.wav').then(data => {
+    //   this.selectedCard.audio = data;
+    // });
     console.log(this.selectedCard);
     this.navCtrl.pop();
   }
@@ -81,7 +81,7 @@ export class DemTestCardPage {
     this.status = 'paused';
     this.clock.unsubscribe();
     this.elapsedTime = this.timer;
-    this.newFile.pauseRecord();
+    // this.newFile.pauseRecord();
   }
 
   resume() {
@@ -89,7 +89,7 @@ export class DemTestCardPage {
     this.clock = TimerObservable.create(0, 1000).subscribe(t => {
       this.timer = this.elapsedTime + t;
     });
-    this.newFile.resumeRecord();
+    // this.newFile.resumeRecord();
 
   }
 

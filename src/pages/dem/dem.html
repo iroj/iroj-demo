@@ -17,18 +17,21 @@
                 <ion-col class='headers' width-10>Total</ion-col>
                 <ion-col class='headers' width-10>Time</ion-col>
                 <ion-col width-10></ion-col>
+
             </ion-row>
             <ion-row *ngFor='let card of cards; let i =index' text-center center>
-                <ion-col width-10 *ngIf='card.time===0'></ion-col>
+                <ion-col width-10>
+                    <h5>{{card.name}}</h5>
+                </ion-col>
                 <ion-col width-20 *ngIf='card.time===0'>
-                    <button ion-button (click)='start(i)' full icon-right round>{{card.name}} <ion-icon name='ios-play'></ion-icon></button>
+                    <button ion-button (click)='start(i)' full icon-right round>Start <ion-icon name='ios-play-outline'></ion-icon></button>
                 </ion-col>
 
-                <ion-col class='values' width-15 *ngIf='card.time>0'>
-                    <button ion-button (click)='review(i)' full round>Review</button>
+                <ion-col width-10 *ngIf='card.time>0'>
+                    <button ion-button (click)='review(i)' icon-only full round><ion-icon name='ios-paper-outline'></ion-icon></button>
                 </ion-col>
-                <ion-col class='values' width-15 *ngIf='card.time>0'>
-                    <button ion-button (click)='restart(i)' full round>{{card.name}}<br> Restart</button>
+                <ion-col width-10 *ngIf='card.time>0'>
+                    <button ion-button (click)='restart(i)' full round icon-only><ion-icon name='ios-refresh'> </ion-icon></button>
                 </ion-col>
                 <ion-col class='values' width-10>{{card.errors.O}}</ion-col>
                 <ion-col class='values' width-10>{{card.errors.S}}</ion-col>
@@ -38,16 +41,13 @@
                 <ion-col class='values' width-10>{{card.time}}</ion-col>
                 <ion-col width-10></ion-col>
             </ion-row>
-            <div *ngIf='results' class='result'>
+            <div *ngIf='results' class='dem-result'>
                 <ion-row>
-                    <ion-col col-50><span class='value'>{{results.vt}}</span> <br> Vertical Time</ion-col>
-                    <ion-col col-50><span class='value'>{{results.vtE}}</span> <br> Vertical Time/Total Errors</ion-col>
-                </ion-row>
-
-                <ion-row>
-                    <ion-col col-33><span class='value'>{{results.gH}}</span> <br> Gross Horizontal</ion-col>
-                    <ion-col col-33><span class='value'>{{results.aht}}</span> <br> Adjusted Horizontal Time</ion-col>
-                    <ion-col col-33><span class='value'>{{results.hV}}</span> <br> H/V Ratio</ion-col>
+                    <ion-col col-20><span class='value'>{{results.vt}}</span> <br> Vertical Time</ion-col>
+                    <ion-col col-20><span class='value'>{{results.vtE}}</span> <br> Vertical Time/Total Errors</ion-col>
+                    <ion-col col-20><span class='value'>{{results.gH}}</span> <br> Gross Horizontal</ion-col>
+                    <ion-col col-20><span class='value'>{{results.aht}}</span> <br> Adjusted Horizontal Time</ion-col>
+                    <ion-col col-20><span class='value'>{{results.hV}}</span> <br> H/V Ratio</ion-col>
                 </ion-row>
                 <ion-row text-center><button color='secondary' round full ion-button (click)='save()'>Save results</button></ion-row>
             </div>

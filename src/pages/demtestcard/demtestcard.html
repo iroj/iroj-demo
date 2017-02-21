@@ -1,123 +1,117 @@
 <ion-content>
-  <ion-grid class='test-card'>
-    <ion-row center class='header-page'>
-      <ion-col width-10 text-center>
-        <ion-icon color='primary' (click)='back()' class='medium-icon' name='md-arrow-back'></ion-icon>
-      </ion-col>
-      <ion-col width-80>
-        <h2 color='light' text-center>{{selectedCard.name}}</h2>
-      </ion-col>
-      <ion-col width-10 text-center>
-        <ion-icon color='danger' *ngIf='status==="running"' class='medium-icon' name="recording"></ion-icon>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col width-10></ion-col>
-        <ion-col width-80>
-        <ion-textarea class='inputs' rows="1" col='100' [(ngModel)]="inputString"></ion-textarea>
-      </ion-col>
-      <ion-col width-10></ion-col>
+    <ion-grid class='test-card'>
+        <ion-row center class='header-page'>
+            <ion-col width-10 text-center>
+                <ion-icon color='primary' (click)='back()' class='medium-icon' name='md-arrow-back'></ion-icon>
+            </ion-col>
+            <ion-col width-80>
+                <h2 color='light' text-center>{{selectedCard.name}}</h2>
+            </ion-col>
+            <ion-col width-10 text-center>
+                <ion-icon color='danger' *ngIf='status==="running"' class='medium-icon' name="recording"></ion-icon>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-10></ion-col>
+            <ion-col width-80>
+                <ion-textarea class='inputs' rows="1" col='100' [(ngModel)]="inputString"></ion-textarea>
+            </ion-col>
+            <ion-col width-10></ion-col>
 
-    </ion-row>
-    <ion-row *ngIf='type==="Concussion"'>
-      <ion-col col-20>
-      </ion-col>
-      <ion-col class='dialpad' col-60>
-        <ion-grid>
-          <ion-row text-center>
-            <ion-col col-33>
-              <button ion-fab clear full class='number-keys' [disabled]='status!="running"' (click)='add(1) '>
+        </ion-row>
+        <ion-row>
+            <ion-col col-25>
+            </ion-col>
+            <ion-col class='dialpad' col-50>
+                <ion-grid>
+                    <ion-row text-center>
+                        <ion-col col-33>
+                            <button ion-fab clear full class='number-keys' [disabled]='status!="running"' (click)='add(1) '>
                 1
               </button>
-            </ion-col>
-            <ion-col col-33>
-              <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(2) '>2
+                        </ion-col>
+                        <ion-col col-33>
+                            <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(2) '>2
               </button>
-            </ion-col>
-            <ion-col col-33>
-              <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(3) '>3
+                        </ion-col>
+                        <ion-col col-33>
+                            <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(3) '>3
               </button>
-            </ion-col>
-          </ion-row>
-          <ion-row text-center>
-            <ion-col col-33>
-              <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(4) '>4
+                        </ion-col>
+                    </ion-row>
+                    <ion-row text-center>
+                        <ion-col col-33>
+                            <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(4) '>4
               </button>
-            </ion-col>
-            <ion-col col-33>
-              <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(5) '>5
+                        </ion-col>
+                        <ion-col col-33>
+                            <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(5) '>5
               </button>
-            </ion-col>
-            <ion-col col-33>
-              <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(6) '>6
+                        </ion-col>
+                        <ion-col col-33>
+                            <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(6) '>6
               </button>
-            </ion-col>
-          </ion-row>
-          <ion-row text-center>
-            <ion-col col-33>
-              <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(7) '>7
+                        </ion-col>
+                    </ion-row>
+                    <ion-row text-center>
+                        <ion-col col-33>
+                            <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(7) '>7
               </button>
-            </ion-col>
-            <ion-col col-33>
-              <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(8) '>8
+                        </ion-col>
+                        <ion-col col-33>
+                            <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(8) '>8
               </button>
-            </ion-col>
-            <ion-col col-33>
-              <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(9) '>9
+                        </ion-col>
+                        <ion-col col-33>
+                            <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(9) '>9
               </button>
-            </ion-col>
-          </ion-row>
-          <ion-row text-center>
-            <ion-col col-33>
-              <button ion-fab clear full class='number-keys ' [disabled]='status!="running"'></button>
-            </ion-col>
-            <ion-col col-33>
-              <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(0) '>0
+                        </ion-col>
+                    </ion-row>
+                    <ion-row text-center>
+                        <ion-col col-33>
+                            <button ion-fab clear full class='number-keys ' [disabled]='status!="running"'></button>
+                        </ion-col>
+                        <ion-col col-33>
+                            <button ion-fab clear full class='number-keys ' [disabled]='status!="running"' (click)='add(0) '>0
               </button>
-            </ion-col>
-            <ion-col col-33>
-              <button ion-fab clear full class='number-keys ' [disabled]='status!="running"'></button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+                        </ion-col>
+                        <ion-col col-33>
+                            <button ion-fab clear full class='number-keys ' [disabled]='status!="running"'></button>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
 
-      </ion-col>
-      <ion-col col-20>
+            </ion-col>
+            <ion-col col-25>
+            </ion-col>
+        </ion-row>
 
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-25 text-center>
-        <ion-icon color='light' class='medium-icon' name='ios-timer-outline'></ion-icon>
-        <h4>{{timer}} sec</h4>
-        <!--<button ion-button full round>Errors: {{errors}}</button>-->
-      </ion-col>
-      <ion-col col-25 *ngIf='status==="stop" ' text-center>
-        <ion-icon color='light' class='medium-icon' name='ios-play' (click)='start() '></ion-icon>
-        <br>
-        <h4>Start</h4>
-      </ion-col>
-      <ion-col *ngIf='status==="running" ' col-25 text-center>
-        <ion-icon color='light' class='medium-icon' name='ios-pause' (click)='pause() '></ion-icon>
-        <br>
-        <h4>Pause</h4>
-      </ion-col>
-      <ion-col *ngIf='status==="paused" ' col-25 text-center>
-        <ion-icon color='light' class='medium-icon' name='ios-skip-forward' (click)='resume() '></ion-icon>
-        <br>
-        <h4> Resume</h4>
-      </ion-col>
-      <ion-col col-25 text-center>
-        <ion-icon color='light' class='medium-icon' name='ios-square' (click)='stop() '></ion-icon>
-        <br>
-        <h4> Stop</h4>
-      </ion-col>
-      <ion-col col-25 text-center>
-        <ion-icon color='light' class='medium-icon' name='ios-refresh' (click)='reset() '></ion-icon>
-        <br>
-        <h4>Reset</h4>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+        <ion-row>
+            <ion-col col-25 text-center>
+                <ion-icon color='light' class='medium-icon' name='ios-timer-outline'></ion-icon>
+                <h4>{{timer}} sec</h4>
+                <!--<button ion-button full round>Errors: {{errors}}</button>-->
+            </ion-col>
+            <ion-col col-25 *ngIf='status==="stop" ' text-center>
+                <ion-icon color='light' class='medium-icon' name='ios-play-outline' (click)='start() '></ion-icon>
+                <h4>Start</h4>
+            </ion-col>
+            <ion-col *ngIf='status==="running" ' col-25 text-center>
+                <ion-icon color='light' class='medium-icon' name='ios-pause-outline' (click)='pause() '></ion-icon>
+                <h4>Pause</h4>
+            </ion-col>
+            <ion-col *ngIf='status==="paused" ' col-25 text-center>
+                <ion-icon color='light' class='medium-icon' name='ios-skip-forward-outline' (click)='resume() '></ion-icon>
+                <h4> Resume</h4>
+            </ion-col>
+            <ion-col col-25 text-center>
+                <ion-icon color='light' class='medium-icon' name='ios-square-outline' (click)='stop() '></ion-icon>
+                <h4> Stop</h4>
+            </ion-col>
+            <ion-col col-25 text-center>
+                <ion-icon color='light' class='medium-icon' name='ios-refresh' (click)='reset() '></ion-icon>
+                <h4>Reset</h4>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>

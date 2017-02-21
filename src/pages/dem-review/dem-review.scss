@@ -1,48 +1,40 @@
   page-dem-review {
-      ion-slides {
-          height: auto;
-          .swiper-slide {
-              width: 200px !important;
+      .review-section {
+          background: #fff;
+          .numbers {
+              background-color: #16675f;
+              color: #fff;
+              height: 10vh !important;
+              width: 18vw !important;
+              margin: 1vw;
+              font-size: 40px;
+              ion-badge {
+                  position: absolute;
+                  margin-left: -30px;
+              }
           }
-      }
-      .numbers {
-          background-color: #16675f;
-          color: #fff;
-          height: 100px !important;
-          width: 180px !important;
-          margin: 10px;
-          font-size: 40px;
-          ion-badge {
-              position: absolute;
-              margin-left: -30px;
+          .active {
+              background-color: #fafa3e;
           }
-      }
-      .lock-icon {
-          font-size: 45px!important;
-          line-height: 45px;
-      }
-      .active {
-          background-color: #fafa3e;
-      }
-      .omission {
-          background-color: #e55664;
-      }
-      .substitution {
-          background-color: #5540a0;
-      }
-      .transposition {
-          background-color: #50f564;
-      }
-      .addition {
-          background-color: #90ef00;
-          height: 50px !important;
-          width: 180px !important;
-          margin: 10px;
-          font-size: 30px;
-      }
-      .blank {
-          width: 200px;
-          background: transparent;
+          .omission {
+              background-color: #de7e03;
+          }
+          .substitution {
+              background-color: #508f27;
+          }
+          .transposition {
+              background-color: #5c4f00;
+          }
+          .addition {
+              background-color: #b53d6d;
+              width: 180px !important;
+              margin: 10px;
+              font-size: 30px;
+          }
+          .blank {
+              width: 200px;
+              background: transparent;
+          }
       }
       .back {
           float: left

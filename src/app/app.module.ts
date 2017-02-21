@@ -36,6 +36,7 @@ import { ToastService } from '../providers/toast-service'
 import { KdService } from '../providers/kd-service'
 import { DemService } from '../providers/dem-service'
 import { Damlev } from '../providers/damlev'
+import { DemCalculator } from '../providers/dem-calculator';
 import { Config } from '../providers/config';
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
@@ -92,7 +93,7 @@ const cloudSettings: CloudSettings = {
     StudentProfilePage,
     StudentResultsPage
   ],
-  providers: [AuthService, ProfileService, TestService, ResultService, DataService, GlobalService, KdService, DemService,Damlev, Config, Storage, AuthService, ToastService]
+  providers: [AuthService, ProfileService, TestService, ResultService, DataService, GlobalService, KdService, DemService,Damlev,DemCalculator, Config, Storage, AuthService, ToastService]
 })
 export class AppModule {
 }

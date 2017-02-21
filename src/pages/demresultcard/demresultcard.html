@@ -1,49 +1,55 @@
 <ion-content>
-    <ion-grid class='dem'>
+    <ion-grid>
         <ion-row center class='header-page'>
             <ion-icon color='primary' (click)='back()' class='medium-icon' name='md-arrow-back'></ion-icon>
             <ion-col width-100>
                 <h2 color='light' text-center>DEM</h2>
             </ion-col>
         </ion-row>
-        <ion-row text-center>
-            <ion-col width-30></ion-col>
-            <ion-col width-50>Errors</ion-col>
-            <ion-col width-20>Time</ion-col>
-        </ion-row>
-        <ion-row text-center>
-            <ion-col width-30></ion-col>
-            <ion-col width-10>O</ion-col>
-            <ion-col width-10>S</ion-col>
-            <ion-col width-10>A</ion-col>
-            <ion-col width-10>T</ion-col>
-            <ion-col width-10>Total</ion-col>
-            <ion-col width-20></ion-col>
-        </ion-row>
-        <div>
+        <div class='result-cards'>
+            <ion-row text-center>
+                <ion-col width-30></ion-col>
+                <ion-col class='headers' width-10>O</ion-col>
+                <ion-col class='headers' width-10> S</ion-col>
+                <ion-col class='headers' width-10>A</ion-col>
+                <ion-col class='headers' width-10>T</ion-col>
+                <ion-col class='headers' width-10>Total</ion-col>
+                <ion-col class='headers' width-10>Time</ion-col>
+                <ion-col width-10></ion-col>
+            </ion-row>
             <ion-row *ngFor='let card of cards; let i =index' text-center center>
-                <ion-col width-30>
-                    <button ion-button (click)='review(i)' full round>{{card.name}}<br> Review</button>
+                <ion-col width-10>
+                    <h5>{{card.name}}</h5>
                 </ion-col>
-                <ion-col width-10>{{card.errors.O}}</ion-col>
-                <ion-col width-10>{{card.errors.S}}</ion-col>
-                <ion-col width-10>{{card.errors.A}}</ion-col>
-                <ion-col width-10>{{card.errors.T}}</ion-col>
-                <ion-col width-10>{{card.totalErrors}}</ion-col>
-                <ion-col width-20>{{card.time}}</ion-col>
+                <ion-col width-20>
+                    <button ion-button (click)='review(i)' full icon-right round>
+                      Review <ion-icon name='ios-paper-outline'></ion-icon></button>
+                </ion-col>
+
+                <ion-col class='values' width-10>{{card.errors.O}}</ion-col>
+                <ion-col class='values' width-10>{{card.errors.S}}</ion-col>
+                <ion-col class='values' width-10>{{card.errors.A}}</ion-col>
+                <ion-col class='values' width-10>{{card.errors.T}}</ion-col>
+                <ion-col class='values' width-10>{{card.totalErrors}}</ion-col>
+                <ion-col class='values' width-10>{{card.time}}</ion-col>
+                <ion-col width-10></ion-col>
             </ion-row>
         </div>
-        <div class='result'>
+        <div class='dem-results'>
             <ion-row>
-                <ion-col col-50><span class='value'>{{results.vt}}</span> <br> Vertical Time</ion-col>
-                <ion-col col-50><span class='value'>{{results.vtE}}</span> <br> Vertical Time/Total Errors</ion-col>
+                <ion-col class='result' col-20><span class='value'>{{results.vt}}</span> <br> Vertical Time</ion-col>
+                <ion-col class='result' col-20><span class='value'>{{results.vtE}}</span> <br> Vertical Time/Total Errors</ion-col>
+                <ion-col class='result' col-20><span class='value'>{{results.gH}}</span> <br> Gross Horizontal</ion-col>
+                <ion-col class='result' col-20><span class='value'>{{results.aht}}</span> <br> Adjusted Horizontal Time</ion-col>
+                <ion-col class='result' col-20><span class='value'>{{results.hV}}</span> <br> H/V Ratio</ion-col>
             </ion-row>
             <ion-row>
-                <ion-col col-33><span class='value'>{{results.gH}}</span> <br> Gross Horizontal</ion-col>
-                <ion-col col-33><span class='value'>{{results.aht}}</span> <br> Adjusted Horizontal Time</ion-col>
-                <ion-col col-33><span class='value'>{{results.hV}}</span> <br> H/V Ratio</ion-col>
+                <ion-col width-30></ion-col>
+                <ion-col width-40>
+                    <button color='secondary' round full ion-button (click)='save()'>Update results</button>
+                </ion-col>
+                <ion-col width-30></ion-col>
             </ion-row>
-            <ion-row text-center><button color='secondary' round full ion-button (click)='update()'>Update results</button></ion-row>
         </div>
     </ion-grid>
 </ion-content>

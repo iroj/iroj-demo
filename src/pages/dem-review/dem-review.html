@@ -1,88 +1,74 @@
-<ion-content padding>
-    <button ion-fab mini class='back' (click)='back()'>X</button>
-    <button ion-button round class='reset' (click)='reset()'>Reset</button>
+<ion-content>
 
     <ion-grid class='review-card'>
-        <ion-row class='info'>
-            <ion-col col-100>
-                <h1 text-center>{{card.name}} Review</h1>
+        <ion-row center class='header-page'>
+            <ion-icon color='primary' (click)='back()' class='medium-icon' name='md-arrow-back'></ion-icon>
+            <ion-col width-100>
+                <h2 color='light' text-center>{{card.name}} Review</h2>
             </ion-col>
+            <ion-icon name='ios-refresh' color='primary' class='medium-icon' (click)='reset()'></ion-icon>
         </ion-row>
         <ion-row>
-            <ion-col col-20>
-                Auto generated results:
+            <ion-col width-25 text-center>
+                <h4>{{card.errors.O}}<br> Omission
+                </h4>
             </ion-col>
-            <ion-col col-20>
-                <button ion-button full round [disabled]='true'>  O : {{card.errors.O}}
-              </button>
+            <ion-col width-25 text-center>
+                <h4>{{card.errors.S}}<br> Substitution
+                </h4>
             </ion-col>
-            <ion-col col-20>
-                <button ion-button full round [disabled]='true'> S : {{card.errors.S}}</button>
+            <ion-col width-25 text-center>
+                <h4>{{card.errors.A}}<br> Addition
+                </h4>
             </ion-col>
-            <ion-col col-20>
-                <button ion-button full round [disabled]='true'>       A : {{card.errors.A}}</button>
-            </ion-col>
-            <ion-col col-20>
-                <button ion-button full round [disabled]='true'>   T : {{card.errors.T}}</button>
-            </ion-col>
-        </ion-row>
-        <!--<ion-row>
-            <ion-col col-20>
-                Reviewed Resutls</ion-col>
-            <ion-col col-20>
-                <button ion-button full round>  O : {{newErrors.O.err}}
-              </button>
-            </ion-col>
-            <ion-col col-20>
-                <button ion-button full round> S : {{newErrors.S.err}}</button>
-            </ion-col>
-            <ion-col col-20>
-                <button ion-button full round>       A : {{newErrors.A.err}}</button>
-            </ion-col>
-            <ion-col col-20>
-                <button ion-button full round>   T : {{newErrors.T.err}}</button>
-            </ion-col>
-        </ion-row>-->
-        <ion-row text-center>
-            <ion-col col-100>
-                <h2> Data Array</h2>
+            <ion-col width-25 text-center>
+                <h4>{{card.errors.T}}<br> Trasnposition
+                </h4>
             </ion-col>
         </ion-row>
-        <ion-row>
-            <div *ngFor='let x of card.dataArray; let i=index' class='box'>
-                <button class='numbers' *ngIf='i>=dataIndex && i<dataIndex+5' (click)='selectedData(i)' [ngClass]="{'active': selectData.indexOf(i)>-1,
+        <div class='review-section'>
+            <ion-row text-center>
+                <ion-col width-100>
+                    <h2> Data Array</h2>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <div *ngFor='let x of card.dataArray; let i=index' class='box'>
+                    <button class='numbers' *ngIf='i>=dataIndex && i<dataIndex+5' (click)='selectedData(i)' [ngClass]="{'active': selectData.indexOf(i)>-1,
                  'substitution': newErrors.S.indices.indexOf(i)>-1,
                             'transposition': newErrors.T.indices.indexOf(i)>-1}">
                       <ion-badge>{{i+1}}</ion-badge>
                       {{x}}
                 </button>
-            </div>
-        </ion-row>
-        <ion-row text-center>
-            <ion-col col-10 class='lock-icon'>
-                <ion-icon name="ios-arrow-dropleft" (click)='swipeRight()'></ion-icon>
-            </ion-col>
-            <ion-col col-20>
-                <button ion-button full round>  O : {{newErrors.O.err}}
-              </button>
-            </ion-col>
-            <ion-col col-20>
-                <button ion-button full round> S : {{newErrors.S.err}}</button>
-            </ion-col>
-            <ion-col col-20>
-                <button ion-button full round>       A : {{newErrors.A.err}}</button>
-            </ion-col>
-            <ion-col col-20>
-                <button ion-button full round>   T : {{newErrors.T.err}}</button>
-            </ion-col>
-            <ion-col col-10 class='lock-icon'>
-                <ion-icon name="ios-arrow-dropright" (click)='swipeLeft()'></ion-icon>
-            </ion-col>
-
-        </ion-row>
-        <ion-row>
-            <div *ngFor='let x of card.inputArray; let i=index' class='box' (swipe)='swiped($event)'>
-                <button class='numbers' *ngIf='i>=inputIndex && i<inputIndex+5' (click)='selectedInput(i)' [ngClass]="{
+                </div>
+            </ion-row>
+            <ion-row text-center>
+                <ion-col width-20 text-left>
+                    <ion-icon color='primary' class='medium-icon' name='md-arrow-back' (click)='swipeRight()'></ion-icon>
+                </ion-col>
+                <ion-col width-15 text-center>
+                    <h4>{{newErrors.O.err}}<br> Omission
+                    </h4>
+                </ion-col>
+                <ion-col width-15 text-center>
+                    <h4>{{newErrors.S.err}}<br> Substitution
+                    </h4>
+                </ion-col>
+                <ion-col width-15 text-center>
+                    <h4>{{newErrors.A.err}}<br> Addition
+                    </h4>
+                </ion-col>
+                <ion-col width-15 text-center>
+                    <h4>{{newErrors.T.err}}<br> Trasnposition
+                    </h4>
+                </ion-col>
+                <ion-col width-20 text-right>
+                    <ion-icon color='primary' class='medium-icon' name='md-arrow-forward' (click)='swipeLeft()'></ion-icon>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <div *ngFor='let x of card.inputArray; let i=index' class='box' (swipe)='swiped($event)'>
+                    <button class='numbers' *ngIf='i>=inputIndex && i<inputIndex+5' (click)='selectedInput(i)' [ngClass]="{
                   'active': selectInput.indexOf(i)>-1,
                             'omission': newErrors.O.indices.indexOf(i)>-1,
                             'substitution': newErrors.S.indices.indexOf(i)>-1,
@@ -90,74 +76,50 @@
                       <ion-badge>{{i+1}}</ion-badge>
                       {{x}}
                 </button>
-            </div>
-        </ion-row>
-        <ion-row>
-            <div *ngFor='let x of additionArray; let i=index' class='box'>
-                <div *ngIf='i>=inputIndex && i<inputIndex+5'>
-                    <button class='addition' *ngIf='x'>
+                </div>
+            </ion-row>
+            <ion-row>
+                <div *ngFor='let x of additionArray; let i=index' class='box'>
+                    <div *ngIf='i>=inputIndex && i<inputIndex+5'>
+                        <button class='addition' *ngIf='x'>
                       <ion-badge>{{i+1}}</ion-badge>
                       {{x}}
                 </button>
-                    <button class='blank' *ngIf='!x'>
+                        <button class='blank' *ngIf='!x'>
                 </button>
+                    </div>
                 </div>
-            </div>
-        </ion-row>
-        <ion-row text-center>
-            <ion-col col-100>
-                <h2>Input Array</h2>
-            </ion-col>
-        </ion-row>
-        <!--<ion-row>
-            Auto Generated Results
-        </ion-row>
+            </ion-row>
+            <ion-row text-center>
+                <ion-col width-100>
+                    <h2>Input Array</h2>
+                </ion-col>
+            </ion-row>
+        </div>
         <ion-row>
-            <ion-col col-20>
-                Omission : {{card.errors.O}}
-            </ion-col>
-            <ion-col col-20>
-                Substitution : {{card.errors.S}}
-            </ion-col>
-            <ion-col col-20>
-                Addition : {{card.errors.A}}
-            </ion-col>
-            <ion-col col-20>
-                Trasnposition : {{card.errors.T}}
-            </ion-col>
-            <ion-col col-20>
-                Total: {{card.totalErrors}}
-            </ion-col>
-        </ion-row>-->
-
-
-        <ion-row>
-            <ion-col col-25>
-                <button ion-button icon-only full round (click)='omission()' [disabled]='disabled.O'>
+            <ion-col width-10></ion-col>
+            <ion-col width-20>
+                <button ion-button color='omission' icon-only full round (click)='omission()' [disabled]='disabled.O'>
                 Omission
               </button>
             </ion-col>
-            <ion-col col-25>
-                <button ion-button icon-only full round (click)='substitution()' [disabled]='disabled.S'>
+            <ion-col width-20>
+                <button ion-button color='substitution' icon-only full round (click)='substitution()' [disabled]='disabled.S'>
                 Substitution
               </button>
             </ion-col>
-            <ion-col col-25>
-                <button ion-button full round icon-only (click)='addition()' [disabled]='disabled.A'>
+            <ion-col width-20>
+                <button ion-button full color='addition' round icon-only (click)='addition()' [disabled]='disabled.A'>
                 Addition
               </button>
             </ion-col>
-            <ion-col col-25>
-                <button ion-button full round icon-only (click)='transposition()' [disabled]='disabled.T'>
+            <ion-col width-20>
+                <button ion-button full color='transposition' round icon-only (click)='transposition()' [disabled]='disabled.T'>
                 Trasnposition
               </button>
             </ion-col>
-
+            <ion-col width-10></ion-col>
 
         </ion-row>
-
-
-
-
     </ion-grid>
 </ion-content>

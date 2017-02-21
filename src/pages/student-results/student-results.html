@@ -1,13 +1,11 @@
 <ion-content>
     <ion-toolbar>
-        <ion-segment [(ngModel)]="type" color="primary">
-            <ion-segment-button value="KD">
-                King Devick
-            </ion-segment-button>
-            <ion-segment-button value="DEM">
-                DEM
-            </ion-segment-button>
-        </ion-segment>
+        <button (click)='type="KD"' ion-button color='primary' class='type-button' [ngClass]='{selected:type==="KD"}'>
+            King Devick
+        </button>
+        <button (click)='type="DEM"' ion-button color='primary' class='type-button' [ngClass]='{selected:type==="DEM"}'>
+            DEM
+        </button>
     </ion-toolbar>
     <ion-grid *ngIf='type==="KD"' class='results'>
         <ion-row class='result-head' text-center color='primary'>
