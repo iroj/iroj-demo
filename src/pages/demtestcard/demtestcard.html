@@ -8,7 +8,7 @@
                 <h2 color='light' text-center>{{selectedCard.name}}</h2>
             </ion-col>
             <ion-col width-10 text-center>
-                <ion-icon color='danger' *ngIf='status==="running"' class='medium-icon' name="recording"></ion-icon>
+                <ion-icon color='danger' [hidden]='status==="stop"' class='medium-icon' name="recording"></ion-icon>
             </ion-col>
         </ion-row>
         <ion-row>

@@ -26,11 +26,21 @@ export class DemTestCardPage {
     public demService: DemService, public toast: ToastService, public testService: TestService) {
     this.selectedCard = this.demService.getDEMcard(this.navParams.get('index'));
     this.timer = this.selectedCard.time;
-    let test = this.testService.returnTest()
+    let test = this.testService.returnTest();
     console.log(test);
-    this.type = test.type
+    this.type = test.type;
     console.log(this.type);
   }
+
+  uniqueName() {
+  let name = "";
+  let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for( let i=0; i < 8; i++ )
+    name += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return name + ".wav";
+}
 
   back() {
     this.navCtrl.pop();
@@ -56,7 +66,9 @@ export class DemTestCardPage {
       this.timer = t;
     });
     if (MediaPlugin) {
-      this.newFile = new MediaPlugin('recording.wav');
+      this.selectedCard.fileName = this.uniqueName();
+      console.log(this.selectedCard.fileName);
+      this.newFile = new MediaPlugin(this.selectedCard.fileName);
       this.newFile.startRecord();
       console.log('new record start: ', this.newFile);
     }
@@ -75,7 +87,8 @@ export class DemTestCardPage {
       console.log('record stop: ', this.newFile);
 
       this.newFile.stopRecord();
-      this.newFile.play();
+      let recordedFile = new MediaPlugin(this.selectedCard.fileName);
+      recordedFile.play();
       // File.readAsDataURL(cordova.file.dataDirectory, 'recording.wav').then(data => {
       // });
     }
@@ -89,11 +102,10 @@ export class DemTestCardPage {
     this.status = 'paused';
     this.clock.unsubscribe();
     this.elapsedTime = this.timer;
-    if (this.newFile) {
-      console.log('record pause: ', this.newFile);
-
-      this.newFile.pauseRecord();
-    }
+    // if (this.newFile) {
+    //   console.log('record pause: ', this.newFile);
+    //   this.newFile.pauseRecord();
+    // }
   }
 
   resume() {
@@ -101,10 +113,10 @@ export class DemTestCardPage {
     this.clock = TimerObservable.create(0, 1000).subscribe(t => {
       this.timer = this.elapsedTime + t;
     });
-    if (this.newFile){
-      console.log('record resume: ', this.newFile);
-      this.newFile.resumeRecord();
-    }
+    // if (this.newFile){
+    //   console.log('record resume: ', this.newFile);
+    //   this.newFile.resumeRecord();
+    // }
 
   }
 
