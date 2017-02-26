@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
-import {NavController, NavParams, LoadingController} from 'ionic-angular';
-import {TimerObservable} from "rxjs/observable/TimerObservable";
-import {MediaPlugin, File} from 'ionic-native';
+import { Component } from '@angular/core';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { TimerObservable } from "rxjs/observable/TimerObservable";
+import { MediaPlugin, File } from 'ionic-native';
 
-import {DemService} from '../../providers/dem-service';
-import {ToastService} from '../../providers/toast-service';
-import {TestService} from '../../providers/test-service';
+import { DemService } from '../../providers/dem-service';
+import { ToastService } from '../../providers/toast-service';
+import { TestService } from '../../providers/test-service';
 import _ from 'lodash';
 declare var cordova: any;
 @Component({
@@ -23,7 +23,7 @@ export class DemTestCardPage {
   public newFile: any;
 
   constructor(public navParams: NavParams, public loadingController: LoadingController, public navCtrl: NavController,
-              public demService: DemService, public toast: ToastService, public testService: TestService) {
+    public demService: DemService, public toast: ToastService, public testService: TestService) {
     this.selectedCard = this.demService.getDEMcard(this.navParams.get('index'));
     this.timer = this.selectedCard.time;
     let test = this.testService.returnTest()
@@ -55,9 +55,11 @@ export class DemTestCardPage {
     this.clock = TimerObservable.create(0, 1000).subscribe(t => {
       this.timer = t;
     });
-    // this.newFile = new MediaPlugin('recording.wav');
-    // this.newFile.startRecord();
-
+    if (MediaPlugin) {
+      this.newFile = new MediaPlugin('recording.wav');
+      this.newFile.startRecord();
+      console.log('new record start: ', this.newFile);
+    }
   }
 
   stop() {
@@ -67,12 +69,18 @@ export class DemTestCardPage {
     }
     this.selectedCard.time = this.timer;
     this.selectedCard = this.demService.analyze(this.selectedCard, this.navParams.get('index'));
-    // this.newFile.stopRecord();
-    // this.newFile.play();
-    // File.readAsDataURL(cordova.file.dataDirectory, 'recording.wav').then(data => {
-    //   this.selectedCard.audio = data;
-    // });
+
     console.log(this.selectedCard);
+    if (this.newFile) {
+      console.log('record stop: ', this.newFile);
+
+      this.newFile.stopRecord();
+      this.newFile.play();
+      // File.readAsDataURL(cordova.file.dataDirectory, 'recording.wav').then(data => {
+      // });
+    }
+
+
     this.navCtrl.pop();
   }
 
@@ -81,7 +89,11 @@ export class DemTestCardPage {
     this.status = 'paused';
     this.clock.unsubscribe();
     this.elapsedTime = this.timer;
-    // this.newFile.pauseRecord();
+    if (this.newFile) {
+      console.log('record pause: ', this.newFile);
+
+      this.newFile.pauseRecord();
+    }
   }
 
   resume() {
@@ -89,7 +101,10 @@ export class DemTestCardPage {
     this.clock = TimerObservable.create(0, 1000).subscribe(t => {
       this.timer = this.elapsedTime + t;
     });
-    // this.newFile.resumeRecord();
+    if (this.newFile){
+      console.log('record resume: ', this.newFile);
+      this.newFile.resumeRecord();
+    }
 
   }
 

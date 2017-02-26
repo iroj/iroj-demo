@@ -17,6 +17,7 @@ export class MyApp {
 
   constructor(platform: Platform, public global: GlobalService, public data: DataService) {
     platform.ready().then(() => {
+      // this.data.remove('user');
       this.data.getData('user').then(
         data => {
           if (data) {

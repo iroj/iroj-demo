@@ -41,41 +41,41 @@ ion-content {
 
 .button {
     font-family: 'OpenSans Regular';
-    padding: 2%;
     text-transform: uppercase;
-    font-size: 1.8rem;
     border-radius: 10px;
+    font-size: 4vh;
+    height: 6.5vh;
 }
 
 h1 {
     font-family: 'OpenSans Bold';
-    font-size: 10rem !important;
+    font-size: 10vh !important;
     white-space: pre-line;
 }
 
 h2 {
     font-family: 'OpenSans Regular';
-    font-size: 5rem !important;
+    font-size: 8vh !important;
 }
 
 h3 {
     font-family: 'OpenSans Regular';
-    font-size: 4rem !important;
+    font-size: 7vh !important;
 }
 
 h4 {
     font-family: 'OpenSans Regular';
-    font-size: 3rem !important;
+    font-size: 6vh !important;
 }
 
 h5 {
     font-family: 'OpenSans Regular';
-    font-size: 2.8rem !important;
+    font-size: 4vh !important;
 }
 
 p {
     font-family: 'OpenSans Regular';
-    font-size: 1.9rem !important;
+    font-size: 3vh !important;
 }
 
 ion-tabs {
@@ -89,17 +89,10 @@ ion-tabs {
                 font-size: 24px !important;
                 font-family: 'OpenSans Regular'
             }
-            border-bottom: 5px solid #fff;
-            border-right: 5px solid #fff;
-            border-left: 5px solid #fff;
         }
         .tab-button[aria-selected=true] {
-            background: #028dc6;
-            color: #fff !important;
-            border: none;
-            .tab-button-text {
-                font-size: 36px !important
-            }
+            font-size: 28px !important;
+            border-bottom: 4px solid #de7e03;
         }
     }
 }
@@ -193,7 +186,7 @@ ion-grid {
 
 .medium-icon {
     font-size: 6rem;
-    margin: 1.5%;
+    margin: .5% 1.5%;
 }
 
 .record-icon {

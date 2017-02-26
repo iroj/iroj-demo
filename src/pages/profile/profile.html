@@ -1,19 +1,14 @@
 <ion-content padding>
     <ion-grid class='profile'>
         <ion-row center>
-            <ion-col width-100 text-center>
-                <h2 *ngIf='school'>{{school.name}} </h2>
-                <p color='primary'>
-                    <ion-icon color='light' name='ios-lock-outline'> </ion-icon>
-                    Logged in as {{user.roles[0]}}</p>
-            </ion-col>
-        </ion-row>
-        <ion-row center>
-            <ion-col width-30></ion-col>
+            <ion-col width-30>
+                <h5 *ngIf='school'>School: {{school.name}} </h5>
 
+            </ion-col>
             <ion-col *ngIf='!user.profileImageId' width-40 class='icons'>
                 <ion-icon color='light' class='profileIcon' name='md-person'>
                 </ion-icon><br>
+
             </ion-col>
             <ion-col *ngIf='user.profileImageId' width-40 class='icons'>
                 <img class='profileImg' src='{{user.profileImageId}}' /><br>
@@ -24,6 +19,9 @@
             <ion-col width-100 text-center>
                 <ion-icon (click)='openCamera()' color='primary' class='medium-icon' name='md-camera'> </ion-icon>
                 <ion-icon (click)='getFile()' color='primary' class='medium-icon' name='md-images'> </ion-icon>
+                <p color='primary'>
+                    <ion-icon color='light' name='ios-lock-outline'> </ion-icon>
+                    Logged in as {{user.roles[0]}}</p>
             </ion-col>
         </ion-row>
         <ion-row>

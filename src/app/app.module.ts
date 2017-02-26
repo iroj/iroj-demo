@@ -19,6 +19,8 @@ import { DemPage } from '../pages/dem/dem';
 import { DemTestCardPage } from '../pages/demtestcard/demtestcard';
 import { DemresultcardPage } from '../pages/demresultcard/demresultcard';
 import { DemReviewPage } from '../pages/dem-review/dem-review';
+import { CognitionToolPage } from '../pages/cognition-tool/cognition-tool';
+import { EmergencyPage } from '../pages/emergency/emergency';
 
 //pages for student
 import { StudentTabsPage } from '../pages/student-tabs/student-tabs';
@@ -62,6 +64,8 @@ const cloudSettings: CloudSettings = {
     DemTestCardPage,
     DemReviewPage,
     DemresultcardPage,
+    CognitionToolPage,
+    EmergencyPage,
     ResultsPage,
     StudentTabsPage,
     StudentProfilePage,
@@ -86,6 +90,8 @@ const cloudSettings: CloudSettings = {
     DemTestCardPage,
     DemReviewPage,
     DemresultcardPage,
+      CognitionToolPage,
+    EmergencyPage,
     ProfilePage,
     TestingPage,
     ResultsPage,
