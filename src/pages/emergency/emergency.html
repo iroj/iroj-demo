@@ -3,8 +3,26 @@
         <ion-row center class='header-page'>
             <ion-icon color='primary' (click)='back()' class='medium-icon' name='md-arrow-back'></ion-icon>
             <ion-col width-100>
-                <h2 color='light' text-center>Emergency</h2>
+                <h2 color='light' text-center>Check for Emergency</h2>
             </ion-col>
+        </ion-row>
+        <ion-row class='question'>
+            <ion-col width-100>
+                <h3 text-center>Step {{stepIndex+1}}</h3>
+                <h3 text-center>{{qIndex+1}}. {{questions[stepIndex][qIndex].q}}</h3>
+            </ion-col>
+        </ion-row>
+        <ion-row class='answers'>
+            <ion-col width-25></ion-col>
+            <ion-col width-25>
+                <button color='danger' *ngIf='questions[stepIndex][qIndex].value===false' (click)='next(false)' ion-button full round>Yes</button>
+                <button *ngIf='questions[stepIndex][qIndex].value===true' (click)='next(true)' ion-button full round>Yes</button>
+            </ion-col>
+            <ion-col width-25>
+                <button *ngIf='questions[stepIndex][qIndex].value===false' (click)='next(true)' ion-button full round>No</button>
+                <button color='danger' *ngIf='questions[stepIndex][qIndex].value===true' (click)='next(false)' ion-button full round>No</button>
+            </ion-col>
+            <ion-col width-25></ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>

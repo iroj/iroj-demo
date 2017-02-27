@@ -21,6 +21,7 @@ import { DemresultcardPage } from '../pages/demresultcard/demresultcard';
 import { DemReviewPage } from '../pages/dem-review/dem-review';
 import { CognitionToolPage } from '../pages/cognition-tool/cognition-tool';
 import { EmergencyPage } from '../pages/emergency/emergency';
+import { EmergencyAlertModal } from '../pages/emergency/emergency-alert';
 
 //pages for student
 import { StudentTabsPage } from '../pages/student-tabs/student-tabs';
@@ -66,6 +67,7 @@ const cloudSettings: CloudSettings = {
     DemresultcardPage,
     CognitionToolPage,
     EmergencyPage,
+    EmergencyAlertModal,
     ResultsPage,
     StudentTabsPage,
     StudentProfilePage,
@@ -90,8 +92,9 @@ const cloudSettings: CloudSettings = {
     DemTestCardPage,
     DemReviewPage,
     DemresultcardPage,
-      CognitionToolPage,
+    CognitionToolPage,
     EmergencyPage,
+    EmergencyAlertModal,
     ProfilePage,
     TestingPage,
     ResultsPage,
@@ -99,7 +102,7 @@ const cloudSettings: CloudSettings = {
     StudentProfilePage,
     StudentResultsPage
   ],
-  providers: [AuthService, ProfileService, TestService, ResultService, DataService, GlobalService, KdService, DemService,Damlev,DemCalculator, Config, Storage, AuthService, ToastService]
+  providers: [AuthService, ProfileService, TestService, ResultService, DataService, GlobalService, KdService, DemService, Damlev, DemCalculator, Config, Storage, AuthService, ToastService]
 })
 export class AppModule {
 }

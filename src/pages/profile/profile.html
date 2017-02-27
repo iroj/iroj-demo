@@ -1,5 +1,19 @@
-<ion-content padding>
+<ion-content>
+    <!--<ion-header>
+        <ion-item class='selected-tab'>
+            <ion-avatar item-left>
+                <img src='../assets/images/select-tab.png' />
+            </ion-avatar>
+        </ion-item>
+    </ion-header>-->
     <ion-grid class='profile'>
+        <ion-row>
+            <ion-col width-33 class='selected-tab' text-center>
+                <img src='../assets/images/select-tab.png' />
+            </ion-col>
+            <ion-col width-33></ion-col>
+            <ion-col width-33></ion-col>
+        </ion-row>
         <ion-row center>
             <ion-col width-30>
                 <h5 *ngIf='school'>School: {{school.name}} </h5>

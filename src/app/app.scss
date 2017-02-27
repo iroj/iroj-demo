@@ -36,15 +36,35 @@ $custom-font-path: '../assets/custom-fonts';
 }
 
 ion-content {
-    font-family: 'OpenSans Regular'
+    font-family: 'OpenSans Regular';
+    background: #fff!important;
 }
 
 .button {
     font-family: 'OpenSans Regular';
     text-transform: uppercase;
     border-radius: 10px;
-    font-size: 4vh;
+    font-size: 3vh;
     height: 6.5vh;
+}
+
+.picker-wrapper,
+.checkbox-icon,
+.alert-checkbox-icon {
+    background-color: #f4f4f4 !important;
+}
+
+.picker-wrapper {
+    .picker-toolbar {
+        background: #028dc6 !important;
+        color: #fff !important;
+        height: 6.5vh;
+    }
+}
+
+.picker-button {
+    height: 6.5vh!important;
+    color: #fff !important;
 }
 
 h1 {
@@ -65,12 +85,12 @@ h3 {
 
 h4 {
     font-family: 'OpenSans Regular';
-    font-size: 6vh !important;
+    font-size: 3.5vh !important;
 }
 
 h5 {
     font-family: 'OpenSans Regular';
-    font-size: 4vh !important;
+    font-size: 2.5vh !important;
 }
 
 p {
@@ -81,18 +101,19 @@ p {
 ion-tabs {
     .tabbar {
         border: none !important;
+        height: 10vh;
         .tab-button {
             max-width: 50% !important;
             border: none;
             .tab-button-text {
                 text-transform: uppercase;
-                font-size: 24px !important;
+                font-size: 4vh !important;
                 font-family: 'OpenSans Regular'
             }
         }
         .tab-button[aria-selected=true] {
-            font-size: 28px !important;
-            border-bottom: 4px solid #de7e03;
+            font-size: 4.5vh !important;
+            // border-bottom: 4px solid #de7e03;
         }
     }
 }
@@ -122,6 +143,14 @@ ion-searchbar {
         padding: 1.2%;
         border-bottom: 0.55px solid rgba(0, 0, 0, 0.05) !important;
         font-size: 2rem
+    }
+}
+
+.selected-tab {
+    img {
+        margin-top: -5vw;
+        width: 5vw!important;
+        height: 5vw!important;
     }
 }
 
@@ -199,13 +228,13 @@ ion-grid {
         .profileImg {
             text-align: center;
             margin-bottom: -10%;
-            width: 15vw;
-            height: 15vw;
+            width: 25vh;
+            height: 25vh;
             border-radius: 50%;
             object-fit: cover;
         }
         .profileIcon {
-            font-size: 20rem;
+            font-size: 15vh;
             text-align: center;
             width: 100%;
             margin-bottom: -10%;
@@ -298,23 +327,6 @@ ion-grid {
         line-height: 10rem;
         border: 0.55px solid #c5d3dc !important;
     }
-}
-
-.picker-wrapper,
-.checkbox-icon,
-.alert-checkbox-icon {
-    background-color: #f4f4f4 !important;
-}
-
-.picker-wrapper {
-    .picker-toolbar {
-        background: #028dc6 !important;
-        color: #fff !important
-    }
-}
-
-.picker-button {
-    color: #fff !important;
 }
 
 .checkbox-checked {

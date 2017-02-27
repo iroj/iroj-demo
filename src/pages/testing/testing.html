@@ -1,6 +1,12 @@
 <ion-content padding>
-
     <ion-grid>
+        <ion-row>
+            <ion-col width-33></ion-col>
+            <ion-col width-33 class='selected-tab' text-center>
+                <img src='../assets/images/select-tab.png' />
+            </ion-col>
+            <ion-col width-33></ion-col>
+        </ion-row>
         <div *ngIf='!selectedPlayer._id'>
             <ion-row>
                 <ion-col>
@@ -39,7 +45,7 @@
                     <ion-icon color='light' class='profileIcon' name='md-person'></ion-icon>
                 </ion-col>
                 <ion-col width-40 text-center *ngIf='selectedPlayer.profileImageId' class='icons'>
-                    <img  class='profileImg' src='{{selectedPlayer.profileImageId}}' />
+                    <img class='profileImg' src='{{selectedPlayer.profileImageId}}' />
                 </ion-col>
                 <ion-col width-30 text-right>
                     <ion-icon (click)='selectedPlayer={}' class='medium-icon' name='ios-search-outline' color='light'>

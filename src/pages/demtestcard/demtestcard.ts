@@ -33,14 +33,14 @@ export class DemTestCardPage {
   }
 
   uniqueName() {
-  let name = "";
-  let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let name = "";
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-  for( let i=0; i < 8; i++ )
-    name += possible.charAt(Math.floor(Math.random() * possible.length));
+    for (let i = 0; i < 8; i++)
+      name += possible.charAt(Math.floor(Math.random() * possible.length));
 
-  return name + ".wav";
-}
+    return name + ".wav";
+  }
 
   back() {
     this.navCtrl.pop();
@@ -67,7 +67,6 @@ export class DemTestCardPage {
     });
     if (MediaPlugin) {
       this.selectedCard.fileName = this.uniqueName();
-      console.log(this.selectedCard.fileName);
       this.newFile = new MediaPlugin(this.selectedCard.fileName);
       this.newFile.startRecord();
       console.log('new record start: ', this.newFile);
@@ -87,8 +86,8 @@ export class DemTestCardPage {
       console.log('record stop: ', this.newFile);
 
       this.newFile.stopRecord();
-      let recordedFile = new MediaPlugin(this.selectedCard.fileName);
-      recordedFile.play();
+      // let recordedFile = new MediaPlugin(this.selectedCard.fileName);
+      // recordedFile.play();
       // File.readAsDataURL(cordova.file.dataDirectory, 'recording.wav').then(data => {
       // });
     }
@@ -102,10 +101,6 @@ export class DemTestCardPage {
     this.status = 'paused';
     this.clock.unsubscribe();
     this.elapsedTime = this.timer;
-    // if (this.newFile) {
-    //   console.log('record pause: ', this.newFile);
-    //   this.newFile.pauseRecord();
-    // }
   }
 
   resume() {
@@ -113,11 +108,6 @@ export class DemTestCardPage {
     this.clock = TimerObservable.create(0, 1000).subscribe(t => {
       this.timer = this.elapsedTime + t;
     });
-    // if (this.newFile){
-    //   console.log('record resume: ', this.newFile);
-    //   this.newFile.resumeRecord();
-    // }
-
   }
 
   reset() {
@@ -130,6 +120,8 @@ export class DemTestCardPage {
     this.elapsedTime = 0;
     if (this.clock)
       this.clock.unsubscribe();
+    this.newFile = null;
+    this.selectedCard.fileName = ''
   }
 
 }
