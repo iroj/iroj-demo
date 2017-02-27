@@ -3,4 +3,28 @@ page-demtestcard {
         font-size: 36px;
         letter-spacing: 8px;
     }
+    h4 {
+        margin-top: -1vh;
+    }
+    .dem-test {
+        // background: #fff!important;
+        margin: 1.25vh 3vh 3vh 3vh;
+        .entries {
+            padding: 3vh;
+            width: 60vw;
+            ion-textarea {
+                padding: 3vh;
+                border: 1px solid #D5D9DA;
+                background: #FCFCFC;
+                font-weight: bold;
+                font-size: 6vh;
+                textarea {
+                    letter-spacing: .5vh!important;
+                }
+            }
+        }
+        .dialpad {
+            width: 40vw;
+        }
+    }
 }

@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content padding>
     <!--<ion-header>
         <ion-item class='selected-tab'>
             <ion-avatar item-right>
@@ -7,14 +7,14 @@
         </ion-item>
     </ion-header>-->
     <ion-grid class='results'>
-        <ion-row>
+        <!--<ion-row>
             <ion-col width-33></ion-col>
             <ion-col width-33></ion-col>
             <ion-col width-33 class='selected-tab' text-center>
                 <img src='../assets/images/select-tab.png' />
             </ion-col>
-        </ion-row>
-        <ion-row>
+        </ion-row>-->
+        <ion-row class="margin-top">
             <ion-col width-25></ion-col>
             <ion-col width-25 text-center>
                 <button (click)='type="KD"' ion-button full class='type-button' [ngClass]='{selected:type==="KD"}'>
@@ -28,7 +28,8 @@
             </ion-col>
             <ion-col width-25></ion-col>
         </ion-row>
-        <div *ngIf='type==="KD"'>
+
+        <div class="margin-top " *ngIf='type==="KD"'>
             <ion-row class='result-head' text-center color='primary'>
                 <ion-col col-10>Date
                 </ion-col>
@@ -46,7 +47,7 @@
                 </ion-col>
                 <ion-col col-15>KD2<br> (E/T)
                 </ion-col>
-                <ion-col col-15>KD3<br> (E/T)
+                <ion-col col-15 class="no-border-right">KD3<br> (E/T)
                 </ion-col>
             </ion-row>
             <ion-row *ngFor='let result of results.kd' class='result-body' text-center>
@@ -66,13 +67,13 @@
                 </ion-col>
                 <ion-col col-15>{{result.KDresults[1].err}} / {{result.KDresults[1].time}}
                 </ion-col>
-                <ion-col col-15>{{result.KDresults[2].err}} / {{result.KDresults[2].time}}
+                <ion-col col-15 class="no-border-right">{{result.KDresults[2].err}} / {{result.KDresults[2].time}}
                 </ion-col>
             </ion-row>
 
         </div>
 
-        <div *ngIf='type==="DEM"'>
+        <div class="margin-top" *ngIf='type==="DEM"'>
             <ion-row class='result-head' text-center color='primary'>
                 <ion-col col-10>Date
                 </ion-col>
@@ -94,7 +95,7 @@
                 </ion-col>
                 <ion-col col-12>VTE
                 </ion-col>
-                <ion-col col-12>HV
+                <ion-col col-12 class="no-border-right">HV
                 </ion-col>
             </ion-row>
             <ion-row *ngFor='let result of results.dem' class='result-body' text-center (click)='review(result)'>
@@ -118,7 +119,7 @@
                 </ion-col>
                 <ion-col col-12>{{result.DEMresults.results.vtE}}
                 </ion-col>
-                <ion-col col-12>{{result.DEMresults.results.hV}}
+                <ion-col col-12 class="no-border-right">{{result.DEMresults.results.hV}}
                 </ion-col>
             </ion-row>
         </div>

@@ -1,12 +1,12 @@
 <ion-content padding>
     <ion-grid>
-        <ion-row>
+        <!--<ion-row>
             <ion-col width-33></ion-col>
             <ion-col width-33 class='selected-tab' text-center>
                 <img src='../assets/images/select-tab.png' />
             </ion-col>
             <ion-col width-33></ion-col>
-        </ion-row>
+        </ion-row>-->
         <div *ngIf='!selectedPlayer._id'>
             <ion-row>
                 <ion-col>
@@ -33,7 +33,7 @@
                 <ion-col width-30></ion-col>
                 <ion-col width-40>
                     <button full (click)='addPlayer()' icon-left ion-button color="danger">
-                      <ion-icon name='ios-add-circle-outline'></ion-icon> Add New Player</button>
+                      <ion-icon name='md-person-add'></ion-icon> Add New Player</button>
                 </ion-col>
                 <ion-col width-30></ion-col>
             </ion-row>

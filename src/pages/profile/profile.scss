@@ -1,1 +1,17 @@
-page-profile {}
+page-profile {
+    p {
+        margin: 0;
+    }
+    ion-row {
+        padding: 0;
+        ion-col {
+            padding: 0!important;
+        }
+    }
+    h3 {
+        font-size: 5vh!important;
+    }
+    ion-label {
+        font-size: 3vh!important;
+    }
+}

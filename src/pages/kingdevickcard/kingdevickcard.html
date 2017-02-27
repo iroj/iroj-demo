@@ -13,7 +13,7 @@
         </ion-row>
 
         <ion-row>
-            <ion-col width-40>
+            <ion-col width-40 class="test-controls">
                 <ion-row>
                     <ion-col width-25 text-center>
                         <ion-icon color='light' class='medium-icon' name='ios-timer-outline'></ion-icon>
@@ -44,11 +44,11 @@
                 <ion-row>
                     <ion-col width-100 text-center>
                         <ion-icon color='danger' class='medium-icon' name='ios-alert-outline'></ion-icon><br>
-                        <h4>{{errors}}</h4>
+                        <h4>Errors: {{errors}}</h4>
                     </ion-col>
                 </ion-row>
             </ion-col>
-            <ion-col width-50 class='dialpad' text-center>
+            <ion-col width-60 class='dialpad' text-center>
                 <ion-grid>
                     <ion-row>
                         <ion-col *ngFor='let x of selectedCard.row1; let i = index' col-20 text-center>
@@ -93,8 +93,8 @@
                     </ion-row>
                 </ion-grid>
             </ion-col>
-            <ion-col width-10>
-            </ion-col>
+            <!--<ion-col width-10>
+            </ion-col>-->
         </ion-row>
     </ion-grid>
 </ion-content>

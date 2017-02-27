@@ -7,17 +7,20 @@
         </ion-item>
     </ion-header>-->
     <ion-grid class='profile'>
-        <ion-row>
+        <!--<ion-row>
             <ion-col width-33 class='selected-tab' text-center>
                 <img src='../assets/images/select-tab.png' />
             </ion-col>
             <ion-col width-33></ion-col>
             <ion-col width-33></ion-col>
+        </ion-row>-->
+        <ion-row center>
+            <ion-col width-100>
+                <h3 text-center color='primary' *ngIf='school'>{{school.name}} </h3>
+            </ion-col>
         </ion-row>
         <ion-row center>
             <ion-col width-30>
-                <h5 *ngIf='school'>School: {{school.name}} </h5>
-
             </ion-col>
             <ion-col *ngIf='!user.profileImageId' width-40 class='icons'>
                 <ion-icon color='light' class='profileIcon' name='md-person'>
@@ -83,10 +86,12 @@
             </ion-col>
             <ion-col width-20></ion-col>
         </ion-row>
-        <ion-row center>
+        <ion-row top>
             <ion-col width-20></ion-col>
             <ion-col width-30 text-left>
-                <button color='danger' full (click)='submit()' ion-button>Update</button>
+                <button icon-left color='danger' full (click)='submit()' ion-button>
+                 <ion-icon name="ios-refresh-outline"></ion-icon>
+                  Update</button>
             </ion-col>
             <ion-col width-30></ion-col>
             <ion-col width-20 text-center>

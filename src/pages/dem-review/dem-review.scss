@@ -1,32 +1,33 @@
   page-dem-review {
       .review-section {
           background: #fff;
+          margin: 3vh;
           .numbers {
-              background-color: #16675f;
+              background-color: #028DC6;
               color: #fff;
               height: 10vh !important;
-              width: 18vw !important;
+              width: 17vw !important;
               margin: 1vw;
-              font-size: 40px;
+              font-size: 5vh!important;
               ion-badge {
                   position: absolute;
                   margin-left: -30px;
               }
           }
           .active {
-              background-color: #fafa3e;
+              background-color: #016A94;
           }
           .omission {
-              background-color: #de7e03;
+              background-color: #FAB153;
           }
           .substitution {
-              background-color: #508f27;
+              background-color: #82C250;
           }
           .transposition {
-              background-color: #5c4f00;
+              background-color: #3BBEB0;
           }
           .addition {
-              background-color: #b53d6d;
+              background-color: #F67D50;
               width: 180px !important;
               margin: 10px;
               font-size: 30px;
@@ -41,5 +42,12 @@
       }
       .reset {
           float: right
+      }
+      button {
+          font-size: 2vh!important;
+          font-weight: bold;
+          h4 {
+              background: #fff!important
+          }
       }
   }

@@ -1,9 +1,9 @@
-<ion-content>
+<ion-content padding>
     <ion-grid class='addPlayer'>
         <ion-row center>
             <ion-icon color='primary' class='medium-icon' name='ios-arrow-round-back-outline' (click)='back()'></ion-icon>
             <ion-col width-100 text-center>
-                <h2 color='primary'>Add new player </h2>
+                <h4 color='primary'>Add new player </h4>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -43,7 +43,9 @@
         <ion-row text-center>
             <ion-col width-30></ion-col>
             <ion-col width-40>
-                <button full (click)='add()' ion-button color="danger">Add</button>
+                <button full icon-left (click)='add()' ion-button color="danger">
+            <ion-icon name='ios-add-circle-outline' (click)='back()'></ion-icon>
+                  Add</button>
             </ion-col>
             <ion-col width-30></ion-col>
         </ion-row>
