@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
-import { TimerObservable } from "rxjs/observable/TimerObservable";
-import { MediaPlugin } from 'ionic-native';
+import {Component} from '@angular/core';
+import {NavController, NavParams, LoadingController} from 'ionic-angular';
+import {TimerObservable} from "rxjs/observable/TimerObservable";
+import {MediaPlugin} from 'ionic-native';
 
-import { DemService } from '../../providers/dem-service';
-import { ToastService } from '../../providers/toast-service';
-import { TestService } from '../../providers/test-service';
+import {DemService} from '../../providers/dem-service';
+import {ToastService} from '../../providers/toast-service';
+import {TestService} from '../../providers/test-service';
 import _ from 'lodash';
 declare var cordova: any;
 @Component({
@@ -23,7 +23,7 @@ export class DemTestCardPage {
   public newFile: any;
 
   constructor(public navParams: NavParams, public loadingController: LoadingController, public navCtrl: NavController,
-    public demService: DemService, public toast: ToastService, public testService: TestService) {
+              public demService: DemService, public toast: ToastService, public testService: TestService) {
     this.selectedCard = this.demService.getDEMcard(this.navParams.get('index'));
     this.timer = this.selectedCard.time;
     let test = this.testService.returnTest();
@@ -67,8 +67,8 @@ export class DemTestCardPage {
       this.timer = t;
     });
     this.selectedCard.fileName = this.uniqueName();
-    //   this.newFile = new MediaPlugin(this.selectedCard.fileName);
-    //   this.newFile.startRecord();
+    this.newFile = new MediaPlugin(this.selectedCard.fileName);
+    this.newFile.startRecord();
     console.log('new record start: ');
     this.toast.showToast('Audio Recording Started')
 
@@ -79,7 +79,7 @@ export class DemTestCardPage {
     this.selectedCard = this.demService.analyze(this.selectedCard, this.navParams.get('index'));
     console.log('record stop: ');
     console.log(this.selectedCard);
-    //   this.newFile.stopRecord();
+    this.newFile.stopRecord();
     this.toast.showToast('Audio Recording Stopped')
     this.navCtrl.pop();
   }
@@ -111,5 +111,6 @@ export class DemTestCardPage {
     this.newFile = null;
     this.selectedCard.fileName = ''
   }
+
 
 }

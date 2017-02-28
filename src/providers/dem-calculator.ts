@@ -26,10 +26,10 @@ export class DemCalculator {
     this.S = 0;
     this.T = 0;
     this.insertion = function () {
-      this.O++;
+      this.A++;
     }
     this.deletion = function () {
-      this.A++;
+      this.O++;
     }
     this.substitution = function () {
       this.S++;
@@ -42,18 +42,18 @@ export class DemCalculator {
     }
 
     this.getInsertion = function () {
-      return this.O
+      return this.A
     }
     this.setInsertion = function (insertion) {
-      this.O = insertion;
+      this.A = insertion;
     }
 
     this.setDeletion = function (deletion) {
-      this.A = deletion;
+      this.O = deletion;
     }
 
     this.getDeletion = function () {
-      return this.A
+      return this.O
     }
 
     this.getSubstitution = function () {

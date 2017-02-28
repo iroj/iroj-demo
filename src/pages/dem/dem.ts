@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { TestService } from '../../providers/test-service';
 import { DemService } from '../../providers/dem-service';
+import { GlobalService } from '../../providers/global-service';
 import { ToastService } from '../../providers/toast-service';
 import { DemInputPage } from '../dem-input/dem-input';
 import _ from 'lodash';
@@ -15,7 +16,8 @@ export class DemPage {
   public cards = [];
   public test:any;
     public results: any;
-  constructor(public navCtrl: NavController, public loadingController: LoadingController, public navParams: NavParams, public toast: ToastService,
+  constructor(public navCtrl: NavController, public loadingController: LoadingController,
+              public global: GlobalService, public navParams: NavParams, public toast: ToastService,
     public testService: TestService, public demService: DemService) {
     this.cards = this.demService.getDEMcards();
     console.log(this.cards);

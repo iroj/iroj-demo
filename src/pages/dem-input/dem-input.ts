@@ -1,41 +1,43 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { DemService } from '../../providers/dem-service';
-import { ToastService } from '../../providers/toast-service';
+import {Component} from '@angular/core';
+import {NavController, NavParams} from 'ionic-angular';
+import {DemService} from '../../providers/dem-service';
+import {ToastService} from '../../providers/toast-service';
+import {TimerObservable} from "rxjs/observable/TimerObservable";
 
-import { MediaPlugin, File } from 'ionic-native';
+import {MediaPlugin} from 'ionic-native';
 
+declare var cordova: any;
 @Component({
   selector: 'page-dem-input',
   templateUrl: 'dem-input.html'
 })
+
 export class DemInputPage {
   public selectedCard: any;
   public recordedFile: any;
   public inputString = '';
   public status = 'stop';
+  public timer = 0;
+  public elapsedTime = 0;
+  public clock: any;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public demService: DemService, public toast: ToastService) {
     this.selectedCard = this.demService.getDEMcard(this.navParams.get('index'));
     this.selectedCard.inputArray = [];
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DemInputPage');
-    this.recordedFile = new MediaPlugin(this.selectedCard.fileName);
-    //  this.recordedFile.play();
-    // File.readAsDataURL(cordova.file.dataDirectory, 'recording.wav').then(data => {
-    // });
+    let fileName = this.selectedCard.fileName;
+    console.log(fileName)
+    this.recordedFile = new MediaPlugin(fileName);
+    console.log(this.recordedFile)
+    console.log(this.recordedFile.getDuration())
+  }
 
-  }
-  back() {
-    //   this.recordedFile.stop();
-    //   this.recordedFile.release();
-    this.demService.resetDEMcards();
-    this.navCtrl.pop();
-  }
   add(x) {
-    // this.inputs[Math.floor(this.selectedCard.inputArray.length / 10)].push(x);
     if (this.selectedCard.inputArray.length < 50) {
       this.selectedCard.inputArray.push(x);
       this.inputString = this.selectedCard.inputArray.join('')
@@ -45,24 +47,20 @@ export class DemInputPage {
   start() {
     this.status = 'running';
     this.recordedFile.play();
-
+    this.clock = TimerObservable.create(0, 1000).subscribe(t => {
+      this.timer = t;
+      if (t > this.selectedCard.time)
+        this.stop()
+    });
   }
 
-  stop() {
+  back() {
     if (this.selectedCard.inputArray.length < 30) {
       this.toast.showToast('Not enough data.');
-      return
-    }
-    this.selectedCard = this.demService.analyze(this.selectedCard, this.navParams.get('index'));
+    } else
+      this.selectedCard = this.demService.analyze(this.selectedCard, this.navParams.get('index'));
     this.recordedFile.stop();
     console.log(this.selectedCard);
-    // if (this.newFile) {
-    //   console.log('record stop: ', this.newFile);
-
-    //   this.newFile.stopRecord();
-    //
-
-
     this.navCtrl.pop();
   }
 
@@ -70,19 +68,29 @@ export class DemInputPage {
   pause() {
     this.status = 'paused';
     this.recordedFile.pause();
+    this.clock.unsubscribe();
+    this.elapsedTime = this.timer;
   }
 
   resume() {
     this.status = 'running';
     this.recordedFile.play();
+    this.clock = TimerObservable.create(0, 1000).subscribe(t => {
+      this.timer = this.elapsedTime + t;
+    });
   }
 
   reset() {
     this.inputString = '';
     this.selectedCard.inputArray = [];
     this.recordedFile.stop();
-
     this.status = 'stop';
+    this.timer = 0;
+  }
 
+  stop() {
+    this.timer = 0;
+    this.clock.unsubscribe();
+    this.status = 'stop';
   }
 }

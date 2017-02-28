@@ -126,7 +126,6 @@ export class DemService {
     let  inputArray= selectedcard.dataArray;
     let dataArray = selectedcard.inputArray;
 
-    // damlev service
     let source = inputArray.join('');
     let target = dataArray.join('');
     selectedcard.errors =   this.demCalculator.calculateErrors(source,target);

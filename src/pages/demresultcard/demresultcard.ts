@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
-import { TestService } from '../../providers/test-service';
-import { DemService } from '../../providers/dem-service';
-import { ToastService } from '../../providers/toast-service';
-import { DemReviewPage } from '../dem-review/dem-review';
-import { DemInputPage } from '../dem-input/dem-input';
+import {Component} from '@angular/core';
+import {NavController, NavParams, LoadingController} from 'ionic-angular';
+import {TestService} from '../../providers/test-service';
+import {DemService} from '../../providers/dem-service';
+import {ToastService} from '../../providers/toast-service';
+import {DemReviewPage} from '../dem-review/dem-review';
+import {DemInputPage} from '../dem-input/dem-input';
+import {GlobalService} from '../../providers/global-service';
 
 import _ from 'lodash';
 @Component({
@@ -15,13 +16,16 @@ export class DemresultcardPage {
   public result: any;
   public cards: any;
   public results: any;
-  constructor(public navCtrl: NavController, public loadingController: LoadingController, public navParams: NavParams, public toast: ToastService,
-    public testService: TestService, public demService: DemService) {
+
+  constructor(public navCtrl: NavController, public loadingController: LoadingController, public global: GlobalService, public navParams: NavParams, public toast: ToastService,
+              public testService: TestService, public demService: DemService) {
     this.result = this.navParams.get('result');
-    this.cards = this.result.DEMresults.cards
-    this.results = this.result.DEMresults.results
+    this.cards = this.result.DEMresults.cards;
+
+    this.results = this.result.DEMresults.results;
     this.demService.setDEMresultCards(this.result.DEMresults);
   }
+
   ionViewWillEnter() {
     // console.log(this.cards);
     this.cards = this.demService.getDEMcards();
@@ -32,7 +36,10 @@ export class DemresultcardPage {
       this.results.hV = _.floor(this.results.hV, 2);
       console.log(this.results);
     }
+
+
   }
+
   ionViewWillLeave() {
   }
 
@@ -55,10 +62,12 @@ export class DemresultcardPage {
     this.navCtrl.pop();
     this.demService.resetDEMcards();
   }
+
   review(i) {
-    this.navCtrl.push(DemReviewPage, { index: i });
+    this.navCtrl.push(DemReviewPage, {index: i});
   }
+
   dial(i) {
-    this.navCtrl.push(DemInputPage, { index: i });
+    this.navCtrl.push(DemInputPage, {index: i});
   }
 }
