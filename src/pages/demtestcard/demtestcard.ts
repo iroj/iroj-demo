@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { TimerObservable } from "rxjs/observable/TimerObservable";
-import { MediaPlugin, File } from 'ionic-native';
+import { MediaPlugin } from 'ionic-native';
 
 import { DemService } from '../../providers/dem-service';
 import { ToastService } from '../../providers/toast-service';
@@ -35,14 +35,15 @@ export class DemTestCardPage {
   uniqueName() {
     let name = "";
     let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
     for (let i = 0; i < 8; i++)
       name += possible.charAt(Math.floor(Math.random() * possible.length));
-
     return name + ".wav";
   }
 
   back() {
+    // if(this.newFile)
+    //   this.newFile.stopRecord();
+    this.demService.resetDEMcards();
     this.navCtrl.pop();
   }
 
@@ -65,34 +66,21 @@ export class DemTestCardPage {
     this.clock = TimerObservable.create(0, 1000).subscribe(t => {
       this.timer = t;
     });
-    // if (MediaPlugin) {
-    //   this.selectedCard.fileName = this.uniqueName();
+    this.selectedCard.fileName = this.uniqueName();
     //   this.newFile = new MediaPlugin(this.selectedCard.fileName);
     //   this.newFile.startRecord();
-    //   console.log('new record start: ', this.newFile);
-    // }
+    console.log('new record start: ');
+    this.toast.showToast('Audio Recording Started')
+
   }
 
   stop() {
-    if (this.selectedCard.inputArray.length < 30) {
-      this.toast.showToast('Not enough data.');
-      return
-    }
     this.selectedCard.time = this.timer;
     this.selectedCard = this.demService.analyze(this.selectedCard, this.navParams.get('index'));
-
+    console.log('record stop: ');
     console.log(this.selectedCard);
-    // if (this.newFile) {
-    //   console.log('record stop: ', this.newFile);
-
     //   this.newFile.stopRecord();
-    //   // let recordedFile = new MediaPlugin(this.selectedCard.fileName);
-    //   // recordedFile.play();
-    //   // File.readAsDataURL(cordova.file.dataDirectory, 'recording.wav').then(data => {
-    //   // });
-    // }
-
-
+    this.toast.showToast('Audio Recording Stopped')
     this.navCtrl.pop();
   }
 

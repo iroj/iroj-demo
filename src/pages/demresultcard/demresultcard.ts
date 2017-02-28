@@ -4,6 +4,8 @@ import { TestService } from '../../providers/test-service';
 import { DemService } from '../../providers/dem-service';
 import { ToastService } from '../../providers/toast-service';
 import { DemReviewPage } from '../dem-review/dem-review';
+import { DemInputPage } from '../dem-input/dem-input';
+
 import _ from 'lodash';
 @Component({
   selector: 'page-demresultcard',
@@ -55,5 +57,8 @@ export class DemresultcardPage {
   }
   review(i) {
     this.navCtrl.push(DemReviewPage, { index: i });
+  }
+  dial(i) {
+    this.navCtrl.push(DemInputPage, { index: i });
   }
 }

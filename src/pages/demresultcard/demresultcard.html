@@ -20,12 +20,22 @@
                 <ion-col width-10>
                     <h5>{{card.name}}</h5>
                 </ion-col>
-                <ion-col width-20>
+                <ion-col width-20 *ngIf='!card.fileName'>
                     <button ion-button (click)='review(i)' full icon-right round>
                       Review <ion-icon name='ios-paper-outline'></ion-icon></button>
                 </ion-col>
-                <ion-col width-10></ion-col>
+                <ion-col width-10 *ngIf='card.fileName'>
+                    <button ion-button (click)='review(i)' full icon-only round>
+                       <ion-icon name='ios-paper-outline'></ion-icon></button>
+                </ion-col>
+                <ion-col width-10 *ngIf='card.fileName'>
+                    <button ion-button (click)='dial(i)' icon-only full round><ion-icon name='md-grid'></ion-icon></button>
+                </ion-col>
 
+                <ion-col width-10>
+                    <ion-icon *ngIf='card.fileName' name='md-headset'></ion-icon>
+                    <ion-icon *ngIf='!card.fileName' name='md-mic-off'></ion-icon>
+                </ion-col>
                 <ion-col class='values' width-10>{{card.errors.O}}</ion-col>
                 <ion-col class='values' width-10>{{card.errors.S}}</ion-col>
                 <ion-col class='values' width-10>{{card.errors.A}}</ion-col>
@@ -47,7 +57,7 @@
                 <ion-col width-30>
 
                 </ion-col>
-                <ion-col width-40 text-center> <button color='secondary' round ion-button (click)='save()'>Update results</button></ion-col>
+                <ion-col width-40 text-center> <button color='secondary' round ion-button (click)='update()'>Update results</button></ion-col>
             </ion-row>
         </div>
     </ion-grid>
