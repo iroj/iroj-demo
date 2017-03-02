@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams, LoadingController} from 'ionic-angular';
 import {TimerObservable} from "rxjs/observable/TimerObservable";
-import {MediaPlugin} from 'ionic-native';
+import {MediaPlugin, Transfer} from 'ionic-native';
 
 import {DemService} from '../../providers/dem-service';
 import {ToastService} from '../../providers/toast-service';
@@ -82,6 +82,7 @@ export class DemTestCardPage {
     this.newFile.stopRecord();
     this.toast.showToast('Audio Recording Stopped')
     this.navCtrl.pop();
+  this.uploadFile(this.selectedCard.fileName)
   }
 
 
@@ -97,6 +98,33 @@ export class DemTestCardPage {
       this.timer = this.elapsedTime + t;
     });
   }
+
+  uploadFile(file) {
+    console.log(file);
+    const fileTransfer = new Transfer();
+    options = {
+      fileKey: 'file'
+  }
+    fileTransfer.upload("<file path>", "<api endpoint>", options)
+      .then((data) => {
+        // success
+      }, (err) => {
+        // error
+      })
+
+    // let upload = SC.upload({
+    //   file: file, // a Blob of your WAV, MP3...
+    //   title: 'This upload took quite some while'
+    // });
+    //
+    // upload.request.addEventListener('progress', function (e) {
+    //   console.log('progress: ', (e.loaded / e.total) * 100, '%');
+    // });
+    //
+    // upload.then(function (track) {
+    //   alert('Upload is done! Check your sound at ' + track.permalink_url);
+    // };
+  };
 
   reset() {
     this.inputString = '';

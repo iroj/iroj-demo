@@ -43,4 +43,5 @@
     <plugin name="cordova-plugin-media" spec="~2.4.1">
         <variable name="MICROPHONE_USAGE_DESCRIPTION" value=" " />
     </plugin>
+    <plugin name="cordova-plugin-file-transfer" spec="~1.6.1" />
 </widget>
