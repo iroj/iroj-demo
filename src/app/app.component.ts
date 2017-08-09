@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar} from '@ionic-native/status-bar';
+import { SplashScreen} from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -15,7 +16,7 @@ import { DataService } from '../providers/data-service'
 export class MyApp {
   public rootPage: any;
 
-  constructor(platform: Platform, public global: GlobalService, public data: DataService) {
+  constructor(platform: Platform, public global: GlobalService, public data: DataService, public statusBar:StatusBar, public splashScreen: SplashScreen) {
     platform.ready().then(() => {
       // this.data.remove('user');
       this.data.getData('user').then(
@@ -32,9 +33,9 @@ export class MyApp {
           }
           else this.rootPage = LoginPage
         });
-      StatusBar.overlaysWebView(false);
-      StatusBar.styleDefault();
-      Splashscreen.hide();
+      this.statusBar.overlaysWebView(false);
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
     });
   }
 }

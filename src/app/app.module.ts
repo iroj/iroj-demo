@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
-import { IonicApp, IonicModule } from 'ionic-angular';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { Storage } from '@ionic/storage'
-import { Http } from '@angular/http';
-// import {AuthHttp, AUTH_PROVIDERS, AuthConfig} from 'angular2-jwt';
+import { IonicStorageModule } from '@ionic/storage';
+
 //pages login
 import { LoginPage } from '../pages/login/login';
 //pages for examiner
@@ -23,6 +24,13 @@ import { DemInputPage } from '../pages/dem-input/dem-input';
 import { CognitionToolPage } from '../pages/cognition-tool/cognition-tool';
 import { EmergencyPage } from '../pages/emergency/emergency';
 import { EmergencyAlertModal } from '../pages/emergency/emergency-alert';
+//native services
+import {Camera} from '@ionic-native/camera';
+import {SplashScreen} from '@ionic-native/splash-screen';
+import {MediaPlugin} from '@ionic-native/media';
+import {File} from '@ionic-native/file';
+import {ScreenOrientation} from '@ionic-native/screen-orientation';
+import { StatusBar} from '@ionic-native/status-bar';
 
 //pages for student
 import { StudentTabsPage } from '../pages/student-tabs/student-tabs';
@@ -79,7 +87,10 @@ const cloudSettings: CloudSettings = {
     IonicModule.forRoot(MyApp, {
       tabsHideOnSubPages: true
     }),
-    CloudModule.forRoot(cloudSettings)
+    CloudModule.forRoot(cloudSettings),
+    IonicStorageModule.forRoot(),
+    BrowserModule, HttpModule
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -105,7 +116,8 @@ const cloudSettings: CloudSettings = {
     StudentProfilePage,
     StudentResultsPage
   ],
-  providers: [AuthService, ProfileService, TestService, ResultService, DataService, GlobalService, KdService, DemService, Damlev, DemCalculator, Config, Storage, AuthService, ToastService]
+  providers: [AuthService, ProfileService, TestService, ResultService, DataService, GlobalService, KdService, DemService, Damlev, DemCalculator, Config, Storage, AuthService, ToastService,
+  Camera, SplashScreen, File,StatusBar, MediaPlugin, ScreenOrientation, { provide: ErrorHandler, useClass: IonicErrorHandler }]
 })
 export class AppModule {
 }

@@ -1,6 +1,5 @@
 {
-    "name": "pomona",
-    "app_id": "781eeb71",
-    "v2": true,
-    "typescript": true
+  "name": "safesidelines",
+  "app_id": "781eeb71",
+  "type": "ionic-angular"
 }

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Ionic App</title>
+    <title>Safesidelines</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -38,25 +38,6 @@
 
     <!-- The bundle js is generated during the build process -->
     <script src="build/main.js"></script>
-    <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
-    <script>
-        SC.initialize({
-            client_id: 'GXv8bgysVUSY0prXoCA9jcBqblLDac49',
-            redirect_uri: 'http://example.com/callback'
-        });
-
-        // initiate auth popup
-        SC.connect().then(function() {
-            return SC.get('/me');
-        }).then(function(me) {
-            console.log(me);
-        });
-
-        //         Client ID
-        // GXv8bgysVUSY0prXoCA9jcBqblLDac49
-        // Client Secret
-        // ODpQ2Um5Ueg4KCwc668mUbvwV7Qg8YQk
-    </script>
 </body>
 
 </html>
